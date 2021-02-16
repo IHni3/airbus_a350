@@ -12,6 +12,7 @@ public class WeatherRadarFactory {
         Object weatherRadarPort = null;
 
         try {
+            String str = Configuration.instance.pathToWeatherRadarJavaArchive;
             URL[] urls = {new File(Configuration.instance.pathToWeatherRadarJavaArchive).toURI().toURL()};
             URLClassLoader urlClassLoader = new URLClassLoader(urls, WeatherRadarFactory.class.getClassLoader());
             Class weatherRadarClass = Class.forName("WeatherRadar", true, urlClassLoader);

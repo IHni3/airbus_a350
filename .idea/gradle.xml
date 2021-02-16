@@ -13,6 +13,24 @@
           </set>
         </option>
       </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/flight_controls_01/slat" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/flight_controls_01/slat" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/weather_radar" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/weather_radar" />
+          </set>
+        </option>
+      </GradleProjectSettings>
     </option>
   </component>
 </project>

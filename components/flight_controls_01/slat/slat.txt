@@ -1,0 +1,12 @@
+interface              : ISlat
+class name             : Slat
+java archive file name : slat.jar
+section                : Wing
+configuration          : numberOfSlat = 6
+
+primary flight display : degreeSlat : int
+
+events                 : SlatNeutral
+                         SlatFullDown
+                         SlatDown(degree : int)
+                         SlatUp(degree : int)
