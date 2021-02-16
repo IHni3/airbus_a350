@@ -20,7 +20,7 @@ public class NitrogenBottle {
 
     // inner methods
     public String innerVersion() {
-        return "WeatherRadar // " + manufacturer + " - " + type + " - " + id;
+        return "NitrogenBottle // " + manufacturer + " - " + type + " - " + id;
     }
 
     public int innerTakeOut (int amount) {
