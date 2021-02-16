@@ -23,6 +23,6 @@ public enum Configuration {
     public int numberOfSlats = 6;
 
     public String generatePathToJavaArchive(String archiveName){
-        return commonPathToJavaArchive + "archiveName" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + archiveName + ".jar";
+        return commonPathToJavaArchive + archiveName + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + archiveName + ".jar";
     }
 }
