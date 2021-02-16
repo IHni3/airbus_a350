@@ -16,4 +16,32 @@ public enum Configuration {
     // weather_radar
     public String pathToWeatherRadarJavaArchive = commonPathToJavaArchive + "weather_radar" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "weather_radar.jar";
     public int numberOfWeatherRadar = 2;
+
+    // camera
+    public String pathToCameraJavaArchive = commonPathToJavaArchive + "camera" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "camera.jar";
+    public int numberOfCameraBody = 2;
+    public int numberOfCameraWing = 1;
+
+    // gps
+    public String pathToGpsJavaArchive = commonPathToJavaArchive + "gps" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "gps.jar";
+    public int numberOfGps = 2;
+
+    // nitrogen_bottle
+    public String pathToNitrogenBottleJavaArchive = commonPathToJavaArchive + "nitrogen_bottle" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "nitrogen_bottle.jar";
+    public int numberOfNitrogen = 6;
+
+    // oxygen_bottle
+    public String pathToOxygenBottleJavaArchive = commonPathToJavaArchive + "oxygen_bottle" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "oxygen_bottle.jar";
+    public int numberOfOxygen = 10;
+
+    // tcas
+    public String pathToTcasJavaArchive = commonPathToJavaArchive + "tcas" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "tcas.jar";
+    public int numberOfTCAS = 2;
+
+    // turbulent_air_flow_sensor
+    public String pathToTurbulentAirFlowSensorJavaArchive = commonPathToJavaArchive + "turbulent_air_flow_sensor" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "turbulent_air_flow_sensor.jar";
+    public int numberOfTurbulentAirFlowSensorBody = 2;
+    public int numberOfTurbulentAirFlowSensorWing = 4;
+
+
 }
