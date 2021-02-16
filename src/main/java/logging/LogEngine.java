@@ -5,6 +5,8 @@ import configuration.Configuration;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,10 +15,21 @@ public enum LogEngine {
     private PrintWriter printWriter;
 
     public void init() {
+
         try {
-            printWriter = new PrintWriter(new File(Configuration.instance.logFile));
+            createPathIfNotExists(Configuration.instance.logFileDirectory);
+
+            printWriter = new PrintWriter(Configuration.instance.logFile);
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
+        }
+    }
+
+    public void createPathIfNotExists(String path) throws IOException {
+        var p = Paths.get(path);
+        if(!Files.exists(p))
+        {
+            Files.createDirectory(p);
         }
     }
 
