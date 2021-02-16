@@ -1,4 +1,4 @@
-# Projekt Software Engineering II Müller
+# Projekt Software Engineering II Dr. Carsten Müller
 
 Team Airbus 03
 
