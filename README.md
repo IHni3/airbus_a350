@@ -12,9 +12,9 @@
 | Procedure Test |     18     | Emil Bartoldus, Georg Klein       |
 
 
-<span style="color:red;font-size:17pt;font-weight: bolder">
+<div style="color:red;font-size:17pt;font-weight: bolder">
 Bitte Feature-Branches erstellen (Form: <code style="color:red">feature/team-{Teamnummer}&gt;</code>) und nicht auf dem main-Branch arbeiten.
-</span>
+</div>
 
 #### Tipps:
  * Watched das Repo. Abonniert die Glocke und so.
