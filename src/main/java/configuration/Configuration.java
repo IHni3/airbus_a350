@@ -16,4 +16,20 @@ public enum Configuration {
     // weather_radar
     public String pathToWeatherRadarJavaArchive = commonPathToJavaArchive + "weather_radar" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "weather_radar.jar";
     public int numberOfWeatherRadar = 2;
+
+    // potable_watertank
+    public String pathToPortableWatertankJavaArchive = commonPathToJavaArchive + "potable_watertank" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "potable_watertank.jar";
+    public int numberOfPotableWaterTank  = 8;
+
+    //wastewater_tank
+
+    //radar
+    public String pathToRadarJavaArchive = commonPathToJavaArchive + "radar" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "radar.jar";
+    public int numberOfRadar = 2;
+
+    //satcom
+
+    //vhf
+
+    //droop_noose
 }

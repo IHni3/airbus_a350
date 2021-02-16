@@ -7,6 +7,7 @@ import event.Subscriber;
 import event.weather_radar.WeatherRadarOff;
 import event.weather_radar.WeatherRadarOn;
 import event.weather_radar.WeatherRadarScan;
+import factory.RadarFactory;
 import factory.WeatherRadarFactory;
 import logging.LogEngine;
 import recorder.FlightRecorder;
@@ -16,15 +17,20 @@ import java.util.ArrayList;
 
 public class Body extends Subscriber {
     private ArrayList<Object> weatherRadarPortList;
+    private ArrayList<Object> RadarPortList;
 
     public Body() {
         weatherRadarPortList = new ArrayList<>();
+        RadarPortList = new ArrayList<>();
         build();
     }
 
     public void build() {
         for (int i = 0; i < Configuration.instance.numberOfWeatherRadar; i++) {
             weatherRadarPortList.add(WeatherRadarFactory.build());
+        }
+        for (int i = 0; i < Configuration.instance.numberOfRadar; i++) {
+            RadarPortList.add(RadarFactory.build());
         }
     }
 
