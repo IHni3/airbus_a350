@@ -5,7 +5,7 @@ public class GPS {
     public Port port;
     private String manufacturer = "Kilian Krampf / Johannes Löh";
     private String type = "team 17";
-    private String id = "<student id 01> / <student id 02>";
+    private String id = "2627585 / 4485500";
     private boolean isOn = false;
     private boolean isConnected = false;
 
@@ -21,7 +21,7 @@ public class GPS {
 
     // inner methods
     public String innerVersion() {
-        return "WeatherRadar // " + manufacturer + " - " + type + " - " + id;
+        return "GPS // " + manufacturer + " - " + type + " - " + id;
     }
 
     public boolean innerOn() {
