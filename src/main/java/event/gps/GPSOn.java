@@ -1,7 +1,8 @@
 package event.gps;
 
 public class GPSOn {
+    @Override
     public String toString() {
-        return "Event: GPS - Off";
+        return "Event: GPS - On";
     }
 }

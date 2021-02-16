@@ -15,6 +15,7 @@ public class GPSConnect {
         this.satelite = satelite;
     }
 
+    @Override
     public String toString () {
         return "Event: GPS - Connect - " + satelite;
     }
