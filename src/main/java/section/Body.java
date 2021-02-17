@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class Body extends Subscriber {
     private ArrayList<Object> weatherRadarPortList;
     private ArrayList<Object> RadarPortList;
+    private ArrayList<Object> WasteWaterTankPortList;
 
     public Body() {
         weatherRadarPortList = new ArrayList<>();

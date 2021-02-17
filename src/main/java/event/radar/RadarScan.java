@@ -17,6 +17,6 @@ public class RadarScan {
     }
 
     public String toString() {
-        return "Event: Radar - " + environment;
+        return "Event: Radar - Scan";
     }
 }

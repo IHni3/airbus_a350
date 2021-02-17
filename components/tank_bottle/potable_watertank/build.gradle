@@ -1,0 +1,21 @@
+plugins {
+    id 'java-library'
+}
+
+group 'dhbw'
+version null
+
+repositories {
+    mavenCentral()
+}
+
+task build_jar(type: Jar) {
+    project.archivesBaseName = "potable_watertank"
+
+    manifest {
+        attributes["Main-Class"] = "PotableWaterTank"
+    }
+
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}

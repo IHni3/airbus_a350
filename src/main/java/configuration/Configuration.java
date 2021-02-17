@@ -17,19 +17,27 @@ public enum Configuration {
     public String pathToWeatherRadarJavaArchive = commonPathToJavaArchive + "weather_radar" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "weather_radar.jar";
     public int numberOfWeatherRadar = 2;
 
-    // potable_watertank
-    public String pathToPortableWatertankJavaArchive = commonPathToJavaArchive + "potable_watertank" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "potable_watertank.jar";
+    // potable_water_tank
+    public String pathToPotableWaterTankJavaArchive = commonPathToJavaArchive + "potable_water_tank" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "potable_water_tank.jar";
     public int numberOfPotableWaterTank  = 8;
 
     //wastewater_tank
+    public String pathToWasteWaterTankJavaArchive = commonPathToJavaArchive + "waste_water_tank" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "waste_water_tank.jar";
+    public int numberOfWasteWaterTank   = 4;
 
     //radar
     public String pathToRadarJavaArchive = commonPathToJavaArchive + "radar" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "radar.jar";
     public int numberOfRadar = 2;
 
     //satcom
+    public String pathToSatComJavaArchive = commonPathToJavaArchive + "sat_com" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "sat_com.jar";
+    public int numberOfSatCom   = 2;
 
     //vhf
+    public String pathToVHFJavaArchive = commonPathToJavaArchive + "vhf" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "vhf.jar";
+    public int numberOfVHF   = 2;
 
-    //droop_noose
+    //droop_nose
+    public String pathToDroopNoseJavaArchive = commonPathToJavaArchive + "droop_nose" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "droop_nose.jar";
+    public int numberOfDroopNose   = 2;
 }
