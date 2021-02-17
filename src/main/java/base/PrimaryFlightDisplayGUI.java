@@ -1,20 +1,21 @@
 package base;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import logging.LogEngine;
 import recorder.FlightRecorder;
@@ -162,6 +163,11 @@ public class PrimaryFlightDisplayGUI extends Application {
         tableTab.setContent(tableView);
         tabPane.getTabs().add(tableTab);
 
+        Tab t15Tab = new Tab();
+        t15Tab.setText("T15");
+        t15Tab.setContent(buildT15View());
+        tabPane.getTabs().add(t15Tab);
+
         VBox vbox = new VBox(20);
         vbox.setPadding(new Insets(25, 25, 25, 25));
         vbox.getChildren().addAll(hBox, tabPane);
@@ -255,6 +261,87 @@ public class PrimaryFlightDisplayGUI extends Application {
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
+    public ScrollPane buildT15View() {
+        GridPaneBuilder builder = new GridPaneBuilder();
+        ScrollPane scroller = new ScrollPane();
+        scroller.setContent(builder.gridPane());
+        scroller.setFitToWidth(true);
+
+        builder.addToggle("Right navigation-light", "Off", "On",
+                v -> PrimaryFlightDisplay.instance.isRightNavigationLightOn = v);
+
+        builder.addToggle("Tail navigation-light", "Off", "On",
+                v -> PrimaryFlightDisplay.instance.isTailNavigationLightOn = v);
+
+        builder.addToggle("Taxi light", "Off", "On",
+                v -> PrimaryFlightDisplay.instance.isTaxiLightOn = v);
+
+        builder.addTitle("Seats");
+
+        builder.addToggle("Non smoking sign", "Off", "On",
+                v -> PrimaryFlightDisplay.instance.isNonSmokingSignOn = v);
+
+        builder.addToggle("Seat belt sign", "Off", "On",
+                v -> PrimaryFlightDisplay.instance.isSeatBeltSignOn = v);
+
+        builder.addInteger("Level Seat", Integer.MIN_VALUE, Integer.MAX_VALUE,
+                v -> PrimaryFlightDisplay.instance.levelSeat = v);
+
+        builder.addTitle("Exhaust-gas sensor");
+
+        builder.addInteger("Temperature", 0, Integer.MAX_VALUE,
+                v -> PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = v);
+
+        builder.addToggle("Alarm major", "Off", "On",
+                v -> PrimaryFlightDisplay.instance.isAlarmMajorExhaustGasTemperatureSensor = v);
+
+        builder.addToggle("Alarm critical", "Off", "On",
+                v -> PrimaryFlightDisplay.instance.isAlarmCriticalExhaustGasTemperatureSensor = v);
+
+        builder.addTitle("Fuel");
+
+        builder.addInteger("Fuel flow", 0, Integer.MAX_VALUE,
+                v -> PrimaryFlightDisplay.instance.fuelFlow = v);
+
+        builder.addFloat("Fuel amount", 0, Double.MAX_VALUE,
+                v -> PrimaryFlightDisplay.instance.amountOfFuel = v);
+
+        builder.addToggle("Alarm reserve", "Off", "On",
+                v -> PrimaryFlightDisplay.instance.isAlarmReserveFuelSensor = v);
+
+        builder.addToggle("Alarm major reserve", "Off", "On",
+                v -> PrimaryFlightDisplay.instance.isAlarmMajorFuelSensor = v);
+
+        builder.addToggle("Alarm critical reserve", "Off", "On",
+                v -> PrimaryFlightDisplay.instance.isAlarmCriticalFuelSensor = v);
+
+        builder.addTitle("Ice detector probe");
+
+        builder.addToggle("Body-probe", "Off", "On",
+                v -> PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated = v);
+
+        builder.addToggle("Wind-probe", "Off", "On",
+                v -> PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = v);
+
+        builder.addToggle("Ice detected", "No", "Yes",
+                v -> PrimaryFlightDisplay.instance.isIceDetected = v);
+
+        builder.addTitle("Fire detector");
+
+        builder.addToggle("Body: fire detected", "No", "Yes",
+                v -> PrimaryFlightDisplay.instance.isFireDetectedBody = v);
+
+        builder.addToggle("Wing: fire detected", "No", "Yes",
+                v -> PrimaryFlightDisplay.instance.isFireDetectedWing = v);
+
+        builder.addTitle("Oxygen sensor");
+
+        builder.addToggle("Alarm", "Off", "On",
+                v -> PrimaryFlightDisplay.instance.isOxgenSensorAlarm = v);
+
+        return scroller;
+    }
+
     // weather_radar
     public void setWeatherRadarToggleGroup(boolean isWeatherRadarOn) {
         if (isWeatherRadarOn) {
@@ -286,98 +373,5 @@ public class PrimaryFlightDisplayGUI extends Application {
         setWeatherRadarToggleGroup(PrimaryFlightDisplay.instance.isWeatherRadarOn);
 
         tableView.refresh();
-    }
-
-    private static ScrollPane buildPane() {
-        GridPane gridPane = new GridPane();
-        gridPane.setMinSize(400, 200);
-        gridPane.setPadding(new Insets(10, 10, 10, 10));
-        gridPane.setVgap(5);
-        gridPane.setHgap(10);
-        gridPane.setAlignment(Pos.BASELINE_LEFT);
-
-        ScrollPane scroller = new ScrollPane();
-        scroller.setContent(gridPane);
-        scroller.setFitToWidth(true);
-        return scroller;
-    }
-
-    private void paneAddRowToggleOnOff(GridPane pane, int row, String labelText, String offText, String onText, Consumer<Boolean> onChange) {
-        Label label = new Label(labelText + " : ");
-        ToggleGroup group = new ToggleGroup();
-        RadioButton off = new RadioButton(offText);
-        off.setToggleGroup(group);
-        RadioButton on = new RadioButton(onText);
-        on.setToggleGroup(group);
-        on.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == oldValue){
-                return;
-            }
-            onChange.accept(newValue);
-            update();
-        });
-        pane.add(label, row, 0);
-        pane.add(off, row, 1);
-        pane.add(on, row, 2);
-    }
-
-    private void paneAddRowInteger(GridPane pane, int row, String labelText, int min, int max, Consumer<Integer> onChange) {
-        Label label = new Label(labelText + " : ");
-        TextField num = new TextField(Integer.toString(min));
-        num.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (oldValue == newValue || newValue) {
-                return;
-            }
-            String text = num.getText();
-            if (!Pattern.matches("^-?\\d*$", text)) {
-                num.setText(Integer.toString(min));
-                onChange.accept(min);
-                return;
-            }
-            int value = Integer.parseInt(text);
-            if (value < min) {
-                num.setText(Integer.toString(min));
-                onChange.accept(min);
-                return;
-            }
-            if (value > max) {
-                num.setText(Integer.toString(max));
-                onChange.accept(max);
-                return;
-            }
-            onChange.accept(value);
-        });
-        pane.add(label, 0, row);
-        pane.add(num, 1, row, 2, 1);
-    }
-
-    private void paneAddRowFloat(GridPane pane, int row, String labelText, double min, double max, Consumer<Double> onChange) {
-        Label label = new Label(labelText + " : ");
-        TextField num = new TextField(Double.toString(min));
-        num.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (oldValue == newValue || newValue == true) {
-                return;
-            }
-            String text = num.getText();
-            if (!Pattern.matches("^-?[0-9]\\d*(\\.\\d+)?$", text)) {
-                num.setText(Double.toString(min));
-                onChange.accept(min);
-                return;
-            }
-            double value = Double.parseDouble(text);
-            if (value < min) {
-                num.setText(Double.toString(min));
-                onChange.accept(min);
-                return;
-            }
-            if (value > max) {
-                num.setText(Double.toString(max));
-                onChange.accept(max);
-                return;
-            }
-            onChange.accept(value);
-        });
-        pane.add(label, 0, row);
-        pane.add(num, 1, row, 2, 1);
     }
 }
