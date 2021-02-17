@@ -5,6 +5,6 @@ public interface IRouteManagement {
     int add(CheckPoint checkpoint);
     int remove(CheckPoint checkPoint);
     void printCheckPoints();
-    double setCostIndex(int value);
+    int setCostIndex(int value); //change beacause i dont know why it is returning a double value
     boolean off();
 }

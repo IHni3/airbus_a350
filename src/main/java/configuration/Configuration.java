@@ -19,27 +19,27 @@ public enum Configuration {
     public int numberOfWeatherRadar = 2;
 
     // slat
-    public String pathToSlatJavaArchive = generatePathToJavaArchive("slat");
+    public String pathToSlatJavaArchive = generatePathToJavaArchive("flight_controls_01//slat");
     public int numberOfSlats = 6;
 
     //cost_optimizer
-    public String pathToCostOptimizerJavaArchive = generatePathToJavaArchive("cost_optimizer");
+    public String pathToCostOptimizerJavaArchive = generatePathToJavaArchive("management//cost_optimizer");
     public int numberOfCostOptimizers = 2;
 
     //route_management
-    public String pathToRouteManagementJavaArchive = generatePathToJavaArchive("route_management");
+    public String pathToRouteManagementJavaArchive = generatePathToJavaArchive("management//route_management");
     public int numberOfRouteManagements = 2;
 
     //anti_collision_light
-    public String pathToAntiCollisionLightJavaArchive = generatePathToJavaArchive("anti_collision_light");
+    public String pathToAntiCollisionLightJavaArchive = generatePathToJavaArchive("light//anti_collision_light");
     public int numberOfAntiCollisionLights = 2;
 
     //cargo_compartment_light
-    public String pathToCargoCompartmentLightJavaArchive = generatePathToJavaArchive("cargo_compartment_light");
+    public String pathToCargoCompartmentLightJavaArchive = generatePathToJavaArchive("light//cargo_compartment_light");
     public int numberOfCargoCompartmentLights = 4;
 
     //landing_light
-    public String pathToLandingLightJavaArchive = generatePathToJavaArchive("landing_light");
+    public String pathToLandingLightJavaArchive = generatePathToJavaArchive("light//landing_light");
     public int numberOfLandingLightsBody = 2;
     public int numberOfLandingLightsWing = 2;
 

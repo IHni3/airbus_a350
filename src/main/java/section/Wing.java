@@ -4,10 +4,13 @@ import base.PrimaryFlightDisplay;
 import com.google.common.eventbus.Subscribe;
 import configuration.Configuration;
 import event.Subscriber;
+import event.landing_light.LandingLightBodyOff;
+import event.landing_light.LandingLightBodyOn;
 import event.slat.SlatDown;
 import event.slat.SlatFullDown;
 import event.slat.SlatNeutral;
 import event.slat.SlatUp;
+import factory.LandingLightFactory;
 import factory.SlatFactory;
 
 import java.lang.reflect.InvocationTargetException;
@@ -18,9 +21,11 @@ import java.util.List;
 public class Wing extends Subscriber {
 
     private List<Object> slatPortList;
+    private List<Object> landingLightPortList;
 
     public Wing() {
         slatPortList = new ArrayList<>();
+        landingLightPortList = new ArrayList<>();
         build();
     }
 
@@ -31,6 +36,11 @@ public class Wing extends Subscriber {
     private void buildSlat() {
         for (int i = 0; i < Configuration.instance.numberOfWeatherRadar; i++) {
             slatPortList.add(SlatFactory.build());
+        }
+    }
+    private void buildLandingLight() {
+        for (int i = 0; i < Configuration.instance.numberOfLandingLightsBody; i++) {
+            landingLightPortList.add(LandingLightFactory.build());
         }
     }
 
@@ -87,29 +97,32 @@ public class Wing extends Subscriber {
         p.process();
     }
 
-    // ----------------------------------------------------------------------------------------------------------------
-
-    // --- AntiCollisionLight -----------------------------------------------------------------------------------------
-
-    // ----------------------------------------------------------------------------------------------------------------
-
-    // --- CargoCompartmentLight --------------------------------------------------------------------------------------
-
-    // ----------------------------------------------------------------------------------------------------------------
-
 
     // --- LandingLight -----------------------------------------------------------------------------------------------
-
-    // ----------------------------------------------------------------------------------------------------------------
-
-
-    // --- CostOptimizer ----------------------------------------------------------------------------------------------
-
-    // ----------------------------------------------------------------------------------------------------------------
-
-
-    // --- RouteManagement --------------------------------------------------------------------------------------------
-
+    @Subscribe
+    public void receive(LandingLightBodyOn event) {
+        ProcessEvent p = new ProcessEvent(event.toString(), landingLightPortList, "LandingLight", "on", "isOn") {
+            @Override
+            protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
+                boolean isOn = (boolean) method.invoke(port);
+                PrimaryFlightDisplay.instance.setLandingLightWingEnabled(isOn);
+                return isOn;
+            }
+        };
+        p.process();
+    }
+    @Subscribe
+    public void receive(LandingLightBodyOff event) {
+        ProcessEvent p = new ProcessEvent(event.toString(), landingLightPortList, "LandingLight", "off", "isOn") {
+            @Override
+            protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
+                boolean isOn = (boolean) method.invoke(port);
+                PrimaryFlightDisplay.instance.setLandingLightWingEnabled(isOn);
+                return isOn;
+            }
+        };
+        p.process();
+    }
     // ----------------------------------------------------------------------------------------------------------------
 
 }

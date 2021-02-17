@@ -24,10 +24,16 @@ abstract class ProcessEvent {
     }
 
     public ProcessEvent(String eventName, List<Object> ports, String classname, String methodName, String returnValueName) {
+        this.returnValueName = returnValueName;
+        construct(eventName,ports,classname,methodName);
+    }
+    public ProcessEvent(String eventName, List<Object> ports, String classname, String methodName) {
+        construct(eventName,ports,classname,methodName);
+    }
+    private void construct(String eventName, List<Object> ports, String classname, String methodName) {
         this.ports = ports;
         this.methodName = methodName;
         this.className = classname;
-        this.returnValueName = returnValueName;
         this.eventName = eventName;
     }
 
@@ -43,7 +49,9 @@ abstract class ProcessEvent {
 
                 Object returnValue = onInvokeMethod(port, onMethod);
 
-                LogEngine.instance.write(returnValueName + " = " + returnValue);
+                if(!returnValueName.isBlank())
+                    LogEngine.instance.write(returnValueName + " = " + returnValue);
+
                 FlightRecorder.instance.insert(getClass().getName(), className + " (" + methodName + "): " + returnValue);
                 LogEngine.instance.write("+");
 

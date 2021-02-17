@@ -50,7 +50,7 @@ public class RouteManagement {
         this.enabled = enabled;
         return enabled;
     }
-    private double innerSetCostIndex(int value) {
+    private int innerSetCostIndex(int value) {
         costIndex = value;
         return costIndex;
     }
@@ -91,7 +91,7 @@ public class RouteManagement {
         }
 
         @Override
-        public double setCostIndex(int value) {
+        public int setCostIndex(int value) {
             return innerSetCostIndex(value);
         }
 
