@@ -23,6 +23,6 @@ public enum PrimaryFlightDisplay {
     public boolean isTCASAlarm;
     public int altitudeTCAS;
 
-    // turbulent_air_flow_alarm
+    // turbulent_air_flow_sensor
     public boolean isTurbulentAirFlowAlarm;
 }
