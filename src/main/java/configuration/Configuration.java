@@ -15,35 +15,35 @@ public enum Configuration {
     public String databaseFile = dataDirectory + "flight_recorder_a350.db";
 
     // weather_radar
-    public String pathToWeatherRadarJavaArchive = generatePathToJavaArchive("weather_radar");
+    public String pathToWeatherRadarJavaArchive = generatePathToJavaArchive("", "weather_radar");
     public int numberOfWeatherRadar = 2;
 
     // slat
-    public String pathToSlatJavaArchive = generatePathToJavaArchive("flight_controls_01//slat");
+    public String pathToSlatJavaArchive = generatePathToJavaArchive("flight_controls_01", "slat");
     public int numberOfSlats = 6;
 
     //cost_optimizer
-    public String pathToCostOptimizerJavaArchive = generatePathToJavaArchive("management//cost_optimizer");
+    public String pathToCostOptimizerJavaArchive = generatePathToJavaArchive("management", "cost_optimizer");
     public int numberOfCostOptimizers = 2;
 
     //route_management
-    public String pathToRouteManagementJavaArchive = generatePathToJavaArchive("management//route_management");
+    public String pathToRouteManagementJavaArchive = generatePathToJavaArchive("management", "route_management");
     public int numberOfRouteManagements = 2;
 
     //anti_collision_light
-    public String pathToAntiCollisionLightJavaArchive = generatePathToJavaArchive("light//anti_collision_light");
+    public String pathToAntiCollisionLightJavaArchive = generatePathToJavaArchive("light", "anti_collision_light");
     public int numberOfAntiCollisionLights = 2;
 
     //cargo_compartment_light
-    public String pathToCargoCompartmentLightJavaArchive = generatePathToJavaArchive("light//cargo_compartment_light");
+    public String pathToCargoCompartmentLightJavaArchive = generatePathToJavaArchive("light", "cargo_compartment_light");
     public int numberOfCargoCompartmentLights = 4;
 
     //landing_light
-    public String pathToLandingLightJavaArchive = generatePathToJavaArchive("light//landing_light");
+    public String pathToLandingLightJavaArchive = generatePathToJavaArchive("light", "landing_light");
     public int numberOfLandingLightsBody = 2;
     public int numberOfLandingLightsWing = 2;
 
-    public String generatePathToJavaArchive(String archiveName){
-        return commonPathToJavaArchive + archiveName + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + archiveName + ".jar";
+    public String generatePathToJavaArchive(String packageName, String archiveName){
+        return commonPathToJavaArchive + packageName + fileSeparator + archiveName + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + archiveName + ".jar";
     }
 }

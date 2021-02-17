@@ -6,26 +6,73 @@ import recorder.FlightRecorder;
 public enum PrimaryFlightDisplay {
     instance;
     public boolean isWeatherRadarOn;
-    private int slagDegree;
+
+    private int slatDegree;
+
     private boolean antiCollisionLightEnabled;
+
     private boolean cargoCompartmentLightEnabled;
+
     private boolean landingLightBodyEnabled;
     private boolean landingLightWingEnabled;
+
     private int indexRouteManagement;
-    private boolean costOptimizerEnabled;
     private int numberOfCheckPointsRouteManagement;
+    private boolean routeManagementEnabled;
+
+    private boolean costOptimizerEnabled;
     private int numberOfCheckPointsCostOptimizer;
-    private boolean isCostOptimizerOn;
     private int indexCostOptimizer;
 
+
     public int getSlagDegree() {
-        return slagDegree;
+        return slatDegree;
+    }
+
+    public boolean isAntiCollisionLightEnabled() {
+        return antiCollisionLightEnabled;
+    }
+
+    public boolean isCargoCompartmentLightEnabled() {
+        return cargoCompartmentLightEnabled;
+    }
+
+    public boolean isLandingLightBodyEnabled() {
+        return landingLightBodyEnabled;
+    }
+
+    public boolean isLandingLightWingEnabled() {
+        return landingLightWingEnabled;
+    }
+
+    public int getIndexRouteManagement() {
+        return indexRouteManagement;
+    }
+
+    public int getSizeRouteManagement() {
+        return numberOfCheckPointsRouteManagement;
+    }
+
+    public boolean isRouteManagementEnabled() {
+        return routeManagementEnabled;
+    }
+
+    public boolean isCostOptimizerEnabled() {
+        return costOptimizerEnabled;
+    }
+
+    public int getSizeCostOptimizer() {
+        return numberOfCheckPointsCostOptimizer;
+    }
+
+    public int getIndexCostOptimizer() {
+        return indexCostOptimizer;
     }
 
     public void setSlatDegree(int slagDegree) {
-        this.slagDegree = slagDegree;
-        LogEngine.instance.write("PrimaryFlightDisplay (slagDegree): " + slagDegree);
-        FlightRecorder.instance.insert("PrimaryFlightDisplay", "slagDegree: " + slagDegree);
+        this.slatDegree = slagDegree;
+        LogEngine.instance.write("PrimaryFlightDisplay (slatDegree): " + slagDegree);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "slatDegree: " + slagDegree);
     }
 
     public void setAntiCollisionLightEnabled(boolean enabled) {
@@ -80,7 +127,7 @@ public enum PrimaryFlightDisplay {
     }
 
     public void setRouteManagementEnabled(boolean isOn) {
-        isCostOptimizerOn = isOn;
+        routeManagementEnabled = isOn;
 
         LogEngine.instance.write("PrimaryFlightDisplay (isCostOptimizerOn): " + isOn);
         FlightRecorder.instance.insert("PrimaryFlightDisplay", "isCostOptimizerOn: " + isOn);

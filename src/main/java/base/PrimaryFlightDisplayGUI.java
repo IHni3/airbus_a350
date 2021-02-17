@@ -28,6 +28,30 @@ public class PrimaryFlightDisplayGUI extends Application {
     private RadioButton weatherRadarOffButton;
     private RadioButton weatherRadarOnButton;
 
+    private Spinner slatSpinner;
+
+    private RadioButton costOptimizerOffButton;
+    private RadioButton costOptimizerOnButton;
+    private Spinner costOptimizerSizeSpinner;
+    private Spinner costOptimizerIndexSpinner;
+
+    private RadioButton cargoCompartmentLightOnButton;
+    private RadioButton cargoCompartmentLightOffButton;
+
+    private RadioButton antiCollisionLightOnButton;
+    private RadioButton antiCollisionLightOffButton;
+
+    private RadioButton routeManagementOffButton;
+    private RadioButton routeManagementOnButton;
+    private Spinner routeManagementIndexSpinner;
+    private Spinner routeManagementSizeSpinner;
+
+    private RadioButton landingLightWingOffButton;
+    private RadioButton landingLightWingOnButton;
+
+    private RadioButton landingLightBodyOffButton;
+    private RadioButton landingLightBodyOnButton;
+
     public static void main(String... args) {
         LogEngine.instance.init();
         FlightRecorder.instance.startup();
@@ -231,7 +255,163 @@ public class PrimaryFlightDisplayGUI extends Application {
         vcfSpinner.setValueFactory(vcfSpinnerValueFactory);
         gridPane.add(vcfSpinner, 1, 2);
 
+        addSlatElements(gridPane, 3);
+
+        addAntiCollisionLightElements(gridPane, 4);
+
+        addCargoCompartmentLightElements(gridPane, 5);
+
+        addLandingLightWingElements(gridPane, 6);
+        addLandingLightBodyElements(gridPane, 7);
+
+        addRouteManagementEnabledElements(gridPane, 8);
+        addRouteManagementIndexElements(gridPane, 9);
+        addRouteManagementSizeElements(gridPane, 10);
+
+        addCostOptimizerEnabledElements(gridPane, 11);
+        addCostOptimizerIndexElements(gridPane, 12);
+        addCostOptimizerSizeElements(gridPane, 13);
+
         return gridPane;
+    }
+
+    private void addCostOptimizerEnabledElements(GridPane gridPane, int rowIndex) {
+        costOptimizerOffButton = new RadioButton();
+        costOptimizerOnButton = new RadioButton();
+        onOffGroupElementFactory("Cost optimizer enabled: ",
+                costOptimizerOffButton,
+                costOptimizerOnButton,
+                gridPane,
+                rowIndex);
+    }
+    private void addCostOptimizerSizeElements(GridPane gridPane, int rowIndex) {
+        costOptimizerSizeSpinner = new Spinner();
+        numberElementFactory("Cost optimizer size: ",
+                costOptimizerSizeSpinner,
+                0,
+                1000,
+                0,
+                gridPane,
+                rowIndex);
+    }
+    private void addCostOptimizerIndexElements(GridPane gridPane, int rowIndex) {
+        costOptimizerIndexSpinner = new Spinner();
+        numberElementFactory("Cost optimizer index: ",
+                costOptimizerIndexSpinner,
+                0,
+                1000,
+                0,
+                gridPane,
+                rowIndex);
+    }
+
+
+    private void addRouteManagementSizeElements(GridPane gridPane, int rowIndex) {
+        routeManagementSizeSpinner = new Spinner();
+        numberElementFactory("Route management size: ",
+                routeManagementSizeSpinner,
+                0,
+                1000,
+                0,
+                gridPane,
+                rowIndex);
+    }
+
+    private void addRouteManagementIndexElements(GridPane gridPane, int rowIndex) {
+        routeManagementIndexSpinner = new Spinner();
+        numberElementFactory("Route management index: ",
+                routeManagementIndexSpinner,
+                0,
+                1000,
+                0,
+                gridPane,
+                rowIndex);
+    }
+    private void addRouteManagementEnabledElements(GridPane gridPane, int rowIndex) {
+        routeManagementOnButton = new RadioButton();
+        routeManagementOffButton = new RadioButton();
+        onOffGroupElementFactory("Route management enabled: ",
+                routeManagementOnButton,
+                routeManagementOffButton,
+                gridPane,
+                rowIndex);
+    }
+
+    private void addLandingLightWingElements(GridPane gridPane, int rowIndex) {
+        landingLightWingOnButton = new RadioButton();
+        landingLightWingOffButton = new RadioButton();
+        onOffGroupElementFactory("Landing light wing: ",
+                landingLightWingOnButton,
+                landingLightWingOffButton,
+                gridPane,
+                rowIndex);
+    }
+    private void addLandingLightBodyElements(GridPane gridPane, int rowIndex) {
+        landingLightBodyOnButton = new RadioButton();
+        landingLightBodyOffButton = new RadioButton();
+        onOffGroupElementFactory("Landing light body: ",
+                landingLightBodyOnButton,
+                landingLightBodyOffButton,
+                gridPane,
+                rowIndex);
+    }
+
+    private void addCargoCompartmentLightElements(GridPane gridPane, int rowIndex) {
+        cargoCompartmentLightOnButton = new RadioButton();
+        cargoCompartmentLightOffButton = new RadioButton();
+        onOffGroupElementFactory("Cargo compartment light: ",
+                cargoCompartmentLightOnButton,
+                cargoCompartmentLightOffButton,
+                gridPane,
+                rowIndex);
+    }
+
+    private void addAntiCollisionLightElements(GridPane gridPane, int rowIndex) {
+        antiCollisionLightOnButton = new RadioButton();
+        antiCollisionLightOffButton = new RadioButton();
+        onOffGroupElementFactory("Anti collision light: ",
+                antiCollisionLightOnButton,
+                antiCollisionLightOffButton,
+                gridPane,
+                rowIndex);
+    }
+
+    private void addSlatElements(GridPane gridPane, int rowIndex) {
+        slatSpinner = new Spinner();
+        numberElementFactory("Slat: ",
+                slatSpinner,
+                -90,
+                0,
+                0,
+                gridPane,
+                rowIndex);
+    }
+
+    private static void onOffGroupElementFactory(String title, RadioButton onBtn, RadioButton offBtn, GridPane parent, int rowIndex) {
+        Label antiCollisionLightLabel = new Label(title);
+        parent.add(antiCollisionLightLabel, 0, rowIndex);
+
+        ToggleGroup weatherRadarToggleGroup = new ToggleGroup();
+
+        offBtn.setText("Off");
+        offBtn.setToggleGroup(weatherRadarToggleGroup);
+        offBtn.setSelected(true);
+        parent.add(offBtn, 1, rowIndex);
+
+        onBtn.setText("On");
+        onBtn.setToggleGroup(weatherRadarToggleGroup);
+        onBtn.setSelected(false);
+        parent.add(onBtn, 2, rowIndex);
+    }
+
+    private static void numberElementFactory(String title, Spinner spinner, int min, int max, int initial, GridPane parent, int rowIndex) {
+        Label label = new Label(title);
+        parent.add(label, 0, rowIndex);
+
+        spinner.setMaxWidth(60);
+        SpinnerValueFactory<Integer> factory = new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max, initial);
+        spinner.setValueFactory(factory);
+        parent.add(spinner, 1, rowIndex);
     }
 
     public void buildTableView() {
@@ -262,6 +442,67 @@ public class PrimaryFlightDisplayGUI extends Application {
         }
     }
 
+    public void setCostOptimizerEnabled(boolean enabled) {
+        if (enabled) {
+            costOptimizerOffButton.setSelected(false);
+            costOptimizerOnButton.setSelected(true);
+        } else {
+            costOptimizerOffButton.setSelected(true);
+            costOptimizerOnButton.setSelected(false);
+        }
+    }
+
+
+    public void setCargoCompartmentLightEnabled(boolean enabled) {
+        if (enabled) {
+            cargoCompartmentLightOffButton.setSelected(false);
+            cargoCompartmentLightOnButton.setSelected(true);
+        } else {
+            cargoCompartmentLightOffButton.setSelected(true);
+            cargoCompartmentLightOnButton.setSelected(false);
+        }
+    }
+
+    public void setAntiCollisionLightEnabled(boolean enabled) {
+        if (enabled) {
+            antiCollisionLightOffButton.setSelected(false);
+            antiCollisionLightOnButton.setSelected(true);
+        } else {
+            antiCollisionLightOffButton.setSelected(true);
+            antiCollisionLightOnButton.setSelected(false);
+        }
+    }
+
+    public void setRouteManagementEnabled(boolean enabled) {
+        if (enabled) {
+            routeManagementOffButton.setSelected(false);
+            routeManagementOnButton.setSelected(true);
+        } else {
+            routeManagementOffButton.setSelected(true);
+            routeManagementOnButton.setSelected(false);
+        }
+    }
+
+    public void setLandingLightWingEnabled(boolean enabled) {
+        if (enabled) {
+            landingLightWingOffButton.setSelected(false);
+            landingLightWingOnButton.setSelected(true);
+        } else {
+            landingLightWingOffButton.setSelected(true);
+            landingLightWingOnButton.setSelected(false);
+        }
+    }
+
+    public void setLandingLightBodyEnabled(boolean enabled) {
+        if (enabled) {
+            landingLightBodyOffButton.setSelected(false);
+            landingLightBodyOnButton.setSelected(true);
+        } else {
+            landingLightBodyOffButton.setSelected(true);
+            landingLightBodyOnButton.setSelected(false);
+        }
+    }
+
     private void initData() {
         dataList = new ArrayList<>();
 
@@ -280,6 +521,27 @@ public class PrimaryFlightDisplayGUI extends Application {
         // weather_radar
         weatherRadarIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isWeatherRadarOn));
         setWeatherRadarToggleGroup(PrimaryFlightDisplay.instance.isWeatherRadarOn);
+
+        setCostOptimizerEnabled(PrimaryFlightDisplay.instance.isCostOptimizerEnabled());
+
+        setCargoCompartmentLightEnabled(PrimaryFlightDisplay.instance.isCargoCompartmentLightEnabled());
+
+        setAntiCollisionLightEnabled(PrimaryFlightDisplay.instance.isAntiCollisionLightEnabled());
+
+        setRouteManagementEnabled(PrimaryFlightDisplay.instance.isRouteManagementEnabled());
+
+        setLandingLightWingEnabled(PrimaryFlightDisplay.instance.isLandingLightWingEnabled());
+
+        setLandingLightBodyEnabled(PrimaryFlightDisplay.instance.isLandingLightBodyEnabled());
+
+
+        slatSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getSlagDegree());
+
+        costOptimizerSizeSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getSizeCostOptimizer());
+        costOptimizerIndexSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getIndexCostOptimizer());
+
+        routeManagementIndexSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getIndexRouteManagement());
+        routeManagementSizeSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getSizeRouteManagement());
 
         tableView.refresh();
     }

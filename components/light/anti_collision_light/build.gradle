@@ -10,7 +10,7 @@ repositories {
 }
 
 task build_jar(type: Jar) {
-    project.archivesBaseName = "anit_collision_light"
+    project.archivesBaseName = "anti_collision_light"
 
     manifest {
         attributes["Main-Class"] = "AntiCollisionLight"

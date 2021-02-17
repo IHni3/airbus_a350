@@ -23,6 +23,7 @@ public class FactoryUtils {
             port = archiveClass.getDeclaredField("port").get(archiveInstance);
             FlightRecorder.instance.insert(factoryName, className+ "Port: " + port.hashCode());
         } catch (Exception e) {
+            System.out.println("archivePath '" + archivePath + "' not found!");
             e.printStackTrace();
         }
 
