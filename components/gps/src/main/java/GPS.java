@@ -3,9 +3,9 @@ public class GPS {
     private static GPS instance = new GPS();
     // port
     public Port port;
-    private String manufacturer = "Kilian Krampf / Johannes Löh";
+    private String manufacturer = "Student 2627585";
     private String type = "team 17";
-    private String id = "2627585 / 4485500";
+    private String id = "2627585";
     private boolean isOn = false;
     private boolean isConnected = false;
 

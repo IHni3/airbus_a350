@@ -3,9 +3,9 @@ public class Camera {
     private static Camera instance = new Camera();
     // port
     public Port port;
-    private final String manufacturer = "Kilian Krampf / Johannes Löh";
+    private final String manufacturer = "Student 2627585";
     private CameraType type;
-    private final String id = "2627585 / 4485500";
+    private final String id = "2627585";
     private boolean isOn = false;
 
     // private constructor
@@ -39,15 +39,15 @@ public class Camera {
     }
 
     public String innerRecord () {
-        return "ImageData";
+        return "Clouds";
     }
 
     public String innerZoomIn(double factor) {
-        return innerRecord();
+        return factor + "x scaled \"" + innerRecord() + "\"";
     }
 
     public String innerZoomOut(double factor) {
-        return innerRecord();
+        return factor + "x scaled \"" + innerRecord() + "\"";
     }
 
     // inner class port

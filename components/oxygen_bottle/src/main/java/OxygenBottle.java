@@ -3,7 +3,7 @@ public class OxygenBottle {
     private static OxygenBottle instance = new OxygenBottle();
     // port
     public Port port;
-    private String manufacturer = "";
+    private String manufacturer = "Student 2627585";
     private String type = "team 17";
     private String id = "2627585";
     private int amount = 100;

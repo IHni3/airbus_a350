@@ -3,9 +3,9 @@ public class TurbulentAirFlowSensor {
     private static TurbulentAirFlowSensor instance = new TurbulentAirFlowSensor();
     // port
     public Port port;
-    private String manufacturer = "Kilian Krampf / Johannes Löh";
+    private String manufacturer = "Student 2627585";
     private String type = "team 17";
-    private String id = "2627585 / 4485500";
+    private String id = "2627585";
     private boolean isAlarm = false;
 
     // private constructor
@@ -20,7 +20,7 @@ public class TurbulentAirFlowSensor {
 
     // inner methods
     public String innerVersion() {
-        return "WeatherRadar // " + manufacturer + " - " + type + " - " + id;
+        return "TurbulentAirFlowSensor // " + manufacturer + " - " + type + " - " + id;
     }
 
     public int innerMeasure(String airFlow) {
