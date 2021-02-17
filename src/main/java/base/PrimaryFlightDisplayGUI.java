@@ -1,12 +1,14 @@
 package base;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,6 +20,8 @@ import logging.LogEngine;
 import recorder.FlightRecorder;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
+import java.util.regex.Pattern;
 
 public class PrimaryFlightDisplayGUI extends Application {
     private TableView tableView;
@@ -282,5 +286,98 @@ public class PrimaryFlightDisplayGUI extends Application {
         setWeatherRadarToggleGroup(PrimaryFlightDisplay.instance.isWeatherRadarOn);
 
         tableView.refresh();
+    }
+
+    private static ScrollPane buildPane() {
+        GridPane gridPane = new GridPane();
+        gridPane.setMinSize(400, 200);
+        gridPane.setPadding(new Insets(10, 10, 10, 10));
+        gridPane.setVgap(5);
+        gridPane.setHgap(10);
+        gridPane.setAlignment(Pos.BASELINE_LEFT);
+
+        ScrollPane scroller = new ScrollPane();
+        scroller.setContent(gridPane);
+        scroller.setFitToWidth(true);
+        return scroller;
+    }
+
+    private void paneAddRowToggleOnOff(GridPane pane, int row, String labelText, String offText, String onText, Consumer<Boolean> onChange) {
+        Label label = new Label(labelText + " : ");
+        ToggleGroup group = new ToggleGroup();
+        RadioButton off = new RadioButton(offText);
+        off.setToggleGroup(group);
+        RadioButton on = new RadioButton(onText);
+        on.setToggleGroup(group);
+        on.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == oldValue){
+                return;
+            }
+            onChange.accept(newValue);
+            update();
+        });
+        pane.add(label, row, 0);
+        pane.add(off, row, 1);
+        pane.add(on, row, 2);
+    }
+
+    private void paneAddRowInteger(GridPane pane, int row, String labelText, int min, int max, Consumer<Integer> onChange) {
+        Label label = new Label(labelText + " : ");
+        TextField num = new TextField(Integer.toString(min));
+        num.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (oldValue == newValue || newValue) {
+                return;
+            }
+            String text = num.getText();
+            if (!Pattern.matches("^-?\\d*$", text)) {
+                num.setText(Integer.toString(min));
+                onChange.accept(min);
+                return;
+            }
+            int value = Integer.parseInt(text);
+            if (value < min) {
+                num.setText(Integer.toString(min));
+                onChange.accept(min);
+                return;
+            }
+            if (value > max) {
+                num.setText(Integer.toString(max));
+                onChange.accept(max);
+                return;
+            }
+            onChange.accept(value);
+        });
+        pane.add(label, 0, row);
+        pane.add(num, 1, row, 2, 1);
+    }
+
+    private void paneAddRowFloat(GridPane pane, int row, String labelText, double min, double max, Consumer<Double> onChange) {
+        Label label = new Label(labelText + " : ");
+        TextField num = new TextField(Double.toString(min));
+        num.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (oldValue == newValue || newValue == true) {
+                return;
+            }
+            String text = num.getText();
+            if (!Pattern.matches("^-?[0-9]\\d*(\\.\\d+)?$", text)) {
+                num.setText(Double.toString(min));
+                onChange.accept(min);
+                return;
+            }
+            double value = Double.parseDouble(text);
+            if (value < min) {
+                num.setText(Double.toString(min));
+                onChange.accept(min);
+                return;
+            }
+            if (value > max) {
+                num.setText(Double.toString(max));
+                onChange.accept(max);
+                return;
+            }
+            onChange.accept(value);
+        });
+        pane.add(label, 0, row);
+        pane.add(num, 1, row, 2, 1);
     }
 }
