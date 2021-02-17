@@ -7,6 +7,10 @@ public class OxygenSensorMeasure {
 		this.airFlow = airFlow;
 	}
 
+	public String getAirFlow() {
+		return airFlow;
+	}
+
 	public String toString() {
 		return "Event: OxygenSensor - Measure";
 	}

@@ -9,6 +9,10 @@ public class SeatAssignCrewMember {
 		this.crewMember = crewMember;
 	}
 
+	public CrewMember getCrewMember() {
+		return crewMember;
+	}
+
 	public String toString() {
 		return "Event: CrewSeat - SeatAssign - CrewMember";
 	}

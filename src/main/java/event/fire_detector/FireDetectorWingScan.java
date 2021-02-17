@@ -7,6 +7,10 @@ public class FireDetectorWingScan {
 		this.air = air;
 	}
 
+	public String getAir() {
+		return air;
+	}
+
 	public String toString() {
 		return "Event: FireDetector - Wing - Scan";
 	}

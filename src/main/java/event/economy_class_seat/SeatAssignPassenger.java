@@ -9,6 +9,10 @@ public class SeatAssignPassenger {
 		this.passenger = passenger;
 	}
 
+	public Passenger getPassenger() {
+		return passenger;
+	}
+
 	public String toString() {
 		return "Event: EconomyClassSeat - SeatAssign - Passenger";
 	}
