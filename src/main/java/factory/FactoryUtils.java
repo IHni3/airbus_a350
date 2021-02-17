@@ -14,7 +14,7 @@ public class FactoryUtils {
         try {
             URL[] urls = {new File(archivePath).toURI().toURL()};
             URLClassLoader urlClassLoader = new URLClassLoader(urls, FactoryUtils.class.getClassLoader());
-            Class archiveClass = Class.forName(className, true, urlClassLoader);
+            Class<?> archiveClass = Class.forName(className, true, urlClassLoader);
             FlightRecorder.instance.insert(factoryName, className + "Class: " + archiveClass.hashCode());
 
             Object archiveInstance = archiveClass.getMethod("getInstance").invoke(null);
