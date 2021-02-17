@@ -23,6 +23,24 @@ public class PrimaryFlightDisplayGUI extends Application {
     private TableView tableView;
     private ArrayList<PrimaryFlightDisplayEntry> dataList;
     private ObservableList data;
+
+    // camera
+    private PrimaryFlightDisplayEntry cameraIsOnEntry;
+    private RadioButton cameraOffButton;
+    private RadioButton cameraOnButton;
+
+    // gps
+    private PrimaryFlightDisplayEntry gpsIsOnEntry;
+    private PrimaryFlightDisplayEntry gpsIsConnectedEntry;
+
+    private RadioButton gpsOffButton;
+    private RadioButton gpsOnButton;
+    private RadioButton gpsConnectButton;
+    private RadioButton gpsSendButton;
+    private RadioButton gpsReceiveButton;
+
+    private TextField gpsConnectSatelite;
+    private TextField gpsSendText;
     // weather_radar
     private PrimaryFlightDisplayEntry weatherRadarIsOnEntry;
     private RadioButton weatherRadarOffButton;
@@ -219,6 +237,22 @@ public class PrimaryFlightDisplayGUI extends Application {
         weatherRadarOnButton.setToggleGroup(weatherRadarToggleGroup);
         weatherRadarOnButton.setSelected(false);
         gridPane.add(weatherRadarOnButton, 8, 0);
+        
+        // camera
+        Label cameraLabel = new Label("Camera : ");
+        gridPane.add(cameraLabel, 6, 0);
+
+        ToggleGroup cameraToggleGroup = new ToggleGroup();
+
+        cameraOffButton = new RadioButton("Off");
+        cameraOffButton.setToggleGroup(cameraToggleGroup);
+        cameraOffButton.setSelected(true);
+        gridPane.add(cameraOffButton, 7, 0);
+
+        cameraOnButton = new RadioButton("On");
+        cameraOnButton.setToggleGroup(cameraToggleGroup);
+        cameraOnButton.setSelected(false);
+        gridPane.add(cameraOnButton, 8, 0);
 
         // --- insert section: end
 
