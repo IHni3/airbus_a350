@@ -1,13 +1,15 @@
 package event.cost_optimizer;
 
+import domains.CheckPoint;
+
 public class CostOptimizerAddCheckPoint {
 
-    private Object checkpoint;
+    private CheckPoint checkpoint;
 
-    public CostOptimizerAddCheckPoint(Object checkpoint) {
+    public CostOptimizerAddCheckPoint(CheckPoint checkpoint) {
         this.checkpoint = checkpoint;
     }
-    public Object getCheckpoint() {
+    public CheckPoint getCheckpoint() {
         return checkpoint;
     }
 

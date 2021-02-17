@@ -29,28 +29,43 @@ public class PrimaryFlightDisplayGUI extends Application {
     private RadioButton weatherRadarOnButton;
 
     private Spinner slatSpinner;
+    private PrimaryFlightDisplayEntry slatEntry;
 
     private RadioButton costOptimizerOffButton;
     private RadioButton costOptimizerOnButton;
+    private PrimaryFlightDisplayEntry costOptimizerIsOnEntry;
+
     private Spinner costOptimizerSizeSpinner;
+    private PrimaryFlightDisplayEntry costOptimizerSizeEntry;
+
     private Spinner costOptimizerIndexSpinner;
+    private PrimaryFlightDisplayEntry costOptimizerIndexEntry;
 
     private RadioButton cargoCompartmentLightOnButton;
     private RadioButton cargoCompartmentLightOffButton;
+    private PrimaryFlightDisplayEntry cargoCompartmentLightIsOnEntry;
 
     private RadioButton antiCollisionLightOnButton;
     private RadioButton antiCollisionLightOffButton;
+    private PrimaryFlightDisplayEntry antiCollisionLightIsOnEntry;
 
     private RadioButton routeManagementOffButton;
     private RadioButton routeManagementOnButton;
+    private PrimaryFlightDisplayEntry routeManagementIsOnEntry;
+
     private Spinner routeManagementIndexSpinner;
+    private PrimaryFlightDisplayEntry routeManagementIndexEntry;
+
     private Spinner routeManagementSizeSpinner;
+    private PrimaryFlightDisplayEntry routeManagementSizeEntry;
 
     private RadioButton landingLightWingOffButton;
     private RadioButton landingLightWingOnButton;
+    private PrimaryFlightDisplayEntry landingLightWingIsOnEntry;
 
     private RadioButton landingLightBodyOffButton;
     private RadioButton landingLightBodyOnButton;
+    private PrimaryFlightDisplayEntry landingLightBodyIsOnEntry;
 
     public static void main(String... args) {
         LogEngine.instance.init();
@@ -279,11 +294,12 @@ public class PrimaryFlightDisplayGUI extends Application {
         costOptimizerOffButton = new RadioButton();
         costOptimizerOnButton = new RadioButton();
         onOffGroupElementFactory("Cost optimizer enabled: ",
-                costOptimizerOffButton,
                 costOptimizerOnButton,
+                costOptimizerOffButton,
                 gridPane,
                 rowIndex);
     }
+
     private void addCostOptimizerSizeElements(GridPane gridPane, int rowIndex) {
         costOptimizerSizeSpinner = new Spinner();
         numberElementFactory("Cost optimizer size: ",
@@ -294,6 +310,7 @@ public class PrimaryFlightDisplayGUI extends Application {
                 gridPane,
                 rowIndex);
     }
+
     private void addCostOptimizerIndexElements(GridPane gridPane, int rowIndex) {
         costOptimizerIndexSpinner = new Spinner();
         numberElementFactory("Cost optimizer index: ",
@@ -327,6 +344,7 @@ public class PrimaryFlightDisplayGUI extends Application {
                 gridPane,
                 rowIndex);
     }
+
     private void addRouteManagementEnabledElements(GridPane gridPane, int rowIndex) {
         routeManagementOnButton = new RadioButton();
         routeManagementOffButton = new RadioButton();
@@ -346,6 +364,7 @@ public class PrimaryFlightDisplayGUI extends Application {
                 gridPane,
                 rowIndex);
     }
+
     private void addLandingLightBodyElements(GridPane gridPane, int rowIndex) {
         landingLightBodyOnButton = new RadioButton();
         landingLightBodyOffButton = new RadioButton();
@@ -507,8 +526,43 @@ public class PrimaryFlightDisplayGUI extends Application {
         dataList = new ArrayList<>();
 
         // weather_radar
-        weatherRadarIsOnEntry = new PrimaryFlightDisplayEntry("WeatherRadar (isOn)", Boolean.toString(PrimaryFlightDisplay.instance.isWeatherRadarOn));
+        weatherRadarIsOnEntry = new PrimaryFlightDisplayEntry("WeatherRadar (isOn)", String.valueOf(PrimaryFlightDisplay.instance.isWeatherRadarOn));
         dataList.add(weatherRadarIsOnEntry);
+
+
+        slatEntry = new PrimaryFlightDisplayEntry("Slat (isOn)", String.valueOf(PrimaryFlightDisplay.instance.getSlagDegree()));
+        dataList.add(slatEntry);
+
+        costOptimizerIsOnEntry = new PrimaryFlightDisplayEntry("CostOptimizer (isOn)", String.valueOf(PrimaryFlightDisplay.instance.isCostOptimizerEnabled()));
+        dataList.add(costOptimizerIsOnEntry);
+
+        costOptimizerSizeEntry = new PrimaryFlightDisplayEntry("CostOptimizer (size)", String.valueOf(PrimaryFlightDisplay.instance.getSizeCostOptimizer()));
+        dataList.add(costOptimizerSizeEntry);
+
+        costOptimizerIndexEntry = new PrimaryFlightDisplayEntry("CostOptimizer (index)", String.valueOf(PrimaryFlightDisplay.instance.getIndexCostOptimizer()));
+        dataList.add(costOptimizerIndexEntry);
+
+        cargoCompartmentLightIsOnEntry = new PrimaryFlightDisplayEntry("CargoCompartmentLight (isOn)", String.valueOf(PrimaryFlightDisplay.instance.isCargoCompartmentLightEnabled()));
+        dataList.add(cargoCompartmentLightIsOnEntry);
+
+        antiCollisionLightIsOnEntry = new PrimaryFlightDisplayEntry("AntiCollisionLight (isOn)", String.valueOf(PrimaryFlightDisplay.instance.isAntiCollisionLightEnabled()));
+        dataList.add(antiCollisionLightIsOnEntry);
+
+        routeManagementIsOnEntry = new PrimaryFlightDisplayEntry("RouteManagement (isOn)", String.valueOf(PrimaryFlightDisplay.instance.isRouteManagementEnabled()));
+        dataList.add(routeManagementIsOnEntry);
+
+        routeManagementIndexEntry = new PrimaryFlightDisplayEntry("RouteManagement (index)", String.valueOf(PrimaryFlightDisplay.instance.getIndexRouteManagement()));
+        dataList.add(routeManagementIndexEntry);
+
+        routeManagementSizeEntry = new PrimaryFlightDisplayEntry("RouteManagement (Size)", String.valueOf(PrimaryFlightDisplay.instance.getSizeRouteManagement()));
+        dataList.add(routeManagementSizeEntry);
+
+        landingLightWingIsOnEntry = new PrimaryFlightDisplayEntry("LandingLightWing (isOn)", String.valueOf(PrimaryFlightDisplay.instance.isLandingLightWingEnabled()));
+        dataList.add(landingLightWingIsOnEntry);
+
+        landingLightBodyIsOnEntry = new PrimaryFlightDisplayEntry("LandingLightBody (isOn)", String.valueOf(PrimaryFlightDisplay.instance.isLandingLightBodyEnabled()));
+        dataList.add(landingLightBodyIsOnEntry);
+
     }
 
     private ObservableList getInitialTableData() {
@@ -523,25 +577,31 @@ public class PrimaryFlightDisplayGUI extends Application {
         setWeatherRadarToggleGroup(PrimaryFlightDisplay.instance.isWeatherRadarOn);
 
         setCostOptimizerEnabled(PrimaryFlightDisplay.instance.isCostOptimizerEnabled());
-
         setCargoCompartmentLightEnabled(PrimaryFlightDisplay.instance.isCargoCompartmentLightEnabled());
-
         setAntiCollisionLightEnabled(PrimaryFlightDisplay.instance.isAntiCollisionLightEnabled());
-
         setRouteManagementEnabled(PrimaryFlightDisplay.instance.isRouteManagementEnabled());
-
         setLandingLightWingEnabled(PrimaryFlightDisplay.instance.isLandingLightWingEnabled());
-
         setLandingLightBodyEnabled(PrimaryFlightDisplay.instance.isLandingLightBodyEnabled());
 
-
         slatSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getSlagDegree());
-
         costOptimizerSizeSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getSizeCostOptimizer());
         costOptimizerIndexSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getIndexCostOptimizer());
-
         routeManagementIndexSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getIndexRouteManagement());
         routeManagementSizeSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getSizeRouteManagement());
+
+
+        slatEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.getSlagDegree()));
+        costOptimizerIsOnEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.isCostOptimizerEnabled()));
+        costOptimizerSizeEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.getSizeCostOptimizer()));
+        costOptimizerIndexEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.getIndexCostOptimizer()));
+        cargoCompartmentLightIsOnEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.isCargoCompartmentLightEnabled()));
+        antiCollisionLightIsOnEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.isAntiCollisionLightEnabled()));
+        routeManagementIsOnEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.isRouteManagementEnabled()));
+        routeManagementIndexEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.getIndexRouteManagement()));
+        routeManagementSizeEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.getSizeRouteManagement()));
+        landingLightWingIsOnEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.isLandingLightWingEnabled()));
+        landingLightBodyIsOnEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.isLandingLightBodyEnabled()));
+
 
         tableView.refresh();
     }

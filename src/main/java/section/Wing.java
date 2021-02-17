@@ -31,10 +31,11 @@ public class Wing extends Subscriber {
 
     public void build() {
         buildSlat();
+        buildLandingLight();
     }
 
     private void buildSlat() {
-        for (int i = 0; i < Configuration.instance.numberOfWeatherRadar; i++) {
+        for (int i = 0; i < Configuration.instance.numberOfSlats; i++) {
             slatPortList.add(SlatFactory.build());
         }
     }
@@ -50,7 +51,7 @@ public class Wing extends Subscriber {
     @Subscribe
     public void receive(SlatDown event) {
 
-        ProcessEvent p = new ProcessEvent(event.toString(), slatPortList, "Slat", "down", "degree") {
+        ProcessEvent p = new ProcessEvent(event.toString(), slatPortList, "Slat", "down", "degree", int.class) {
             @Override
             protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
                 int degree = (int) method.invoke(port, event.getDegree());
@@ -86,7 +87,7 @@ public class Wing extends Subscriber {
     }
     @Subscribe
     public void receive(SlatUp event) {
-        ProcessEvent p = new ProcessEvent(event.toString(), slatPortList, "Slat", "up", "degree") {
+        ProcessEvent p = new ProcessEvent(event.toString(), slatPortList, "Slat", "up", "degree", int.class) {
             @Override
             protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
                 int degree = (int) method.invoke(port, event.getDegree());

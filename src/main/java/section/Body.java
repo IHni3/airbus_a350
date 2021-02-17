@@ -3,6 +3,7 @@ package section;
 import base.PrimaryFlightDisplay;
 import com.google.common.eventbus.Subscribe;
 import configuration.Configuration;
+import domains.CheckPoint;
 import event.Subscriber;
 import event.anti_collision_light.AntiCollisionLightOff;
 import event.anti_collision_light.AntiCollisionLightOn;
@@ -13,13 +14,10 @@ import event.cost_optimizer.*;
 import event.landing_light.LandingLightBodyOff;
 import event.landing_light.LandingLightBodyOn;
 import event.route_management.*;
-import event.slat.SlatUp;
 import event.weather_radar.WeatherRadarOff;
 import event.weather_radar.WeatherRadarOn;
 import event.weather_radar.WeatherRadarScan;
-import factory.AntiCollisionLightFactory;
-import factory.LandingLightFactory;
-import factory.WeatherRadarFactory;
+import factory.*;
 import logging.LogEngine;
 import recorder.FlightRecorder;
 
@@ -34,6 +32,7 @@ public class Body extends Subscriber {
     private List<Object> landingLightPortList;
     private List<Object> costOptimizerPortList;
     private List<Object> routeManagementPortList;
+    private List<Object> cargoCompartmentLightPortList;
 
     public Body() {
         weatherRadarPortList = new ArrayList<>();
@@ -41,6 +40,7 @@ public class Body extends Subscriber {
         landingLightPortList = new ArrayList<>();
         costOptimizerPortList = new ArrayList<>();
         routeManagementPortList = new ArrayList<>();
+        cargoCompartmentLightPortList = new ArrayList<>();
         build();
     }
 
@@ -55,10 +55,13 @@ public class Body extends Subscriber {
             landingLightPortList.add(LandingLightFactory.build());
         }
         for (int i = 0; i < Configuration.instance.numberOfCostOptimizers; i++) {
-            costOptimizerPortList.add(LandingLightFactory.build());
+            costOptimizerPortList.add(CostOptimizerFactory.build());
         }
         for (int i = 0; i < Configuration.instance.numberOfRouteManagements; i++) {
-            routeManagementPortList.add(LandingLightFactory.build());
+            routeManagementPortList.add(RouteManagementFactory.build());
+        }
+        for (int i = 0; i < Configuration.instance.numberOfCargoCompartmentLights; i++) {
+            cargoCompartmentLightPortList.add(CargoCompartmentLightFactory.build());
         }
     }
 
@@ -153,7 +156,7 @@ public class Body extends Subscriber {
     // --- CargoCompartmentLight --------------------------------------------------------------------------------------
     @Subscribe
     public void receive(CargoCompartmentLightOn event) {
-        ProcessEvent p = new ProcessEvent(event.toString(), antiCollisionLightPortList, "CargoCompartmentLight", "on", "isOn") {
+        ProcessEvent p = new ProcessEvent(event.toString(), cargoCompartmentLightPortList, "CargoCompartmentLight", "on", "isOn") {
             @Override
             protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
                 boolean isOn = (boolean) method.invoke(port);
@@ -165,7 +168,7 @@ public class Body extends Subscriber {
     }
     @Subscribe
     public void receive(CargoCompartmentLightOff event) {
-        ProcessEvent p = new ProcessEvent(event.toString(), antiCollisionLightPortList, "CargoCompartmentLight", "off", "isOn") {
+        ProcessEvent p = new ProcessEvent(event.toString(), cargoCompartmentLightPortList, "CargoCompartmentLight", "off", "isOn") {
             @Override
             protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
                 boolean isOn = (boolean) method.invoke(port);
@@ -177,7 +180,7 @@ public class Body extends Subscriber {
     }
     @Subscribe
     public void receive(CargoCompartmentLightDim event) {
-        ProcessEvent p = new ProcessEvent(event.toString(), antiCollisionLightPortList, "CargoCompartmentLight", "dim", "") {
+        ProcessEvent p = new ProcessEvent(event.toString(), cargoCompartmentLightPortList, "CargoCompartmentLight", "dim", "") {
             @Override
             protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
                 method.invoke(port);
@@ -245,7 +248,7 @@ public class Body extends Subscriber {
     }
     @Subscribe
     public void receive(CostOptimizerAddCheckPoint event) {
-        ProcessEvent p = new ProcessEvent(event.toString(), costOptimizerPortList, "CostOptimizer", "add", "size") {
+        ProcessEvent p = new ProcessEvent(event.toString(), costOptimizerPortList, "CostOptimizer", "add", "size", CheckPoint.class) {
             @Override
             protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
                 int size = (int) method.invoke(port, event.getCheckpoint());
@@ -257,7 +260,7 @@ public class Body extends Subscriber {
     }
     @Subscribe
     public void receive(CostOptimizerRemoveCheckPoint event) {
-        ProcessEvent p = new ProcessEvent(event.toString(), costOptimizerPortList, "CostOptimizer", "remove", "size") {
+        ProcessEvent p = new ProcessEvent(event.toString(), costOptimizerPortList, "CostOptimizer", "remove", "size", CheckPoint.class) {
             @Override
             protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
                 int size = (int) method.invoke(port, event.getCheckpoint());
@@ -321,7 +324,7 @@ public class Body extends Subscriber {
     }
     @Subscribe
     public void receive(RouteManagementAdd event) {
-        ProcessEvent p = new ProcessEvent(event.toString(), routeManagementPortList, "RouteManagement", "add", "size") {
+        ProcessEvent p = new ProcessEvent(event.toString(), routeManagementPortList, "RouteManagement", "add", "size", CheckPoint.class) {
             @Override
             protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
                 int size = (int) method.invoke(port, event.getCheckpoint());
@@ -333,7 +336,7 @@ public class Body extends Subscriber {
     }
     @Subscribe
     public void receive(RouteManagementRemove event) {
-        ProcessEvent p = new ProcessEvent(event.toString(), routeManagementPortList, "RouteManagement", "remove", "size") {
+        ProcessEvent p = new ProcessEvent(event.toString(), routeManagementPortList, "RouteManagement", "remove", "size", CheckPoint.class) {
             @Override
             protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
                 int size = (int) method.invoke(port, event.getCheckpoint());
@@ -345,10 +348,10 @@ public class Body extends Subscriber {
     }
     @Subscribe
     public void receive(RouteManagementSetCostIndex event) {
-        ProcessEvent p = new ProcessEvent(event.toString(), routeManagementPortList, "RouteManagement", "setCostIndex", "value") {
+        ProcessEvent p = new ProcessEvent(event.toString(), routeManagementPortList, "RouteManagement", "setCostIndex", "value", int.class) {
             @Override
             protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
-                int value = (int) method.invoke(port);
+                int value = (int) method.invoke(port, event.getCostIndex());
                 PrimaryFlightDisplay.instance.setIndexRouteManagement(value);
                 return value;
             }

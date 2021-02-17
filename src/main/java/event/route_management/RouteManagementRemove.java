@@ -1,13 +1,15 @@
 package event.route_management;
 
+import domains.CheckPoint;
+
 public class RouteManagementRemove {
 
-    private Object checkpoint;
+    private CheckPoint checkpoint;
 
-    public RouteManagementRemove(Object checkpoint) {
+    public RouteManagementRemove(CheckPoint checkpoint) {
         this.checkpoint = checkpoint;
     }
-    public Object getCheckpoint() {
+    public CheckPoint getCheckpoint() {
         return checkpoint;
     }
 

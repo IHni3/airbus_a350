@@ -13,6 +13,7 @@ abstract class ProcessEvent {
     private String className;
     private String returnValueName;
     private String eventName;
+    private Class<?>[] parameterTypes;
 
     private void logEvent(String message) {
         LogEngine.instance.write(getClass().getName() + ".receive(" + message + ")");
@@ -23,18 +24,19 @@ abstract class ProcessEvent {
         LogEngine.instance.write("onMethod = " + methodName);
     }
 
-    public ProcessEvent(String eventName, List<Object> ports, String classname, String methodName, String returnValueName) {
+    public ProcessEvent(String eventName, List<Object> ports, String classname, String methodName, String returnValueName, Class<?>... parameterTypes) {
         this.returnValueName = returnValueName;
-        construct(eventName,ports,classname,methodName);
+        construct(eventName,ports,classname,methodName, parameterTypes);
     }
-    public ProcessEvent(String eventName, List<Object> ports, String classname, String methodName) {
-        construct(eventName,ports,classname,methodName);
+    public ProcessEvent(String eventName, List<Object> ports, String classname, String methodName, Class<?>... parameterTypes) {
+        construct(eventName,ports,classname,methodName, parameterTypes);
     }
-    private void construct(String eventName, List<Object> ports, String classname, String methodName) {
+    private void construct(String eventName, List<Object> ports, String classname, String methodName, Class<?>... parameterTypes) {
         this.ports = ports;
         this.methodName = methodName;
         this.className = classname;
         this.eventName = eventName;
+        this.parameterTypes = parameterTypes;
     }
 
     protected void process() {
@@ -44,7 +46,7 @@ abstract class ProcessEvent {
 
         try {
             for (var port : ports) {
-                Method onMethod = port.getClass().getDeclaredMethod(methodName);
+                Method onMethod = port.getClass().getDeclaredMethod(methodName, parameterTypes);
                 logMethod(onMethod);
 
                 Object returnValue = onInvokeMethod(port, onMethod);
