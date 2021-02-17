@@ -358,6 +358,9 @@ public class PrimaryFlightDisplayGUI extends Application {
         tcasAlarmOnButton.setSelected(false);
         gridPane.add(tcasAlarmOnButton, 6, tcasRowIndex);
 
+        altitudeTCASLabel = new Label("0");
+        gridPane.add(altitudeTCASLabel, 8, tcasRowIndex);
+
         // turbulent_air_flow_sensor
         int turbulentAirFlowSensorRowIndex = 14;
         Label turbulentAirFlowSensorLabel = new Label("TurbulentAirFlowSensorAlarm : ");
@@ -365,15 +368,15 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         ToggleGroup turbulentAirFlowAlarmGroup = new ToggleGroup();
 
-        cameraOffButton = new RadioButton("Off");
-        cameraOffButton.setToggleGroup(turbulentAirFlowAlarmGroup);
-        cameraOffButton.setSelected(true);
-        gridPane.add(cameraOffButton, 1, turbulentAirFlowSensorRowIndex);
+        turbulentAirFlowAlarmOffButton = new RadioButton("Off");
+        turbulentAirFlowAlarmOffButton.setToggleGroup(turbulentAirFlowAlarmGroup);
+        turbulentAirFlowAlarmOffButton.setSelected(true);
+        gridPane.add(turbulentAirFlowAlarmOffButton, 1, turbulentAirFlowSensorRowIndex);
 
-        cameraOnButton = new RadioButton("On");
-        cameraOnButton.setToggleGroup(turbulentAirFlowAlarmGroup);
-        cameraOnButton.setSelected(false);
-        gridPane.add(cameraOnButton, 2, turbulentAirFlowSensorRowIndex);
+        turbulentAirFlowAlarmOnButton = new RadioButton("On");
+        turbulentAirFlowAlarmOnButton.setToggleGroup(turbulentAirFlowAlarmGroup);
+        turbulentAirFlowAlarmOnButton.setSelected(false);
+        gridPane.add(turbulentAirFlowAlarmOnButton, 2, turbulentAirFlowSensorRowIndex);
 
         // weather_radar
         Label weatherRadarLabel = new Label("WeatherRadar : ");

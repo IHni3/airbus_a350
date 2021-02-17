@@ -51,15 +51,21 @@ public class TCAS {
     }
 
     public int innerDetermineAltitude (String environment) {
-        int altIndex = environment.indexOf("alt=") + 4;
-        int foundAltitude = Integer.parseInt(
-                environment.substring(
-                        altIndex,
-                        environment.substring(altIndex).indexOf("m")
-                )
-        );
-        altitude = foundAltitude;
-        return foundAltitude;
+        try {
+            int altIndex = environment.indexOf("alt=") + 4;
+            int foundAltitude = Integer.parseInt(
+                    environment.substring(
+                            altIndex,
+                            4 + environment.substring(altIndex).indexOf("m")
+                    )
+            );
+            altitude = foundAltitude;
+            return foundAltitude;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.err.println("Could not determine altitude");
+            return Integer.MAX_VALUE;
+        }
     }
 
     public int innerSetAltitude (int value) {

@@ -28,7 +28,7 @@ public class TurbulentAirFlowSensor {
     }
 
     public boolean innerAlarm() {
-        isAlarm = false;
+        isAlarm = true;
         return isAlarm;
     }
 
