@@ -21,7 +21,7 @@ public class FireDetector {
 
     // inner methods
     public String innerVersion() {
-        return "WeatherRadar // " + manufacturer + " - " + type + " - " + id;
+        return "FireDetector // " + manufacturer + " - " + type + " - " + id;
     }
 
     public boolean innerScan(String air) {

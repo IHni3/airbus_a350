@@ -22,7 +22,7 @@ public class CrewSeat {
 
     // inner methods
     public String innerVersion() {
-        return "WeatherRadar // " + manufacturer + " - " + type + " - " + id;
+        return "CrewSeat // " + manufacturer + " - " + type + " - " + id;
     }
 
     public int innerAssign(CrewMember crewMember) {

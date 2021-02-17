@@ -24,7 +24,7 @@ public class ExhaustGasTemperatureSensor {
 
     // inner methods
     public String innerVersion() {
-        return "WeatherRadar // " + manufacturer + " - " + type + " - " + id;
+        return "ExhaustGasTemperatureSensor // " + manufacturer + " - " + type + " - " + id;
     }
 
     public int innerMeasure() {

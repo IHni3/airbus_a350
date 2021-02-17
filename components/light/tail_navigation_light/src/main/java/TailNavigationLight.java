@@ -21,7 +21,7 @@ public class TailNavigationLight {
 
     // inner methods
     public String innerVersion() {
-        return "WeatherRadar // " + manufacturer + " - " + type + " - " + id;
+        return "TailNavigationLight // " + manufacturer + " - " + type + " - " + id;
     }
 
     public boolean innerOn() {

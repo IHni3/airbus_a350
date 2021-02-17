@@ -1,4 +1,5 @@
 public interface IBusinessClassSeat {
+    String version();
     boolean nonSmokingSignOn();
     boolean nonSmokingSignOff();
     boolean seatBeltSignOn();

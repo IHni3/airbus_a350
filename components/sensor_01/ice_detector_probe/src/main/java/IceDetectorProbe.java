@@ -22,7 +22,7 @@ public class IceDetectorProbe {
 
     // inner methods
     public String innerVersion() {
-        return "WeatherRadar // " + manufacturer + " - " + type + " - " + id;
+        return "IceDetectorProbe // " + manufacturer + " - " + type + " - " + id;
     }
 
     public boolean innerDetect() {
@@ -75,7 +75,5 @@ public class IceDetectorProbe {
         public boolean activate() {
             return innerActivate();
         }
-
-
 	}
 }

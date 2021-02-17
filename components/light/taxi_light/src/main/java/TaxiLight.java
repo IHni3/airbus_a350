@@ -21,7 +21,7 @@ public class TaxiLight {
 
     // inner methods
     public String innerVersion() {
-        return "WeatherRadar // " + manufacturer + " - " + type + " - " + id;
+        return "TaxiLight // " + manufacturer + " - " + type + " - " + id;
     }
 
     public boolean innerOn() {

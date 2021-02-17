@@ -21,7 +21,7 @@ public class OxygenSensor {
 
     // inner methods
     public String innerVersion() {
-        return "WeatherRadar // " + manufacturer + " - " + type + " - " + id;
+        return "OxygenSensor // " + manufacturer + " - " + type + " - " + id;
     }
 
     public int innerMeasure(String airFlow) {

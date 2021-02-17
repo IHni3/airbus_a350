@@ -24,7 +24,7 @@ public class EconomyClassSeat {
 
     // inner methods
     public String innerVersion() {
-        return "WeatherRadar // " + manufacturer + " - " + type + " - " + id;
+        return "EconomyClassSeat // " + manufacturer + " - " + type + " - " + id;
     }
 
     public int innerAssign(Passenger passenger) {

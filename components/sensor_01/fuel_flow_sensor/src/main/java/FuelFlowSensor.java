@@ -22,7 +22,7 @@ public class FuelFlowSensor {
 
     // inner methods
     public String innerVersion() {
-        return "WeatherRadar // " + manufacturer + " - " + type + " - " + id;
+        return "FuelFlowSensor // " + manufacturer + " - " + type + " - " + id;
     }
 
     public int innerMeasure() {

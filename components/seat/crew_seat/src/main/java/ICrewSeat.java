@@ -1,4 +1,5 @@
 public interface ICrewSeat {
+    String version();
     int assign(CrewMember crewMember);
     boolean nonSmokingSignOn();
     boolean nonSmokingSignOff();
@@ -6,5 +7,4 @@ public interface ICrewSeat {
     boolean beltSignOff();
     boolean readingLightOn();
     boolean readingLightOff();
-
 }

@@ -23,7 +23,7 @@ public class RightNavigationLight {
 
     // inner methods
     public String innerVersion() {
-        return "WeatherRadar // " + manufacturer + " - " + type + " - " + id;
+        return "RightNavigationLight // " + manufacturer + " - " + type + " - " + id;
     }
 
     public LightType innerSetLightType(String type) {

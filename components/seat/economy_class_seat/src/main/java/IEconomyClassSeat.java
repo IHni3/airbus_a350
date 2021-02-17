@@ -1,4 +1,5 @@
 public interface IEconomyClassSeat {
+    String version();
     int assign(Passenger passenger);
     boolean nonSmokingSignOn();
     boolean nonSmokingSignOff();

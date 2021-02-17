@@ -24,7 +24,7 @@ public class FuelSensor {
 
     // inner methods
     public String innerVersion() {
-        return "WeatherRadar // " + manufacturer + " - " + type + " - " + id;
+        return "FuelSensor // " + manufacturer + " - " + type + " - " + id;
     }
 
     public boolean innerAlarmReserve(int threshold) {
