@@ -18,6 +18,31 @@ public enum Configuration {
     public String pathToWeatherRadarJavaArchive = generatePathToJavaArchive("weather_radar");
     public int numberOfWeatherRadar = 2;
 
+    // apu
+    public String pathToAPUJavaArchive = commonPathToJavaArchive + "apu" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "apu.jar";
+    public int numberOfAPU = 1;
+
+    // engine
+    public String pathToEngineJavaArchive = commonPathToJavaArchive + "engine" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "engine.jar";
+    public int numberOfEngine = 1;
+
+    // gear
+    public String pathToGearJavaArchive = commonPathToJavaArchive + "gear" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "gear.jar";
+    public int numberOfGear = 3;
+
+    // hydraulic_pump
+    public String pathToHydraulicPumpJavaArchive = commonPathToJavaArchive + "hydraulic_pump" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "hydraulic_pump.jar";
+    public int numberOfHydraulicPumpBody = 6;
+    public int numberOfHydraulicPumpWing = 4;
+
+    // air_conditioning
+    public String pathToAirConditioningJavaArchive = commonPathToJavaArchive + "air_conditioning" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "air_conditioning.jar";
+    public int numberOfAirConditioning = 4;
+
+    // kitchen
+    public String pathToKitchenJavaArchive = commonPathToJavaArchive + "kitchen" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "kitchen.jar";
+    public int numberOfKitchen = 3;
+
     // slat
     public String pathToSlatJavaArchive = generatePathToJavaArchive("slat");
     public int numberOfSlats = 6;
