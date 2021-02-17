@@ -4,6 +4,9 @@ import base.PrimaryFlightDisplay;
 import com.google.common.eventbus.Subscribe;
 import configuration.Configuration;
 import event.Subscriber;
+import event.anti_collision_light.AntiCollisionLightOff;
+import event.anti_collision_light.AntiCollisionLightOn;
+import event.slat.SlatUp;
 import event.weather_radar.WeatherRadarOff;
 import event.weather_radar.WeatherRadarOn;
 import event.weather_radar.WeatherRadarScan;
@@ -11,20 +14,27 @@ import factory.WeatherRadarFactory;
 import logging.LogEngine;
 import recorder.FlightRecorder;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Body extends Subscriber {
-    private ArrayList<Object> weatherRadarPortList;
+    private List<Object> weatherRadarPortList;
+    private List<Object> antiCollisionLightPortList;
 
     public Body() {
         weatherRadarPortList = new ArrayList<>();
+        antiCollisionLightPortList = new ArrayList<>();
         build();
     }
 
     public void build() {
         for (int i = 0; i < Configuration.instance.numberOfWeatherRadar; i++) {
             weatherRadarPortList.add(WeatherRadarFactory.build());
+        }
+        for (int i = 0; i < Configuration.instance.numberOfAntiCollisionLights; i++) {
+            antiCollisionLightPortList.add(WeatherRadarFactory.build());
         }
     }
 
@@ -88,4 +98,56 @@ public class Body extends Subscriber {
     }
 
     // ----------------------------------------------------------------------------------------------------------------
+
+
+
+    // --- AntiCollisionLight -----------------------------------------------------------------------------------------
+    @Subscribe
+    public void receive(AntiCollisionLightOn event) {
+        ProcessEvent p = new ProcessEvent(event.toString(), antiCollisionLightPortList, "AntiCollisionLight", "on", "isOn") {
+            @Override
+            protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
+                boolean isOn = (boolean) method.invoke(port);
+                PrimaryFlightDisplay.instance.setAntiCollisionLightEnabled(isOn);
+                return isOn;
+            }
+        };
+        p.process();
+    }
+    @Subscribe
+    public void receive(AntiCollisionLightOff event) {
+        ProcessEvent p = new ProcessEvent(event.toString(), antiCollisionLightPortList, "AntiCollisionLight", "off", "isOn") {
+            @Override
+            protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
+                boolean isOn = (boolean) method.invoke(port);
+                PrimaryFlightDisplay.instance.setAntiCollisionLightEnabled(isOn);
+                return isOn;
+            }
+        };
+        p.process();
+    }
+    // ----------------------------------------------------------------------------------------------------------------
+
+    // --- CargoCompartmentLight --------------------------------------------------------------------------------------
+
+    // ----------------------------------------------------------------------------------------------------------------
+
+
+    // --- LandingLight -----------------------------------------------------------------------------------------------
+
+    // ----------------------------------------------------------------------------------------------------------------
+
+
+    // --- CostOptimizer ----------------------------------------------------------------------------------------------
+
+    // ----------------------------------------------------------------------------------------------------------------
+
+
+    // --- RouteManagement --------------------------------------------------------------------------------------------
+
+    // ----------------------------------------------------------------------------------------------------------------
+
+
+
+
 }
