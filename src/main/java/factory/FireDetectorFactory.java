@@ -6,7 +6,7 @@ public class FireDetectorFactory {
 
     public static Object build() {
         return FactoryUtils.build("FireDetectorFactory",
-                Configuration.instance.pathToFireDetectorJavaArchive,
+                Configuration.instance.pathToFireDetectorProbeJavaArchive,
                 "FireDetector");
     }
 }
