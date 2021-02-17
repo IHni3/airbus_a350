@@ -58,7 +58,7 @@ public class Wing extends Subscriber {
                 boolean isOn = (boolean) onMethod.invoke(cameraPortList.get(i));
                 LogEngine.instance.write("isOn = " + isOn);
 
-                PrimaryFlightDisplay.instance.isWingCameraOn = isOn;
+                PrimaryFlightDisplay.instance.isCameraOn = isOn;
                 FlightRecorder.instance.insert("Wing", "Camera (isOn): " + isOn);
                 LogEngine.instance.write("+");
             }
@@ -66,8 +66,8 @@ public class Wing extends Subscriber {
             System.out.println(ex.getMessage());
         }
 
-        LogEngine.instance.write("PrimaryFlightDisplay (isWingCameraOn): " + PrimaryFlightDisplay.instance.isWingCameraOn);
-        FlightRecorder.instance.insert("PrimaryFlightDisplay", "isWingCameraOn: " + PrimaryFlightDisplay.instance.isWingCameraOn);
+        LogEngine.instance.write("PrimaryFlightDisplay (isWingCameraOn): " + PrimaryFlightDisplay.instance.isCameraOn);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "isWingCameraOn: " + PrimaryFlightDisplay.instance.isCameraOn);
     }
 
     @Subscribe
@@ -83,7 +83,7 @@ public class Wing extends Subscriber {
                 boolean isOn = (boolean) offMethod.invoke(cameraPortList.get(i));
                 LogEngine.instance.write("isOn = " + isOn);
 
-                PrimaryFlightDisplay.instance.isBodyCameraOn = isOn;
+                PrimaryFlightDisplay.instance.isCameraOn = isOn;
                 FlightRecorder.instance.insert("Wing", "Camera (isOn): " + isOn);
                 LogEngine.instance.write("+");
             }
@@ -91,8 +91,8 @@ public class Wing extends Subscriber {
             System.out.println(ex.getMessage());
         }
 
-        LogEngine.instance.write("PrimaryFlightDisplay (isWingCameraOff): " + PrimaryFlightDisplay.instance.isWingCameraOn);
-        FlightRecorder.instance.insert("PrimaryFlightDisplay", "isWingCameraOn: " + PrimaryFlightDisplay.instance.isWingCameraOn);
+        LogEngine.instance.write("PrimaryFlightDisplay (isWingCameraOff): " + PrimaryFlightDisplay.instance.isCameraOn);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "isWingCameraOn: " + PrimaryFlightDisplay.instance.isCameraOn);
     }
 
     // --- TurbulentAirFlowSensor--------------------------------------------------------------------------------------
