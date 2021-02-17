@@ -5,8 +5,7 @@ public enum PrimaryFlightDisplay {
     public boolean isWeatherRadarOn;
 
     // camera
-    public boolean isBodyCameraOn;
-    public boolean isWingCameraOn;
+    public boolean isCameraOn;
 
     // gps
     public boolean isGPSOn;
