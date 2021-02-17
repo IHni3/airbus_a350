@@ -106,8 +106,17 @@ public class Wing extends Subscriber {
                 Method measureMethod = turbulentAirFlowSensorList.get(i).getClass().getDeclaredMethod("measure", String.class);
                 LogEngine.instance.write("measureMethod = " + measureMethod);
 
-                int airFlow = (int) measureMethod.invoke(turbulentAirFlowSensorList.get(i), "laminarturbulentturbulentlaminarwindwind");
+                int airFlow = (int) measureMethod.invoke(turbulentAirFlowSensorList.get(i), "laminarturbulentturbulentlaminarwindwindturbulent");
                 LogEngine.instance.write("airFlow = " + airFlow);
+
+                if(airFlow > 10) {
+                    // Turbulences -> Alarm
+                    boolean alarm = (boolean) turbulentAirFlowSensorList.get(i).getClass().getDeclaredMethod("alarm").invoke(turbulentAirFlowSensorList.get(i));
+                    FlightRecorder.instance.insert("Wing", "TurbulentAirFlowSensorList (alarm): " + alarm);
+
+                    LogEngine.instance.write("PrimaryFlightDisplay (isTurbulentAirFlowAlarm): " + PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm);
+                    FlightRecorder.instance.insert("PrimaryFlightDisplay", "isTurbulentAirFlowAlarm: " + PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm);
+                }
 
                 FlightRecorder.instance.insert("Wing", "TurbulentAirFlowSensorList (airFlow): " + airFlow);
                 LogEngine.instance.write("+");
@@ -115,9 +124,5 @@ public class Wing extends Subscriber {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
-        LogEngine.instance.write("PrimaryFlightDisplay (isWingCameraOff): " + PrimaryFlightDisplay.instance.isWingCameraOn);
-        FlightRecorder.instance.insert("PrimaryFlightDisplay", "isWingCameraOn: " + PrimaryFlightDisplay.instance.isWingCameraOn);
-
     }
 }
