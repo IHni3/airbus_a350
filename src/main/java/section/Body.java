@@ -607,7 +607,7 @@ public class Body extends Subscriber {
         FlightRecorder.instance.insert("Body", "receive(" + fireDetectorBodyScan.toString() + ")");
 
         try {
-            for (int i = 0; i < Configuration.instance.numberOfFireDetectorBody; i++) {
+            for (int i = 0; i < Configuration.instance.numberOfFireDetectorProbeBody; i++) {
                 Method scanMethod = fireDetectorPortList.get(i).getClass().getDeclaredMethod("scan", String.class);
                 LogEngine.instance.write("scanMethod = " + scanMethod);
 
@@ -633,7 +633,7 @@ public class Body extends Subscriber {
         FlightRecorder.instance.insert("Body", "receive(" + fireDetectorWingScan.toString() + ")");
 
         try {
-            for (int i = 0; i < Configuration.instance.numberOfFireDetectorBody; i++) {
+            for (int i = 0; i < Configuration.instance.numberOfFireDetectorProbeBody; i++) {
                 Method scanMethod = fireDetectorPortList.get(i).getClass().getDeclaredMethod("scan", String.class);
                 LogEngine.instance.write("scanMethod = " + scanMethod);
 
@@ -778,7 +778,7 @@ public class Body extends Subscriber {
                 boolean oxygen = (boolean) measureMethod.invoke(oxygenSensorPortList.get(i), oxygenSensorMeasure.getAirFlow());
                 LogEngine.instance.write("oxygen = " + oxygen);
 
-                PrimaryFlightDisplay.instance.isOxgenSensorAlarm = oxygen ? 1 : 0;
+                PrimaryFlightDisplay.instance.isOxgenSensorAlarm = oxygen;
                 FlightRecorder.instance.insert("Body", "OxygenSensor (oxygen): " + oxygen);
 
                 LogEngine.instance.write("+");

@@ -125,7 +125,7 @@ public class Wing extends Subscriber {
 		FlightRecorder.instance.insert("Wing", "receive(" + fireDetectorWingScan.toString() + ")");
 
 		try {
-			for (int i = 0; i < Configuration.instance.numberOfFireDetectorWing; i++) {
+			for (int i = 0; i < Configuration.instance.numberOfFireDetectorProbeWing; i++) {
 				Method scanMethod = fireDetectorPortList.get(i).getClass().getDeclaredMethod("scan");
 				LogEngine.instance.write("scanMethod = " + scanMethod);
 
