@@ -14,7 +14,7 @@ public class GpsFactory {
         try {
             URL[] urls = {new File(Configuration.instance.pathToGpsJavaArchive).toURI().toURL()};
             URLClassLoader urlClassLoader = new URLClassLoader(urls, GpsFactory.class.getClassLoader());
-            Class gpsClass = Class.forName("Gps", true, urlClassLoader);
+            Class gpsClass = Class.forName("GPS", true, urlClassLoader);
             FlightRecorder.instance.insert("GpsFactory", "gpsClass: " + gpsClass.hashCode());
 
             Object gpsInstance = gpsClass.getMethod("getInstance").invoke(null);
