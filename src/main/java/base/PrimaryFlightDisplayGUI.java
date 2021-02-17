@@ -263,79 +263,62 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public ScrollPane buildT15View() {
         GridPaneBuilder builder = new GridPaneBuilder();
+        builder.setDataList(data);
+
         ScrollPane scroller = new ScrollPane();
         scroller.setContent(builder.gridPane());
         scroller.setFitToWidth(true);
 
         builder.addToggle("Right navigation-light", "Off", "On",
                 v -> PrimaryFlightDisplay.instance.isRightNavigationLightOn = v);
-
         builder.addToggle("Tail navigation-light", "Off", "On",
                 v -> PrimaryFlightDisplay.instance.isTailNavigationLightOn = v);
-
         builder.addToggle("Taxi light", "Off", "On",
                 v -> PrimaryFlightDisplay.instance.isTaxiLightOn = v);
 
         builder.addTitle("Seats");
-
         builder.addToggle("Non smoking sign", "Off", "On",
                 v -> PrimaryFlightDisplay.instance.isNonSmokingSignOn = v);
-
         builder.addToggle("Seat belt sign", "Off", "On",
                 v -> PrimaryFlightDisplay.instance.isSeatBeltSignOn = v);
-
         builder.addInteger("Level Seat", Integer.MIN_VALUE, Integer.MAX_VALUE,
                 v -> PrimaryFlightDisplay.instance.levelSeat = v);
 
         builder.addTitle("Exhaust-gas sensor");
-
         builder.addInteger("Temperature", 0, Integer.MAX_VALUE,
                 v -> PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = v);
-
         builder.addToggle("Alarm major", "Off", "On",
                 v -> PrimaryFlightDisplay.instance.isAlarmMajorExhaustGasTemperatureSensor = v);
-
         builder.addToggle("Alarm critical", "Off", "On",
                 v -> PrimaryFlightDisplay.instance.isAlarmCriticalExhaustGasTemperatureSensor = v);
 
         builder.addTitle("Fuel");
-
         builder.addInteger("Fuel flow", 0, Integer.MAX_VALUE,
                 v -> PrimaryFlightDisplay.instance.fuelFlow = v);
-
         builder.addFloat("Fuel amount", 0, Double.MAX_VALUE,
                 v -> PrimaryFlightDisplay.instance.amountOfFuel = v);
-
         builder.addToggle("Alarm reserve", "Off", "On",
                 v -> PrimaryFlightDisplay.instance.isAlarmReserveFuelSensor = v);
-
         builder.addToggle("Alarm major reserve", "Off", "On",
                 v -> PrimaryFlightDisplay.instance.isAlarmMajorFuelSensor = v);
-
         builder.addToggle("Alarm critical reserve", "Off", "On",
                 v -> PrimaryFlightDisplay.instance.isAlarmCriticalFuelSensor = v);
 
         builder.addTitle("Ice detector probe");
-
         builder.addToggle("Body-probe", "Off", "On",
                 v -> PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated = v);
-
         builder.addToggle("Wind-probe", "Off", "On",
                 v -> PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = v);
-
         builder.addToggle("Ice detected", "No", "Yes",
                 v -> PrimaryFlightDisplay.instance.isIceDetected = v);
 
         builder.addTitle("Fire detector");
-
         builder.addToggle("Body: fire detected", "No", "Yes",
                 v -> PrimaryFlightDisplay.instance.isFireDetectedBody = v);
-
         builder.addToggle("Wing: fire detected", "No", "Yes",
                 v -> PrimaryFlightDisplay.instance.isFireDetectedWing = v);
 
         builder.addTitle("Oxygen sensor");
-
         builder.addToggle("Alarm", "Off", "On",
                 v -> PrimaryFlightDisplay.instance.isOxgenSensorAlarm = v);
 
