@@ -1,0 +1,15 @@
+interface              : IRouteManagement
+class name             : RouteManagement
+java archive file name : route_management.jar
+section                : Body
+configuration          : numberOfRouteManagement = 2
+
+primary flight display : isRouteManagementOn : boolean
+                         indexRouteManagement : int
+                         numberOfCheckPointsRouteManagement : int
+
+events                 : RouteManagementOn
+                         RouteManagementOff
+                         RouteManagementAdd(checkPoint : CheckPoint)
+                         RouteManagementRemove(checkPoint : CheckPoint)
+                         RouteManagementSetCostIndex(value : int)

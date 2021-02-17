@@ -24,6 +24,51 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/light/anti_collision_light" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/light/anti_collision_light" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/light/cargo_compartment_light" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/light/cargo_compartment_light" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/light/langing_light" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/light/langing_light" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/management/cost_optimizer" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/management/cost_optimizer" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/management/route_management" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/management/route_management" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/components/weather_radar" />
         <option name="modules">
           <set>

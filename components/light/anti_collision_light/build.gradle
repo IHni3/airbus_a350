@@ -10,10 +10,10 @@ repositories {
 }
 
 task build_jar(type: Jar) {
-    project.archivesBaseName = "weather_radar"
+    project.archivesBaseName = "anit_collision_light"
 
     manifest {
-        attributes["Main-Class"] = "WeatherRadar"
+        attributes["Main-Class"] = "AntiCollisionLight"
     }
 
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }

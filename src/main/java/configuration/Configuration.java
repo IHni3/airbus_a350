@@ -22,6 +22,27 @@ public enum Configuration {
     public String pathToSlatJavaArchive = generatePathToJavaArchive("slat");
     public int numberOfSlats = 6;
 
+    //cost_optimizer
+    public String pathToCostOptimizerJavaArchive = generatePathToJavaArchive("cost_optimizer");
+    public int numberOfCostOptimizers = 2;
+
+    //route_management
+    public String pathToRouteManagementJavaArchive = generatePathToJavaArchive("route_management");
+    public int numberOfRouteManagements = 2;
+
+    //anti_collision_light
+    public String pathToAntiCollisionLightJavaArchive = generatePathToJavaArchive("anti_collision_light");
+    public int numberOfAntiCollisionLights = 2;
+
+    //cargo_compartment_light
+    public String pathToCargoCompartmentLightJavaArchive = generatePathToJavaArchive("cargo_compartment_light");
+    public int numberOfCargoCompartmentLights = 4;
+
+    //landing_light
+    public String pathToLandingLightJavaArchive = generatePathToJavaArchive("landing_light");
+    public int numberOfLandingLightsBody = 2;
+    public int numberOfLandingLightsWing = 2;
+
     public String generatePathToJavaArchive(String archiveName){
         return commonPathToJavaArchive + archiveName + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + archiveName + ".jar";
     }

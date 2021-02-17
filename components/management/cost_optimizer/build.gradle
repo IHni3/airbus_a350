@@ -10,10 +10,10 @@ repositories {
 }
 
 task build_jar(type: Jar) {
-    project.archivesBaseName = "weather_radar"
+    project.archivesBaseName = "cost_optimizer"
 
     manifest {
-        attributes["Main-Class"] = "WeatherRadar"
+        attributes["Main-Class"] = "CostOptimizer"
     }
 
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
