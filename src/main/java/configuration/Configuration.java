@@ -43,6 +43,18 @@ public enum Configuration {
     public int numberOfLandingLightsBody = 2;
     public int numberOfLandingLightsWing = 2;
 
+    public String pathToLeftAileronJavaArchive = generatePathToJavaArchive("flight_controls_02", "left_aileron");
+    public int numberOfLeftAileron = 3;
+
+    public String pathToRightAileronJavaArchive = generatePathToJavaArchive("flight_controls_02", "right_aileron");
+    public int numberOfRightAileron = 3;
+
+    public String pathToRudderJavaArchive = generatePathToJavaArchive("flight_controls_02", "rudder");
+    public int numberOfRudder = 2;
+
+    public String pathToSpoilerJavaArchive = generatePathToJavaArchive("flight_controls_02", "spoiler");
+    public int numberOfSpoiler = 8;
+
     public String generatePathToJavaArchive(String packageName, String archiveName){
         return commonPathToJavaArchive + packageName + fileSeparator + archiveName + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + archiveName + ".jar";
     }
