@@ -2,6 +2,7 @@ import base.PrimaryFlightDisplay;
 import factory.WeatherRadarFactory;
 import logging.LogEngine;
 import org.junit.jupiter.api.*;
+import org.opentest4j.TestAbortedException;
 import recorder.FlightRecorder;
 
 import java.lang.reflect.Method;
