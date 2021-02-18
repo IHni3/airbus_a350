@@ -9,7 +9,6 @@ public class FuelFlowSensor {
 
     private int fuelFlow;
 
-
     // private constructor
     private FuelFlowSensor() {
         port = new Port();
@@ -26,10 +25,9 @@ public class FuelFlowSensor {
     }
 
     public int innerMeasure() {
+    	fuelFlow = (int) (Math.random() * 100D);
         return fuelFlow;
     }
-
-
 
     // inner class port
     public class Port implements IFuelFlowSensor {

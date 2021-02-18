@@ -28,6 +28,7 @@ public class ExhaustGasTemperatureSensor {
     }
 
     public int innerMeasure() {
+        temperature = (int) (Math.random() * 55D) - 30;
         return temperature;
     }
 
