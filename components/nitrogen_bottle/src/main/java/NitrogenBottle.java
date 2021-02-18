@@ -3,9 +3,7 @@ public class NitrogenBottle {
     private static NitrogenBottle instance = new NitrogenBottle();
     // port
     public Port port;
-    private String manufacturer = "Student 2627585";
-    private String type = "team 17";
-    private String id = "2627585";
+    private String manufacturer = "Student 2627585 / 4485500";
     private int amount = 250;
 
     // private constructor
@@ -20,7 +18,7 @@ public class NitrogenBottle {
 
     // inner methods
     public String innerVersion() {
-        return "NitrogenBottle // " + manufacturer + " - " + type + " - " + id;
+        return "NitrogenBottle // " + manufacturer;
     }
 
     public int innerTakeOut (int amount) {

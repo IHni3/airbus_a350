@@ -3,9 +3,8 @@ public class Camera {
     private static Camera instance = new Camera();
     // port
     public Port port;
-    private final String manufacturer = "Student 2627585";
+    private final String manufacturer = "Student 2627585 / 4485500";
     private CameraType type;
-    private final String id = "2627585";
     private boolean isOn = false;
 
     // private constructor
@@ -20,7 +19,7 @@ public class Camera {
 
     // inner methods
     public String innerVersion() {
-        return "Camera // " + manufacturer + " - " + type + " - " + id;
+        return "Camera // " + manufacturer + " - " + type;
     }
 
     public boolean innerOn() {

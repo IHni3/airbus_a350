@@ -3,9 +3,7 @@ public class GPS {
     private static GPS instance = new GPS();
     // port
     public Port port;
-    private String manufacturer = "Student 2627585";
-    private String type = "team 17";
-    private String id = "2627585";
+    private String manufacturer = "Student 2627585 / 4485500";
     private boolean isOn = false;
     private boolean isConnected = false;
 
@@ -21,7 +19,7 @@ public class GPS {
 
     // inner methods
     public String innerVersion() {
-        return "GPS // " + manufacturer + " - " + type + " - " + id;
+        return "GPS // " + manufacturer;
     }
 
     public boolean innerOn() {

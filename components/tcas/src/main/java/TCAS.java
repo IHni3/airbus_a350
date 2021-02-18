@@ -3,9 +3,7 @@ public class TCAS {
     private static TCAS instance = new TCAS();
     // port
     public Port port;
-    private String manufacturer = "Student 2627585";
-    private String type = "team 17";
-    private String id = "2627585";
+    private String manufacturer = "Student 2627585 / 4485500";
     private boolean isOn = false;
     private boolean isConnected = false;
     private boolean isAlarm = false;
@@ -23,7 +21,7 @@ public class TCAS {
 
     // inner methods
     public String innerVersion () {
-        return "TCAS // " + manufacturer + " - " + type + " - " + id;
+        return "TCAS // " + manufacturer;
     }
 
     public boolean innerOn () {

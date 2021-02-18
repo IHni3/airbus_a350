@@ -3,9 +3,7 @@ public class OxygenBottle {
     private static OxygenBottle instance = new OxygenBottle();
     // port
     public Port port;
-    private String manufacturer = "Student 2627585";
-    private String type = "team 17";
-    private String id = "2627585";
+    private String manufacturer = "Student 2627585 / 4485500";
     private int amount = 100;
 
     // private constructor
@@ -20,7 +18,7 @@ public class OxygenBottle {
 
     // inner methods
     public String innerVersion () {
-        return "OxygenBottle // " + manufacturer + " - " + type + " - " + id;
+        return "OxygenBottle // " + manufacturer;
     }
 
     public int innerTakeOut (int amount) {
