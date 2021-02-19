@@ -10,11 +10,8 @@ import event.business_class_seat.SeatAssignPassenger;
 import event.crew_seat.SeatAssignCrewMember;
 import event.economy_class_seat.*;
 import event.fire_detector.FireDetectorBodyScan;
-import event.fire_detector.FireDetectorWingScan;
 import event.ice_detector_probe.IceDetectorProbeBodyActivate;
 import event.ice_detector_probe.IceDetectorProbeBodyDeactivate;
-import event.ice_detector_probe.IceDetectorProbeWingActivate;
-import event.ice_detector_probe.IceDetectorProbeWingDeactivate;
 import event.oxygen_sensor.OxygenSensorMeasure;
 import event.tail_navigation_light.TailNavigationLightOff;
 import event.tail_navigation_light.TailNavigationLightOn;
@@ -627,32 +624,6 @@ public class Body extends Subscriber {
         FlightRecorder.instance.insert("PrimaryFlightDisplay", "isFireDetectedBody: " + PrimaryFlightDisplay.instance.isFireDetectedBody);
     }
 
-    @Subscribe
-    public void receive(FireDetectorWingScan fireDetectorWingScan) {
-        LogEngine.instance.write("+ Body.receive(" + fireDetectorWingScan.toString() + ")");
-        FlightRecorder.instance.insert("Body", "receive(" + fireDetectorWingScan.toString() + ")");
-
-        try {
-            for (int i = 0; i < Configuration.instance.numberOfFireDetectorProbeBody; i++) {
-                Method scanMethod = fireDetectorPortList.get(i).getClass().getDeclaredMethod("scan", String.class);
-                LogEngine.instance.write("scanMethod = " + scanMethod);
-
-                boolean alarm = (boolean) scanMethod.invoke(fireDetectorPortList.get(i), fireDetectorWingScan.getAir());
-                LogEngine.instance.write("alarm = " + alarm);
-
-                PrimaryFlightDisplay.instance.isFireDetectedWing = alarm;
-                FlightRecorder.instance.insert("Body", "FireDetector (alarm): " + alarm);
-
-                LogEngine.instance.write("+");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        LogEngine.instance.write("PrimaryFlightDisplay (isFireDetectedWing): " + PrimaryFlightDisplay.instance.isFireDetectedWing);
-        FlightRecorder.instance.insert("PrimaryFlightDisplay", "isFireDetectedWing: " + PrimaryFlightDisplay.instance.isFireDetectedWing);
-    }
-
     // ----------------------------------------------------------------------------------------------------------------
 
     // --- IceDetectorProbe -------------------------------------------------------------------------------------------
@@ -684,32 +655,6 @@ public class Body extends Subscriber {
     }
 
     @Subscribe
-    public void receive(IceDetectorProbeWingActivate iceDetectorProbeWingActivate) {
-        LogEngine.instance.write("+ Body.receive(" + iceDetectorProbeWingActivate.toString() + ")");
-        FlightRecorder.instance.insert("Body", "receive(" + iceDetectorProbeWingActivate.toString() + ")");
-
-        try {
-            for (int i = 0; i < Configuration.instance.numberOfIceDetectorProbeBody; i++) {
-                Method activateMethod = iceDetectorProbePortList.get(i).getClass().getDeclaredMethod("activate");
-                LogEngine.instance.write("activateMethod = " + activateMethod);
-
-                boolean isActivated = (boolean) activateMethod.invoke(iceDetectorProbePortList.get(i));
-                LogEngine.instance.write("isActivated = " + isActivated);
-
-                PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = isActivated;
-                FlightRecorder.instance.insert("Body", "IceDetectorProbe (isActivated): " + isActivated);
-
-                LogEngine.instance.write("+");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        LogEngine.instance.write("PrimaryFlightDisplay (isIceDetectorProbeWingActivated): " + PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated);
-        FlightRecorder.instance.insert("PrimaryFlightDisplay", "isIceDetectorProbeWingActivated: " + PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated);
-    }
-
-    @Subscribe
     public void receive(IceDetectorProbeBodyDeactivate iceDetectorProbeBodyDeactivate) {
         LogEngine.instance.write("+ Body.receive(" + iceDetectorProbeBodyDeactivate.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + iceDetectorProbeBodyDeactivate.toString() + ")");
@@ -733,32 +678,6 @@ public class Body extends Subscriber {
 
         LogEngine.instance.write("PrimaryFlightDisplay (isIceDetectorProbeBodyActivated): " + PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated);
         FlightRecorder.instance.insert("PrimaryFlightDisplay", "isIceDetectorProbeBodyActivated: " + PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated);
-    }
-
-    @Subscribe
-    public void receive(IceDetectorProbeWingDeactivate iceDetectorProbeWingDeactivate) {
-        LogEngine.instance.write("+ Body.receive(" + iceDetectorProbeWingDeactivate.toString() + ")");
-        FlightRecorder.instance.insert("Body", "receive(" + iceDetectorProbeWingDeactivate.toString() + ")");
-
-        try {
-            for (int i = 0; i < Configuration.instance.numberOfIceDetectorProbeBody; i++) {
-                Method deactivateMethod = iceDetectorProbePortList.get(i).getClass().getDeclaredMethod("deactivate");
-                LogEngine.instance.write("deactivateMethod = " + deactivateMethod);
-
-                boolean isActivated = (boolean) deactivateMethod.invoke(iceDetectorProbePortList.get(i));
-                LogEngine.instance.write("isActivated = " + isActivated);
-
-                PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = isActivated;
-                FlightRecorder.instance.insert("Body", "IceDetectorProbe (isActivated): " + isActivated);
-
-                LogEngine.instance.write("+");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        LogEngine.instance.write("PrimaryFlightDisplay (isIceDetectorProbeWingActivated): " + PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated);
-        FlightRecorder.instance.insert("PrimaryFlightDisplay", "isIceDetectorProbeWingActivated: " + PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated);
     }
 
     // ----------------------------------------------------------------------------------------------------------------
