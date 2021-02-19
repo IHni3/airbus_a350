@@ -2,7 +2,7 @@ package factory;
 
 import configuration.Configuration;
 
-public class Spoiler {
+public class SpoilerFactory {
 
     public static Object build() {
         return FactoryUtils.build("SpoilerFactory",

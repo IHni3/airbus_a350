@@ -35,6 +35,18 @@ public class PrimaryFlightDisplayGUI extends Application {
     private RadioButton costOptimizerOnButton;
     private PrimaryFlightDisplayEntry costOptimizerIsOnEntry;
 
+    private Spinner rudderSpinner;
+    private PrimaryFlightDisplayEntry rudderEntry;
+
+    private Spinner leftAileronSpinner;
+    private PrimaryFlightDisplayEntry leftAileronEntry;
+
+    private Spinner rightAileronSpinner;
+    private PrimaryFlightDisplayEntry rightAileronEntry;
+
+    private Spinner spoilerSpinner;
+    private PrimaryFlightDisplayEntry spoilerEntry;
+
     private Spinner costOptimizerSizeSpinner;
     private PrimaryFlightDisplayEntry costOptimizerSizeEntry;
 
@@ -287,6 +299,11 @@ public class PrimaryFlightDisplayGUI extends Application {
         addCostOptimizerIndexElements(gridPane, 12);
         addCostOptimizerSizeElements(gridPane, 13);
 
+        addRudderElements(gridPane, 14);
+        addLeftAileronElements(gridPane, 15);
+        addRightAileronElements(gridPane, 16);
+        addSpoilerElements(gridPane, 17);
+
         return gridPane;
     }
 
@@ -371,6 +388,47 @@ public class PrimaryFlightDisplayGUI extends Application {
         onOffGroupElementFactory("Landing light body: ",
                 landingLightBodyOnButton,
                 landingLightBodyOffButton,
+                gridPane,
+                rowIndex);
+    }
+
+    private void addRudderElements(GridPane gridPane, int rowIndex) {
+        rudderSpinner = new Spinner();
+        numberElementFactory("Rudder degree: ",
+                rudderSpinner,
+                -90,
+                90,
+                0,
+                gridPane,
+                rowIndex);
+    }
+    private void addLeftAileronElements(GridPane gridPane, int rowIndex) {
+        leftAileronSpinner = new Spinner();
+        numberElementFactory("Left_Aileron degree: ",
+                leftAileronSpinner,
+                -90,
+                90,
+                0,
+                gridPane,
+                rowIndex);
+    }
+    private void addRightAileronElements(GridPane gridPane, int rowIndex) {
+        rightAileronSpinner = new Spinner();
+        numberElementFactory("Right_Aileron degree: ",
+                rightAileronSpinner,
+                -90,
+                90,
+                0,
+                gridPane,
+                rowIndex);
+    }
+    private void addSpoilerElements(GridPane gridPane, int rowIndex) {
+        spoilerSpinner = new Spinner();
+        numberElementFactory("Spoiler degree: ",
+                spoilerSpinner,
+                -90,
+                90,
+                0,
                 gridPane,
                 rowIndex);
     }
@@ -554,6 +612,18 @@ public class PrimaryFlightDisplayGUI extends Application {
         routeManagementIndexEntry = new PrimaryFlightDisplayEntry("RouteManagement (index)", String.valueOf(PrimaryFlightDisplay.instance.getIndexRouteManagement()));
         dataList.add(routeManagementIndexEntry);
 
+        rudderEntry = new PrimaryFlightDisplayEntry("Rudder", String.valueOf(PrimaryFlightDisplay.instance.getDegreeRudder()));
+        dataList.add(rudderEntry);
+
+        leftAileronEntry = new PrimaryFlightDisplayEntry("Left_Aileron", String.valueOf(PrimaryFlightDisplay.instance.getDegreeLeftAileron()));
+        dataList.add(leftAileronEntry);
+
+        rightAileronEntry = new PrimaryFlightDisplayEntry("Right_Aileron", String.valueOf(PrimaryFlightDisplay.instance.getDegreeRightAileron()));
+        dataList.add(rightAileronEntry);
+
+        spoilerEntry = new PrimaryFlightDisplayEntry("Spoiler", String.valueOf(PrimaryFlightDisplay.instance.getDegreeSpoiler()));
+        dataList.add(spoilerEntry);
+
         routeManagementSizeEntry = new PrimaryFlightDisplayEntry("RouteManagement (Size)", String.valueOf(PrimaryFlightDisplay.instance.getSizeRouteManagement()));
         dataList.add(routeManagementSizeEntry);
 
@@ -584,6 +654,10 @@ public class PrimaryFlightDisplayGUI extends Application {
         setLandingLightBodyEnabled(PrimaryFlightDisplay.instance.isLandingLightBodyEnabled());
 
         slatSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getSlagDegree());
+        rudderSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getDegreeRudder());
+        leftAileronSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getDegreeLeftAileron());
+        rightAileronSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getDegreeRightAileron());
+        spoilerSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getDegreeSpoiler());
         costOptimizerSizeSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getSizeCostOptimizer());
         costOptimizerIndexSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getIndexCostOptimizer());
         routeManagementIndexSpinner.getValueFactory().setValue(PrimaryFlightDisplay.instance.getIndexRouteManagement());
@@ -591,6 +665,10 @@ public class PrimaryFlightDisplayGUI extends Application {
 
 
         slatEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.getSlagDegree()));
+        rudderEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.getDegreeRudder()));
+        leftAileronEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.getDegreeLeftAileron()));
+        rightAileronEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.getDegreeRightAileron()));
+        spoilerEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.getDegreeSpoiler()));
         costOptimizerIsOnEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.isCostOptimizerEnabled()));
         costOptimizerSizeEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.getSizeCostOptimizer()));
         costOptimizerIndexEntry.setValue(String.valueOf(PrimaryFlightDisplay.instance.getIndexCostOptimizer()));

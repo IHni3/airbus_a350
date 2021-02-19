@@ -2,7 +2,7 @@ package factory;
 
 import configuration.Configuration;
 
-public class Rudder {
+public class RudderFactory {
 
     public static Object build() {
         return FactoryUtils.build("RudderFactory",
