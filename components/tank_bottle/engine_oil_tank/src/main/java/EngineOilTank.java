@@ -25,11 +25,15 @@ public class EngineOilTank {
     }
 
     public int innerIncreaseLevel(int value) {
-    // TODO
+        level += value;
+        level < 0 ? level = 0;
+        return level;
     }
 
     public int innerDecreaseLevel(int value) {
-    // TODO
+        level -= value;
+        level < 0 ? level = 0;
+        return level;
     }
 
 

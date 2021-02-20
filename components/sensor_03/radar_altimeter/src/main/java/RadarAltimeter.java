@@ -26,23 +26,27 @@ public class RadarAltimeter {
     }
 
     public boolean innerOn() {
-    // TODO
+        isOn = true;
+        return isOn;
     }
 
     public void innerSend(String radioWave) {
-    // TODO
+
     }
 
     public int innerRecieve(String radioWave) {
-    // TODO
+
     }
 
     public int innerMeasureAltitude() {
-    // TODO
+        innerSend("ping");
+        altitude = innerRecieve("ping");
+        return altitude;
     }
 
     public boolean innerOff() {
-    // TODO
+        isOn = false;
+        return isOn;
     }
 
 
@@ -57,7 +61,7 @@ public class RadarAltimeter {
         }
 
         public void send(String radioWave) {
-            return innerSend(radioWave);
+            innerSend(radioWave);
         }
 
         public int recieve(String radioWave) {

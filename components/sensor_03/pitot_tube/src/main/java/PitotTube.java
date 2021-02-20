@@ -7,7 +7,7 @@ public class PitotTube {
     private String type = "team 16";
     private String id = "8843476 / 9668368";
 
-    private boolean isCleanded;
+    private boolean isCleaned;
     private int velocity;
 
     // private constructor
@@ -26,7 +26,20 @@ public class PitotTube {
     }
 
     public int innerMeasureStaticPressure() {
-    // TODO
+        //TODO
+    }
+
+    public void innerClean(){
+        isCleaned = true;
+    }
+
+    public int innerMeasureTotalPressure(){
+        //TODO
+    }
+
+    public int innerMeasureVelocity(){
+        velocity = innerMeasureTotalPressure() - innerMeasureStaticPressure();
+        return velocity;
     }
 
 
@@ -41,14 +54,14 @@ public class PitotTube {
         }
 
         public int measureTotalPressure(){
-            return 1;
+            return innerMeasureTotalPressure();
         }
         public int measureVelocity(){
-            return 1;
+            return innerMeasureVelocity();
         }
 
         public void clean(){
-
+            innerClean();
         }
 
 	}
