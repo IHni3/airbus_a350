@@ -1,3 +1,5 @@
+import domains.CheckPoint;
+
 public interface IRouteManagement {
     String version();
 

@@ -1,3 +1,5 @@
+import domains.CheckPoint;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -79,8 +81,8 @@ public class CostOptimizer {
         }
 
         @Override
-        public boolean validate(int costIndex) {
-           return false; //TODO
+        public int validate(int costIndex) {
+           return 10; //TODO
         }
 
 

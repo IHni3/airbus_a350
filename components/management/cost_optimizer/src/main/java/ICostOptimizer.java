@@ -1,3 +1,5 @@
+import domains.CheckPoint;
+
 import java.util.List;
 
 public interface ICostOptimizer {
@@ -7,6 +9,6 @@ public interface ICostOptimizer {
     int add(CheckPoint checkPoint);
     int remove(CheckPoint checkPoint);
     int optimize(List<CheckPoint> checkPointList);
-    boolean validate(int costIndex);
+    int validate(int costIndex);
     boolean off();
 }

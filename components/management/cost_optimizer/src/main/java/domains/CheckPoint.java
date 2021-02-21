@@ -1,3 +1,5 @@
+package domains;
+
 public class CheckPoint {
     private int sequenceID;
     private String name;

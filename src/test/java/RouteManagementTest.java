@@ -67,7 +67,7 @@ public class RouteManagementTest {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     public void add() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method onMethod = componentPort.getClass().getDeclaredMethod("add", CheckPoint.class);
         int size = (int) onMethod.invoke(componentPort, new CheckPoint(1, "bla", "blub", "bring"));
@@ -75,20 +75,15 @@ public class RouteManagementTest {
     }
 
     @Test
-    @Order(4)
+    @Order(6)
     public void remove() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-
-        //add 1
-        add();
-
-        //remove 1
         Method onMethod = componentPort.getClass().getDeclaredMethod("remove", CheckPoint.class);
         int size = (int) onMethod.invoke(componentPort, new CheckPoint(1, "bla", "blub", "bring"));
         assertEquals(size, 0);
     }
 
     @Test
-    @Order(4)
+    @Order(7)
     public void setCostIndex() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         final int value = 10;
         Method onMethod = componentPort.getClass().getDeclaredMethod("setCostIndex", int.class);

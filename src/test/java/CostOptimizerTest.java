@@ -31,66 +31,62 @@ public class CostOptimizerTest {
     @Test
     @Order(2)
     public void methods() throws NoSuchMethodException {
-            Method onMethod = componentPort.getClass().getDeclaredMethod("on");
-            assertNotNull(onMethod);
+        Method onMethod = componentPort.getClass().getDeclaredMethod("on");
+        assertNotNull(onMethod);
 
-            Method offMethod = componentPort.getClass().getDeclaredMethod("off");
-            assertNotNull(offMethod);
+        Method offMethod = componentPort.getClass().getDeclaredMethod("off");
+        assertNotNull(offMethod);
 
-            Method costIndexMethod = componentPort.getClass().getDeclaredMethod("validate", int.class);
-            assertNotNull(costIndexMethod);
+        Method costIndexMethod = componentPort.getClass().getDeclaredMethod("validate", int.class);
+        assertNotNull(costIndexMethod);
 
-            Method removeMethod = componentPort.getClass().getDeclaredMethod("remove", CheckPoint.class);
-            assertNotNull(removeMethod);
+        Method removeMethod = componentPort.getClass().getDeclaredMethod("remove", CheckPoint.class);
+        assertNotNull(removeMethod);
 
-            Method addMethod = componentPort.getClass().getDeclaredMethod("add", CheckPoint.class);
-            assertNotNull(addMethod);
+        Method addMethod = componentPort.getClass().getDeclaredMethod("add", CheckPoint.class);
+        assertNotNull(addMethod);
     }
 
     @Test
     @Order(3)
     public void on() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-            Method onMethod = componentPort.getClass().getDeclaredMethod("on");
-            boolean isOn = (boolean) onMethod.invoke(componentPort);
-            assertTrue(isOn);
+        Method onMethod = componentPort.getClass().getDeclaredMethod("on");
+        boolean isOn = (boolean) onMethod.invoke(componentPort);
+        assertTrue(isOn);
     }
 
     @Test
     @Order(4)
     public void off() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-            Method onMethod = componentPort.getClass().getDeclaredMethod("off");
-            boolean isOn = (boolean) onMethod.invoke(componentPort);
-            assertFalse(isOn);
+        Method onMethod = componentPort.getClass().getDeclaredMethod("off");
+        boolean isOn = (boolean) onMethod.invoke(componentPort);
+        assertFalse(isOn);
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     public void add() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-            Method onMethod = componentPort.getClass().getDeclaredMethod("add", CheckPoint.class);
-            int size = (int) onMethod.invoke(componentPort, new CheckPoint(1,"bla", "blub", "bring"));
-            assertEquals(size,1);
+        Method onMethod = componentPort.getClass().getDeclaredMethod("add", CheckPoint.class);
+        int size = (int) onMethod.invoke(componentPort, new CheckPoint(1, "bla", "blub", "bring"));
+        assertEquals(size, 1);
     }
 
     @Test
-    @Order(4)
+    @Order(6)
     public void remove() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        
-        //add 1
-        add();
-        
         //remove 1
-            Method onMethod = componentPort.getClass().getDeclaredMethod("remove", CheckPoint.class);
-            int size = (int) onMethod.invoke(componentPort, new CheckPoint(1,"bla", "blub", "bring"));
-            assertEquals(size,0);
+        Method onMethod = componentPort.getClass().getDeclaredMethod("remove", CheckPoint.class);
+        int size = (int) onMethod.invoke(componentPort, new CheckPoint(1, "bla", "blub", "bring"));
+        assertEquals(0, size);
     }
 
     @Test
-    @Order(4)
-    public void setCostIndex() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    @Order(7)
+    public void validate() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         final int value = 10;
-            Method onMethod = componentPort.getClass().getDeclaredMethod("validate", int.class);
-            int returnValue = (int) onMethod.invoke(componentPort, value);
-            assertEquals(returnValue, value);
+        Method onMethod = componentPort.getClass().getDeclaredMethod("validate", int.class);
+        int returnValue = (int) onMethod.invoke(componentPort, value);
+        assertEquals(returnValue, value);
     }
 
     @AfterEach

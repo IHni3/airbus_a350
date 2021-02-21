@@ -10,6 +10,6 @@ primary flight display : isRouteManagementOn : boolean
 
 events                 : RouteManagementOn
                          RouteManagementOff
-                         RouteManagementAdd(checkPoint : domains.CheckPoint)
-                         RouteManagementRemove(checkPoint : domains.CheckPoint)
+                         RouteManagementAdd(checkPoint : domains.domains.domains.CheckPoint)
+                         RouteManagementRemove(checkPoint : domains.domains.domains.CheckPoint)
                          RouteManagementSetCostIndex(value : int)
