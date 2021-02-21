@@ -33,3 +33,6 @@ hs_err_pid*
 /src/main/java/event/event.template
 /src/main/java/event/event_generator.py
 /src/main/java/event/_configs/
+/src/main/java/factory/_configs/
+/src/main/java/factory/factory.template
+/src/main/java/factory/factory_generator.py
