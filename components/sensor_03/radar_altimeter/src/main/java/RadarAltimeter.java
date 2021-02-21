@@ -35,7 +35,7 @@ public class RadarAltimeter {
     }
 
     public int innerRecieve(String radioWave) {
-
+        return -1;
     }
 
     public int innerMeasureAltitude() {

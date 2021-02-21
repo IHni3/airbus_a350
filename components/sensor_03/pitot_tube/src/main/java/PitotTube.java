@@ -26,7 +26,7 @@ public class PitotTube {
     }
 
     public int innerMeasureStaticPressure() {
-        //TODO
+        return -1;
     }
 
     public void innerClean(){
@@ -34,7 +34,7 @@ public class PitotTube {
     }
 
     public int innerMeasureTotalPressure(){
-        //TODO
+        return -1;
     }
 
     public int innerMeasureVelocity(){
