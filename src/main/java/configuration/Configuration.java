@@ -18,11 +18,31 @@ public enum Configuration {
     public String pathToWeatherRadarJavaArchive = generatePathToJavaArchive("weather_radar");
     public int numberOfWeatherRadar = 2;
 
+    // pitot_tube
+    public String pathToPitotTubeJavaArchive = generatePathToJavaArchive("sensor_03", "pitot_tube");
+    public int numberOfPitotTube = 2;
+
+    // radar_altimeter
+    public String pathToRadarAltimeterJavaArchive = generatePathToJavaArchive("sensor_03", "radar_altimeter");
+    public int numberOfRadarAltimeter = 2;
+
+    // engine_oil_tank
+    public String pathToEngineOilTankJavaArchive = generatePathToJavaArchive("tank_bottle", "engine_oil_tank");
+    public int numberOfEngineOilTank = 4;
+
+    // fuel_tank
+    public String pathToFuelTankJavaArchive = generatePathToJavaArchive("tank_bottle", "fuel_tank");
+    public int numberOfFuelTank = 3;
+
     // slat
     public String pathToSlatJavaArchive = generatePathToJavaArchive("slat");
     public int numberOfSlats = 6;
 
     public String generatePathToJavaArchive(String archiveName){
         return commonPathToJavaArchive + archiveName + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + archiveName + ".jar";
+    }
+
+    public String generatePathToJavaArchive(String dir, String archiveName){
+        return commonPathToJavaArchive + dir + fileSeparator + archiveName + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + archiveName + ".jar";
     }
 }

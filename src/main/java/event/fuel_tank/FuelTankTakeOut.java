@@ -8,6 +8,6 @@ public class FuelTankTakeOut {
 	}
 
 	public String toString() {
-		return "Event: FuelTank - TakeOut";
+		return "Event: FuelTank - TakeOut (amount: " + amount + ")";
 	}
 }

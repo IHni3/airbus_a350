@@ -8,6 +8,6 @@ public class RadarAlitmeterReceive {
 	}
 
 	public String toString() {
-		return "Event: RadarAltimeter - RadarAlitmeter - Receive";
+		return "Event: RadarAltimeter - RadarAlitmeter - Receive - RadioWave: " + radioWave;
 	}
 }

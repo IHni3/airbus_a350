@@ -8,6 +8,6 @@ public class RadarAltimeterSend {
 	}
 
 	public String toString() {
-		return "Event: RadarAltimeter - Send";
+		return "Event: RadarAltimeter - Send - RadioWave: " + radioWave;
 	}
 }

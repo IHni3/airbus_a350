@@ -12,6 +12,6 @@ public class FuelTankRefill {
 	}
 
 	public String toString() {
-		return "Event: FuelTank - Refill";
+		return "Event: FuelTank - Refill (amount: " + amount + ")";
 	}
 }
