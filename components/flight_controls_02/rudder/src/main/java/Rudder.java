@@ -7,7 +7,7 @@ public class Rudder {
     private String type = "team 14";
     private String id = "9899545";
     //attributes
-    private int rudderDegree = 0;
+    private int degreeRudder = 0;
 
     // private constructor
     private Rudder() {
@@ -25,27 +25,27 @@ public class Rudder {
     }
 
     public int innerNeutral() {
-        rudderDegree = 0;
-        return rudderDegree;
+        degreeRudder = 0;
+        return degreeRudder;
     }
 
 
     public int innerLeft(int degree) {
-        rudderDegree = rudderDegree+degree;
-        return rudderDegree;
+        degreeRudder = degreeRudder +degree;
+        return degreeRudder;
     }
     public int innerRight(int degree) {
-        rudderDegree = rudderDegree-degree;
-        return rudderDegree;
+        degreeRudder = degreeRudder -degree;
+        return degreeRudder;
     }
 
     public int innerFullLeft() {
-        rudderDegree = 90;
-        return rudderDegree;
+        degreeRudder = 90;
+        return degreeRudder;
     }
     public int innerFullRight() {
-        rudderDegree = -90;
-        return rudderDegree;
+        degreeRudder = -90;
+        return degreeRudder;
     }
 
     // inner class port

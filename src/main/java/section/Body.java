@@ -14,6 +14,7 @@ import event.cost_optimizer.*;
 import event.landing_light.LandingLightBodyOff;
 import event.landing_light.LandingLightBodyOn;
 import event.route_management.*;
+import event.rudder.*;
 import event.weather_radar.WeatherRadarOff;
 import event.weather_radar.WeatherRadarOn;
 import event.weather_radar.WeatherRadarScan;
@@ -21,6 +22,7 @@ import factory.*;
 import logging.LogEngine;
 import recorder.FlightRecorder;
 
+import java.io.ObjectInputFilter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -33,6 +35,8 @@ public class Body extends Subscriber {
     private List<Object> costOptimizerPortList;
     private List<Object> routeManagementPortList;
     private List<Object> cargoCompartmentLightPortList;
+    private List<Object> rudderPortList;
+
 
     public Body() {
         weatherRadarPortList = new ArrayList<>();
@@ -41,6 +45,7 @@ public class Body extends Subscriber {
         costOptimizerPortList = new ArrayList<>();
         routeManagementPortList = new ArrayList<>();
         cargoCompartmentLightPortList = new ArrayList<>();
+        rudderPortList = new ArrayList<>();
         build();
     }
 
@@ -63,6 +68,10 @@ public class Body extends Subscriber {
         for (int i = 0; i < Configuration.instance.numberOfCargoCompartmentLights; i++) {
             cargoCompartmentLightPortList.add(CargoCompartmentLightFactory.build());
         }
+        for (int i = 0; i < Configuration.instance.numberOfRudder; i++) {
+            rudderPortList.add(RudderFactory.build());
+        }
+
     }
 
     // --- WeatherRadar -----------------------------------------------------------------------------------------------
@@ -360,7 +369,66 @@ public class Body extends Subscriber {
     }
     // ----------------------------------------------------------------------------------------------------------------
 
-
-
-
+    // --- Rudder --------------------------------------------------------------------------------------------
+    @Subscribe
+    public void receive(RudderNeutral event) {
+        ProcessEvent p = new ProcessEvent(event.toString(), rudderPortList, "Rudder", "neutral", "index") {
+            @Override
+            protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
+                int index = (int) method.invoke(port);
+                PrimaryFlightDisplay.instance.setDegreeRudder(index);
+                return index;
+            }
+        };
+        p.process();
+    }
+    @Subscribe
+    public void receive(RudderFullLeft event) {
+        ProcessEvent p = new ProcessEvent(event.toString(), rudderPortList, "Rudder", "fullleft", "index") {
+            @Override
+            protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
+                int index = (int) method.invoke(port);
+                PrimaryFlightDisplay.instance.setDegreeRudder(index);
+                return index;
+            }
+        };
+        p.process();
+    }
+    @Subscribe
+    public void receive(RudderFullRight event) {
+        ProcessEvent p = new ProcessEvent(event.toString(), rudderPortList, "Rudder", "fullright", "index") {
+            @Override
+            protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
+                int index = (int) method.invoke(port);
+                PrimaryFlightDisplay.instance.setDegreeRudder(index);
+                return index;
+            }
+        };
+        p.process();
+    }
+    @Subscribe
+    public void receive(RudderLeft event) {
+        ProcessEvent p = new ProcessEvent(event.toString(), rudderPortList, "Rudder", "left", "degree", int.class) {
+            @Override
+            protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
+                int degree = (int) method.invoke(port);
+                PrimaryFlightDisplay.instance.setDegreeRudder(degree);
+                return degree;
+            }
+        };
+        p.process();
+    }
+    @Subscribe
+    public void receive(RudderRight event) {
+        ProcessEvent p = new ProcessEvent(event.toString(), rudderPortList, "Rudder", "right", "degree", int.class) {
+            @Override
+            protected Object onInvokeMethod(Object port, Method method) throws InvocationTargetException, IllegalAccessException {
+                int degree = (int) method.invoke(port);
+                PrimaryFlightDisplay.instance.setDegreeRudder(degree);
+                return degree;
+            }
+        };
+        p.process();
+    }
+    // ----------------------------------------------------------------------------------------------------------------
 }

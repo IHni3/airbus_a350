@@ -7,6 +7,14 @@ public enum PrimaryFlightDisplay {
     instance;
     public boolean isWeatherRadarOn;
 
+    private int degreeRudder;
+
+    private int degreeSpoiler;
+
+    private int degreeLeftAileron;
+
+    private int degreeRightAileron;
+
     private int slatDegree;
 
     private boolean antiCollisionLightEnabled;
@@ -69,11 +77,44 @@ public enum PrimaryFlightDisplay {
         return indexCostOptimizer;
     }
 
+    public int getDegreeRudder() {return degreeRudder;}
+
+    public int getDegreeSpoiler() {return degreeSpoiler;}
+
+    public int getDegreeLeftAileron() {return degreeLeftAileron;}
+
+    public int getDegreeRightAileron() {return degreeRightAileron;}
+
     public void setSlatDegree(int slagDegree) {
         this.slatDegree = slagDegree;
         LogEngine.instance.write("PrimaryFlightDisplay (slatDegree): " + slagDegree);
         FlightRecorder.instance.insert("PrimaryFlightDisplay", "slatDegree: " + slagDegree);
     }
+
+    public void setDegreeRudder(int rudderDegree) {
+        this.degreeRudder = rudderDegree;
+        LogEngine.instance.write("PrimaryFlightDisplay (degreeRudder): " + degreeRudder);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "degreeRudder: " + degreeRudder);
+    }
+
+    public void setDegreeSpoiler(int spoilerDegree) {
+        this.degreeSpoiler = spoilerDegree;
+        LogEngine.instance.write("PrimaryFlightDisplay (degreeSpoiler): " + degreeSpoiler);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "degreeSpoiler: " + degreeSpoiler);
+    }
+
+    public void setDegreeLeftAileron(int degreeLeftAileron) {
+        this.degreeLeftAileron = degreeLeftAileron;
+        LogEngine.instance.write("PrimaryFlightDisplay (degreeeLeftAileron): " + degreeLeftAileron);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "degreeLeftAileron: " + degreeLeftAileron);
+    }
+
+    public void setDegreeRightAileron(int degreeRightAileron) {
+        this.degreeRightAileron = degreeRightAileron;
+        LogEngine.instance.write("PrimaryFlightDisplay (degreeeRightAileron): " + degreeRightAileron);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "degreeRightAileron: " + degreeRightAileron);
+    }
+
 
     public void setAntiCollisionLightEnabled(boolean enabled) {
         antiCollisionLightEnabled = enabled;
