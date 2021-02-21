@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -13,11 +14,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import logging.LogEngine;
 import recorder.FlightRecorder;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
+import java.util.regex.Pattern;
 
 public class PrimaryFlightDisplayGUI extends Application {
     private TableView tableView;
@@ -158,6 +163,11 @@ public class PrimaryFlightDisplayGUI extends Application {
         tableTab.setContent(tableView);
         tabPane.getTabs().add(tableTab);
 
+        Tab t16Tab = new Tab();
+        t16Tab.setText("T16");
+        t16Tab.setContent(buildT16View());
+        tabPane.getTabs().add(t16Tab);
+
         VBox vbox = new VBox(20);
         vbox.setPadding(new Insets(25, 25, 25, 25));
         vbox.getChildren().addAll(hBox, tabPane);
@@ -249,6 +259,32 @@ public class PrimaryFlightDisplayGUI extends Application {
         tableView.setPrefWidth(450);
         tableView.setPrefHeight(450);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    }
+
+    public ScrollPane buildT16View() {
+        GridPaneBuilder builder = new GridPaneBuilder();
+        builder.setDataList(data);
+
+        ScrollPane scroller = new ScrollPane();
+        scroller.setContent(builder.gridPane());
+        scroller.setFitToWidth(true);
+
+        builder.addTitle("Pitot Tube");
+        builder.addToggle("Pitot Tube Cleaning", "Off", "On",
+                v -> PrimaryFlightDisplay.instance.isPitotTubeCleaned = v);
+        builder.addInteger("Velocity", 0, 1500, v-> PrimaryFlightDisplay.instance.velocity = v);
+
+        builder.addTitle("Radar Altimeter");
+        builder.addToggle("Radar Altimeter", "Off", "On", v->PrimaryFlightDisplay.instance.isRadarAltimeterOn = v);
+        builder.addInteger("Radar Altimeter Altitude", 0, 2500, v->PrimaryFlightDisplay.instance.altitudeRadarAltimeter = v);
+
+        builder.addTitle("Engine Oil Tank");
+        builder.addInteger("Engine Oil Tank Level", 0, 50, v->PrimaryFlightDisplay.instance.levelEngineOilTank = v);
+
+        builder.addTitle("Fuel Tank");
+        builder.addInteger("Fuel Amount", 0, 50000, v->PrimaryFlightDisplay.instance.amountOfFuel = v);
+
+        return scroller;
     }
 
     // weather_radar
