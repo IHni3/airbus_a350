@@ -25,10 +25,10 @@ public class FuelTank {
     }
 
     public int innerTakeOut(int amount) {
-        if(amount > this.amount){
+        if (amount > this.amount) {
             this.amount = 0;
             return amount;
-        }else{
+        } else {
             this.amount -= amount;
             return amount;
         }
@@ -40,12 +40,12 @@ public class FuelTank {
     }
 
     public int innerRefill(int amount) {
-        if(this.amount + amount > 1000){
+        if (this.amount + amount > 1000) {
             int oldAmount = this.amount;
             this.amount = 1000;
 
             return oldAmount + amount - 1000;
-        }else{
+        } else {
             this.amount += amount;
             return 0;
         }
@@ -71,5 +71,5 @@ public class FuelTank {
         }
 
 
-	}
+    }
 }

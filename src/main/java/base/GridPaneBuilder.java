@@ -35,70 +35,6 @@ public class GridPaneBuilder {
         this.numColumns = numColumns;
     }
 
-    public GridPane gridPane() { return pane; }
-
-    public void setDataList(List<PrimaryFlightDisplayEntry> dataList) {
-        this.dataList = dataList;
-    }
-
-    public void addToggle(String label, String off, String on, Consumer<Boolean> onChange) {
-        addToggle(pane, row, col, label, off, on, wrapOnChange(label, onChange, Object::toString));
-        addHandler(new PrimaryFlightDisplayEntry(label, "false"));
-        moveNext();
-    }
-
-    public void addInteger(String label, int min, int max, Consumer<Integer> onChange) {
-        addInteger(pane, row, col, label, min, max, wrapOnChange(label, onChange, i -> Integer.toString(i)));
-        addHandler(new PrimaryFlightDisplayEntry(label, Integer.toString(min)));
-        moveNext();
-    }
-
-    public void addFloat(String label, double min, double max, Consumer<Double> onChange) {
-        addFloat(pane, row, col, label, min, max, wrapOnChange(label, onChange, d -> Double.toString(d)));
-        addHandler(new PrimaryFlightDisplayEntry(label, Double.toString(min)));
-        moveNext();
-    }
-
-    public void addTitle(String title) {
-        requireFullRow();
-        addTitle(pane, row, numColumns << 1, title);
-        moveNext(true);
-    }
-
-    private void moveNext() { moveNext(false); }
-
-    private void moveNext(boolean fullRow) {
-        if (fullRow || col + 3 == numColumns * 3) {
-            col = 0;
-            row++;
-        } else {
-            col += 3;
-        }
-    }
-
-    private void requireFullRow() {
-        if (col != 0) {
-            col = 0;
-            row++;
-        }
-    }
-
-    private void addHandler(PrimaryFlightDisplayEntry entry) {
-        String attr = entry.getAttribute();
-        if (dataList.stream().anyMatch(e -> e.getAttribute().equals(attr))) {
-            throw new RuntimeException("Entry with the same attribute already exists.");
-        }
-        dataList.add(entry);
-    }
-
-    private <T> Consumer<T> wrapOnChange(String attribute, Consumer<T> onChange, Function<T, String> stringConv) {
-        return t -> {
-            PrimaryFlightDisplayEntry entry = dataList.stream().filter(e -> e.getAttribute().equals(attribute)).findFirst().get();
-            entry.setValue(stringConv.apply(t));
-            onChange.accept(t);
-        };
-    }
-
     private static void addToggle(GridPane pane, int row, int col, String labelText, String offText, String onText, Consumer<Boolean> onChange) {
         Label label = new Label(labelText + " : ");
         ToggleGroup group = new ToggleGroup();
@@ -109,7 +45,7 @@ public class GridPaneBuilder {
 
         off.setSelected(true);
         group.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == oldValue){
+            if (newValue == oldValue) {
                 return;
             }
             onChange.accept(group.getSelectedToggle() == on);
@@ -192,7 +128,75 @@ public class GridPaneBuilder {
         label.setFont(f);
         Separator after = new Separator(Orientation.HORIZONTAL);
         pane.add(label, 0, row);
-        pane.add(after, 1, row, columns-1, 1);
+        pane.add(after, 1, row, columns - 1, 1);
+    }
+
+    public GridPane gridPane() {
+        return pane;
+    }
+
+    public void setDataList(List<PrimaryFlightDisplayEntry> dataList) {
+        this.dataList = dataList;
+    }
+
+    public void addToggle(String label, String off, String on, Consumer<Boolean> onChange) {
+        addToggle(pane, row, col, label, off, on, wrapOnChange(label, onChange, Object::toString));
+        addHandler(new PrimaryFlightDisplayEntry(label, "false"));
+        moveNext();
+    }
+
+    public void addInteger(String label, int min, int max, Consumer<Integer> onChange) {
+        addInteger(pane, row, col, label, min, max, wrapOnChange(label, onChange, i -> Integer.toString(i)));
+        addHandler(new PrimaryFlightDisplayEntry(label, Integer.toString(min)));
+        moveNext();
+    }
+
+    public void addFloat(String label, double min, double max, Consumer<Double> onChange) {
+        addFloat(pane, row, col, label, min, max, wrapOnChange(label, onChange, d -> Double.toString(d)));
+        addHandler(new PrimaryFlightDisplayEntry(label, Double.toString(min)));
+        moveNext();
+    }
+
+    public void addTitle(String title) {
+        requireFullRow();
+        addTitle(pane, row, numColumns << 1, title);
+        moveNext(true);
+    }
+
+    private void moveNext() {
+        moveNext(false);
+    }
+
+    private void moveNext(boolean fullRow) {
+        if (fullRow || col + 3 == numColumns * 3) {
+            col = 0;
+            row++;
+        } else {
+            col += 3;
+        }
+    }
+
+    private void requireFullRow() {
+        if (col != 0) {
+            col = 0;
+            row++;
+        }
+    }
+
+    private void addHandler(PrimaryFlightDisplayEntry entry) {
+        String attr = entry.getAttribute();
+        if (dataList.stream().anyMatch(e -> e.getAttribute().equals(attr))) {
+            throw new RuntimeException("Entry with the same attribute already exists.");
+        }
+        dataList.add(entry);
+    }
+
+    private <T> Consumer<T> wrapOnChange(String attribute, Consumer<T> onChange, Function<T, String> stringConv) {
+        return t -> {
+            PrimaryFlightDisplayEntry entry = dataList.stream().filter(e -> e.getAttribute().equals(attribute)).findFirst().get();
+            entry.setValue(stringConv.apply(t));
+            onChange.accept(t);
+        };
     }
 
 }

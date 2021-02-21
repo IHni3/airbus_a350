@@ -1,4 +1,3 @@
-
 package configuration;
 
 public enum Configuration {
@@ -38,11 +37,11 @@ public enum Configuration {
     public String pathToSlatJavaArchive = generatePathToJavaArchive("slat");
     public int numberOfSlats = 6;
 
-    public String generatePathToJavaArchive(String archiveName){
+    public String generatePathToJavaArchive(String archiveName) {
         return commonPathToJavaArchive + archiveName + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + archiveName + ".jar";
     }
 
-    public String generatePathToJavaArchive(String dir, String archiveName){
+    public String generatePathToJavaArchive(String dir, String archiveName) {
         return commonPathToJavaArchive + dir + fileSeparator + archiveName + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + archiveName + ".jar";
     }
 }

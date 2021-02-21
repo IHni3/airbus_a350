@@ -1,17 +1,17 @@
 package event.fuel_tank;
 
 public class FuelTankRefill {
-	int amount;
+    int amount;
 
-	public FuelTankRefill(){
-		this.amount = -1;
-	}
+    public FuelTankRefill() {
+        this.amount = -1;
+    }
 
-	public FuelTankRefill(int amount){
-		this.amount = amount;
-	}
+    public FuelTankRefill(int amount) {
+        this.amount = amount;
+    }
 
-	public String toString() {
-		return "Event: FuelTank - Refill (amount: " + amount + ")";
-	}
+    public String toString() {
+        return "Event: FuelTank - Refill (amount: " + amount + ")";
+    }
 }

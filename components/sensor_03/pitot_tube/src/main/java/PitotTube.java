@@ -29,15 +29,15 @@ public class PitotTube {
         return -1;
     }
 
-    public void innerClean(){
+    public void innerClean() {
         isCleaned = true;
     }
 
-    public int innerMeasureTotalPressure(){
+    public int innerMeasureTotalPressure() {
         return -1;
     }
 
-    public int innerMeasureVelocity(){
+    public int innerMeasureVelocity() {
         velocity = innerMeasureTotalPressure() - innerMeasureStaticPressure();
         return velocity;
     }
@@ -53,16 +53,17 @@ public class PitotTube {
             return innerMeasureStaticPressure();
         }
 
-        public int measureTotalPressure(){
+        public int measureTotalPressure() {
             return innerMeasureTotalPressure();
         }
-        public int measureVelocity(){
+
+        public int measureVelocity() {
             return innerMeasureVelocity();
         }
 
-        public void clean(){
+        public void clean() {
             innerClean();
         }
 
-	}
+    }
 }

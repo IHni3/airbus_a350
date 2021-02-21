@@ -11,12 +11,12 @@
 | T13, T14, T15  |     17     | Kilian Krampf, Johannes Löh       |
 | Procedure Test |     18     | Emil Bartoldus, Georg Klein       |
 
-
 <div style="color:red;font-size:17pt;font-weight: bolder">
 Bitte Feature-Branches erstellen (Form: <code style="color:red">feature/team-{Teamnummer}&gt;</code>) und nicht auf dem main-Branch arbeiten.
 </div>
 
 #### Tipps:
- * Watched das Repo. Abonniert die Glocke und so.
- * Sterne auf das Repo sind gerne gesehen
- * Das `weather_radar` ist eine schöne Beispielkomponente
+
+* Watched das Repo. Abonniert die Glocke und so.
+* Sterne auf das Repo sind gerne gesehen
+* Das `weather_radar` ist eine schöne Beispielkomponente
