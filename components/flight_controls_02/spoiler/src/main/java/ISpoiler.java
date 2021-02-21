@@ -1,4 +1,4 @@
-public interface IWeatherRadar {
+public interface ISpoiler {
     String version();
 
     int spoilerNeutral();

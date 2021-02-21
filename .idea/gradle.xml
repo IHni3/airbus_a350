@@ -26,6 +26,42 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/flight_controls_02/left_aileron" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/flight_controls_02/left_aileron" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/flight_controls_02/right_aileron" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/flight_controls_02/right_aileron" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/flight_controls_02/rudder" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/flight_controls_02/rudder" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/flight_controls_02/spoiler" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/flight_controls_02/spoiler" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/components/light/anti_collision_light" />
         <option name="modules">
           <set>
@@ -44,10 +80,37 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/light/landing_light" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/light/landing_light" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/components/light/langing_light" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/components/light/langing_light" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/light/left_navigation_light" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/light/left_navigation_light" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/light/logo_light" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/light/logo_light" />
           </set>
         </option>
       </GradleProjectSettings>
