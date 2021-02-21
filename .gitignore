@@ -30,3 +30,6 @@ hs_err_pid*
 **/.idea
 /components/_template/
 /components/generator.py
+/src/main/java/event/event.template
+/src/main/java/event/event_generator.py
+/src/main/java/event/_configs/
