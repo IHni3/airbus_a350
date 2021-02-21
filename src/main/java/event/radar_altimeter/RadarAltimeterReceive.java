@@ -1,9 +1,9 @@
 package event.radar_altimeter;
 
-public class RadarAlitmeterReceive {
+public class RadarAltimeterReceive {
     String radioWave;
 
-    public RadarAlitmeterReceive(String radioWave) {
+    public RadarAltimeterReceive(String radioWave) {
         this.radioWave = radioWave;
     }
 

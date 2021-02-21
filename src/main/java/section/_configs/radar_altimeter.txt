@@ -1,0 +1,14 @@
+interface              : IRadarAltimeter
+class name             : RadarAltimeter
+java archive file name : radar_altimeter.jar
+section                : Body
+configuration          : numberOfRadarAltimeter = 2
+
+primary flight display : isRadarAltimeterOn : boolean
+                         altitudeRadarAltimeter : int
+                         
+events                 : RadarAltimeterOn
+                         RadarAltimeterOff
+                         RadarAltimeterSend(radioWave : string)
+                         RadarAlitmeterReceive(radioWave : string)
+                         RadarAlitmeterMeasureAltitude

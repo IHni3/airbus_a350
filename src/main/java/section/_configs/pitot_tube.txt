@@ -1,0 +1,13 @@
+interface              : IPitotTube
+class name             : PitotTube
+java archive file name : pitot_tube.jar
+section                : Body
+configuration          : numberOfPitotTube = 2
+
+primary flight display : isPitotTubeCleaned : boolean
+                         velocity : int
+                         
+events                 : PitotTubeClean
+                         PitotTubeMeasureStaticPressure
+                         PitotTubeMeasureTotalPressure
+                         PitotTubeMeasureVelocity

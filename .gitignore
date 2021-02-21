@@ -36,3 +36,8 @@ hs_err_pid*
 /src/main/java/factory/_configs/
 /src/main/java/factory/factory.template
 /src/main/java/factory/factory_generator.py
+/src/main/java/section/_configs/
+/src/main/java/section/_configs/
+/src/main/java/section/_configs/
+/src/main/java/section/receiver.template
+/src/main/java/section/section_generator.py

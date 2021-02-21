@@ -4,6 +4,11 @@ import base.PrimaryFlightDisplay;
 import com.google.common.eventbus.Subscribe;
 import configuration.Configuration;
 import event.Subscriber;
+import event.pitot_tube.PitotTubeClean;
+import event.pitot_tube.PitotTubeMeasureStaticPressure;
+import event.pitot_tube.PitotTubeMeasureTotalPressure;
+import event.pitot_tube.PitotTubeMeasureVelocity;
+import event.radar_altimeter.*;
 import event.weather_radar.WeatherRadarOff;
 import event.weather_radar.WeatherRadarOn;
 import event.weather_radar.WeatherRadarScan;
@@ -88,4 +93,51 @@ public class Body extends Subscriber {
     }
 
     // ----------------------------------------------------------------------------------------------------------------
+
+    //Pitot Tube
+    @Subscribe
+    public void receive(PitotTubeClean pitotTubeClean) {
+        System.out.println(pitotTubeClean);
+    }
+
+    @Subscribe
+    public void receive(PitotTubeMeasureStaticPressure pitotTubeMeasureStaticPressure) {
+        System.out.println(pitotTubeMeasureStaticPressure);
+    }
+
+    @Subscribe
+    public void receive(PitotTubeMeasureTotalPressure pitotTubeMeasureTotalPressure) {
+        System.out.println(pitotTubeMeasureTotalPressure);
+    }
+
+    @Subscribe
+    public void receive(PitotTubeMeasureVelocity pitotTubeMeasureVelocity) {
+        System.out.println(pitotTubeMeasureVelocity);
+    }
+
+    //Radar Altimeter
+    @Subscribe
+    public void receive(RadarAltimeterSend radarAltimeterSend) {
+        System.out.println(radarAltimeterSend);
+    }
+
+    @Subscribe
+    public void receive(RadarAltimeterReceive radarAltimeterReceive) {
+        System.out.println(radarAltimeterReceive);
+    }
+
+    @Subscribe
+    public void receive(RadarAltimeterOn radarAltimeterOn) {
+        System.out.println(radarAltimeterOn);
+    }
+
+    @Subscribe
+    public void receive(RadarAltimeterOff radarAltimeterOff) {
+        System.out.println(radarAltimeterOff);
+    }
+
+    @Subscribe
+    public void receive(RadarAlitmeterMeasureAltitude radarAlitmeterMeasureAltitude) {
+        System.out.println(radarAlitmeterMeasureAltitude);
+    }
 }
