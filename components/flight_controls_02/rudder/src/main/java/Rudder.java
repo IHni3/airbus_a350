@@ -54,14 +54,14 @@ public class Rudder {
             return innerVersion();
         }
 
-        public int rudderNeutral(){ return innerNeutral();}
+        public int neutral(){ return innerNeutral();}
 
-        public int rudderFullLeft(){ return innerFullLeft();}
+        public int fullLeft(){ return innerFullLeft();}
 
-        public int rudderFullRight(){ return innerFullRight();}
+        public int fullRight(){ return innerFullRight();}
 
-        public int rudderLeft(int degree){ return innerLeft(degree);}
+        public int left(int degree){ return innerLeft(degree);}
 
-        public int rudderRight(int degree){ return innerRight(degree);}
+        public int right(int degree){ return innerRight(degree);}
     }
 }

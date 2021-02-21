@@ -1,8 +1,8 @@
 public interface ISpoiler {
     String version();
 
-    int spoilerNeutral();
-    int spoilerFullUp();
-    int spoilerUp(int degree);
-    int spoilerDown(int degree);
+    int neutral();
+    int fullUp();
+    int up(int degree);
+    int down(int degree);
 }

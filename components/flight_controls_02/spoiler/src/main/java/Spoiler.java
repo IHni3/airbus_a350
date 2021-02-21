@@ -54,18 +54,18 @@ public class Spoiler {
             return innerVersion();
         }
 
-        public int spoilerNeutral() {
+        public int neutral() {
             return innerSpoilerNeutral();
         }
 
-        public int spoilerFullUp() {
+        public int fullUp() {
             return innerSpoilerFullUp();
         }
 
-        public int spoilerUp(int degree) {
+        public int up(int degree) {
             return innerSpoilerUp(degree);
         }
 
-        public int spoilerDown(int degree){ return innerSpoilerDown(degree); }
+        public int down(int degree){ return innerSpoilerDown(degree); }
     }
 }

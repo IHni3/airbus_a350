@@ -1,13 +1,13 @@
 public interface ILeftAileron {
     String version();
 
-    int leftAileronNeutral();
+    int neutral();
 
-    int leftAileronFullUp();
+    int fullUp();
 
-    int leftAileronFullDown();
+    int fullDown();
 
-    int leftAileronUp(int degree);
+    int up(int degree);
 
-    int leftAileronDown(int degree);
+    int down(int degree);
 }

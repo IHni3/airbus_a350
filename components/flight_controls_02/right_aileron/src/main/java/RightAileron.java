@@ -56,14 +56,14 @@ public class RightAileron {
             return innerVersion();
         }
 
-        public int rightAileronNeutral(){ return innerNeutral();}
+        public int neutral(){ return innerNeutral();}
 
-        public int rightAileronFullUp(){ return innerFullUp();}
+        public int fullUp(){ return innerFullUp();}
 
-        public int rightAileronFullDown(){ return innerFullDown();}
+        public int fullDown(){ return innerFullDown();}
 
-        public int rightAileronUp(int degree){ return innerUp(degree);}
+        public int up(int degree){ return innerUp(degree);}
 
-        public int rightAileronDown(int degree){ return innerDown(degree);}
+        public int down(int degree){ return innerDown(degree);}
     }
 }
