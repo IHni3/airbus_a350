@@ -26,8 +26,9 @@ public class FuelTank {
 
     public int innerTakeOut(int amount) {
         if (amount > this.amount) {
+            int temp = this.amount;
             this.amount = 0;
-            return amount;
+            return temp;
         } else {
             this.amount -= amount;
             return amount;

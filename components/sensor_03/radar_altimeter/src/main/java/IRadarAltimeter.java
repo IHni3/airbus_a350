@@ -5,7 +5,7 @@ public interface IRadarAltimeter {
 
     void send(String radioWave);
 
-    int recieve(String radioWave);
+    int receive(String radioWave);
 
     int measureAltitude();
 

@@ -34,13 +34,13 @@ public class RadarAltimeter {
 
     }
 
-    public int innerRecieve(String radioWave) {
+    public int innerReceive(String radioWave) {
         return -1;
     }
 
     public int innerMeasureAltitude() {
         innerSend("ping");
-        altitude = innerRecieve("ping");
+        altitude = innerReceive("ping");
         return altitude;
     }
 
@@ -64,8 +64,8 @@ public class RadarAltimeter {
             innerSend(radioWave);
         }
 
-        public int recieve(String radioWave) {
-            return innerRecieve(radioWave);
+        public int receive(String radioWave) {
+            return innerReceive(radioWave);
         }
 
         public int measureAltitude() {

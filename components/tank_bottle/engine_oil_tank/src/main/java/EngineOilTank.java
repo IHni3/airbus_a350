@@ -1,12 +1,11 @@
 public class EngineOilTank {
     // static instance
     private static final EngineOilTank instance = new EngineOilTank();
-    // port
-    public Port port;
     private final String manufacturer = "8843476 / 9668368";
     private final String type = "team 16";
     private final String id = "8843476 / 9668368";
-
+    // port
+    public Port port;
     private int level;
 
     // private constructor
