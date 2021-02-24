@@ -100,6 +100,7 @@ public class TestCamera {
             System.out.println(e.getMessage());
         }
     }
+
     @Test
     @Order(6)
     public void zoomOut() {

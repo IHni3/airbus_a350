@@ -33,15 +33,15 @@ public class Airplane implements IAirplane {
     private Wing leftWing;
     private Wing rightWing;
 
-    public Airplane () {
+    public Airplane() {
         eventBus = new EventBus("EB-A350");
     }
 
-    public void addSubscriber (Subscriber subscriber) {
+    public void addSubscriber(Subscriber subscriber) {
         eventBus.register(subscriber);
     }
 
-    public void build () {
+    public void build() {
         body = new Body();
         addSubscriber(body);
 
@@ -52,7 +52,7 @@ public class Airplane implements IAirplane {
         addSubscriber(rightWing);
     }
 
-    public void startup () {
+    public void startup() {
         //camera
         eventBus.post(new CameraBodyOn());
         eventBus.post(new CameraWingOn());
@@ -77,7 +77,7 @@ public class Airplane implements IAirplane {
     }
 
     // Assuming taxi means bringing the plane to takeoff-lane
-    public void taxi () {
+    public void taxi() {
         // gps
         eventBus.post(new GPSSend("request data"));
         eventBus.post(new GPSReceive());
@@ -89,7 +89,7 @@ public class Airplane implements IAirplane {
         eventBus.post(new WeatherRadarOn());
     }
 
-    public void takeoff () {
+    public void takeoff() {
         // gps
         eventBus.post(new GPSSend("request data"));
         eventBus.post(new GPSReceive());
@@ -111,7 +111,7 @@ public class Airplane implements IAirplane {
         eventBus.post(new WeatherRadarOn());
     }
 
-    public void climbing () {
+    public void climbing() {
         // gps
         eventBus.post(new GPSSend("request data"));
         eventBus.post(new GPSReceive());
@@ -134,7 +134,7 @@ public class Airplane implements IAirplane {
         eventBus.post(new WeatherRadarOn());
     }
 
-    public void rightTurn () {
+    public void rightTurn() {
         // gps
         eventBus.post(new GPSSend("request data"));
         eventBus.post(new GPSReceive());
@@ -157,7 +157,7 @@ public class Airplane implements IAirplane {
         eventBus.post(new WeatherRadarOn());
     }
 
-    public void leftTurn () {
+    public void leftTurn() {
         // gps
         eventBus.post(new GPSSend("request data"));
         eventBus.post(new GPSReceive());
@@ -180,7 +180,7 @@ public class Airplane implements IAirplane {
         eventBus.post(new WeatherRadarOn());
     }
 
-    public void descent () {
+    public void descent() {
         // gps
         eventBus.post(new GPSSend("request data"));
         eventBus.post(new GPSReceive());
@@ -203,7 +203,7 @@ public class Airplane implements IAirplane {
         eventBus.post(new WeatherRadarOn());
     }
 
-    public void landing () {
+    public void landing() {
         // gps
         eventBus.post(new GPSSend("request data"));
         eventBus.post(new GPSReceive());
@@ -225,7 +225,7 @@ public class Airplane implements IAirplane {
         eventBus.post(new WeatherRadarOn());
     }
 
-    public void shutdown () {
+    public void shutdown() {
         //camera
         eventBus.post(new CameraBodyOff());
         eventBus.post(new CameraWingOff());

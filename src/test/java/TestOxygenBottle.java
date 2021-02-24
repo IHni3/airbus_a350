@@ -20,7 +20,7 @@ public class TestOxygenBottle {
     private Object componentPort;
 
     @BeforeEach
-    public void init () {
+    public void init() {
         LogEngine.instance.init();
         FlightRecorder.instance.startup();
         FlightRecorder.instance.init();
@@ -28,14 +28,14 @@ public class TestOxygenBottle {
 
     @Test
     @Order(1)
-    public void factory () {
+    public void factory() {
         componentPort = OxygenBottleFactory.build();
         assertNotNull(componentPort);
     }
 
     @Test
     @Order(2)
-    public void methods () {
+    public void methods() {
         componentPort = OxygenBottleFactory.build();
         try {
             Method takeOutMethod = componentPort.getClass().getDeclaredMethod("takeOut", Integer.TYPE);
@@ -53,7 +53,7 @@ public class TestOxygenBottle {
 
     @Test
     @Order(3)
-    public void takeOut () {
+    public void takeOut() {
         componentPort = OxygenBottleFactory.build();
         try {
             Method takeOutMethod = componentPort.getClass().getDeclaredMethod("takeOut", Integer.TYPE);
@@ -66,7 +66,7 @@ public class TestOxygenBottle {
 
     @Test
     @Order(4)
-    public void refillWithArg () {
+    public void refillWithArg() {
         componentPort = OxygenBottleFactory.build();
         try {
             Method takeOutMethod = componentPort.getClass().getDeclaredMethod("takeOut", Integer.TYPE);
@@ -83,7 +83,7 @@ public class TestOxygenBottle {
 
     @Test
     @Order(5)
-    public void refill () {
+    public void refill() {
         componentPort = OxygenBottleFactory.build();
         try {
             Method takeOutMethod = componentPort.getClass().getDeclaredMethod("takeOut", Integer.TYPE);
@@ -100,7 +100,7 @@ public class TestOxygenBottle {
 
     @Test
     @Order(6)
-    public void startup () {
+    public void startup() {
         componentPort = OxygenBottleFactory.build();
         try {
             Method refill = componentPort.getClass().getDeclaredMethod("refill");
@@ -115,7 +115,7 @@ public class TestOxygenBottle {
 
     @Test
     @Order(7)
-    public void otherPhases () {
+    public void otherPhases() {
         componentPort = OxygenBottleFactory.build();
         try {
             Method takeOutMethod = componentPort.getClass().getDeclaredMethod("takeOut", Integer.TYPE);
@@ -130,7 +130,7 @@ public class TestOxygenBottle {
 
     @Test
     @Order(8)
-    public void shutdown () {
+    public void shutdown() {
         componentPort = OxygenBottleFactory.build();
         try {
             Method takeOutMethod = componentPort.getClass().getDeclaredMethod("takeOut", Integer.TYPE);
@@ -149,7 +149,7 @@ public class TestOxygenBottle {
     }
 
     @AfterEach
-    public void close () {
+    public void close() {
         FlightRecorder.instance.shutdown();
         LogEngine.instance.close();
     }

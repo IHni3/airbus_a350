@@ -18,7 +18,7 @@ public class TestGPS {
     private Object componentPort;
 
     @BeforeEach
-    public void init () {
+    public void init() {
         LogEngine.instance.init();
         FlightRecorder.instance.startup();
         FlightRecorder.instance.init();
@@ -26,14 +26,14 @@ public class TestGPS {
 
     @Test
     @Order(1)
-    public void factory () {
+    public void factory() {
         componentPort = GpsFactory.build();
         assertNotNull(componentPort);
     }
 
     @Test
     @Order(2)
-    public void methods () {
+    public void methods() {
         componentPort = GpsFactory.build();
         try {
             Method onMethod = componentPort.getClass().getDeclaredMethod("on");
@@ -57,7 +57,7 @@ public class TestGPS {
 
     @Test
     @Order(3)
-    public void on () {
+    public void on() {
         componentPort = GpsFactory.build();
         try {
             Method onMethod = componentPort.getClass().getDeclaredMethod("on");
@@ -70,7 +70,7 @@ public class TestGPS {
 
     @Test
     @Order(4)
-    public void connect () {
+    public void connect() {
         componentPort = GpsFactory.build();
         try {
             Method scanMethod = componentPort.getClass().getDeclaredMethod("connect", String.class);
@@ -83,7 +83,7 @@ public class TestGPS {
 
     @Test
     @Order(5)
-    public void send () {
+    public void send() {
         componentPort = GpsFactory.build();
         try {
             Method scanMethod = componentPort.getClass().getDeclaredMethod("send", String.class);
@@ -95,7 +95,7 @@ public class TestGPS {
 
     @Test
     @Order(6)
-    public void receive () {
+    public void receive() {
         componentPort = GpsFactory.build();
         try {
             Method offMethod = componentPort.getClass().getDeclaredMethod("receive");
@@ -108,7 +108,7 @@ public class TestGPS {
 
     @Test
     @Order(7)
-    public void off () {
+    public void off() {
         componentPort = GpsFactory.build();
         try {
             Method offMethod = componentPort.getClass().getDeclaredMethod("off");
@@ -121,7 +121,7 @@ public class TestGPS {
 
     @Test
     @Order(8)
-    public void startup () {
+    public void startup() {
         componentPort = GpsFactory.build();
         try {
             Method onMethod = componentPort.getClass().getDeclaredMethod("on");
@@ -140,7 +140,7 @@ public class TestGPS {
 
     @Test
     @Order(9)
-    public void otherPhases () {
+    public void otherPhases() {
         componentPort = GpsFactory.build();
         try {
             Method scanMethod = componentPort.getClass().getDeclaredMethod("send", String.class);
@@ -155,7 +155,7 @@ public class TestGPS {
 
     @Test
     @Order(10)
-    public void shutdown () {
+    public void shutdown() {
         componentPort = GpsFactory.build();
         try {
             Method offMethod = componentPort.getClass().getDeclaredMethod("off");
@@ -168,7 +168,7 @@ public class TestGPS {
     }
 
     @AfterEach
-    public void close () {
+    public void close() {
         FlightRecorder.instance.shutdown();
         LogEngine.instance.close();
     }

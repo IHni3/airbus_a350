@@ -20,7 +20,7 @@ public class TestNitrogenBottle {
     private Object componentPort;
 
     @BeforeEach
-    public void init () {
+    public void init() {
         LogEngine.instance.init();
         FlightRecorder.instance.startup();
         FlightRecorder.instance.init();
@@ -28,14 +28,14 @@ public class TestNitrogenBottle {
 
     @Test
     @Order(1)
-    public void factory () {
+    public void factory() {
         componentPort = NitrogenBottleFactory.build();
         assertNotNull(componentPort);
     }
 
     @Test
     @Order(2)
-    public void methods () {
+    public void methods() {
         componentPort = NitrogenBottleFactory.build();
         try {
             Method takeOutMethod = componentPort.getClass().getDeclaredMethod("takeOut", Integer.TYPE);
@@ -53,7 +53,7 @@ public class TestNitrogenBottle {
 
     @Test
     @Order(3)
-    public void takeOut () {
+    public void takeOut() {
         componentPort = NitrogenBottleFactory.build();
         try {
             Method takeOutMethod = componentPort.getClass().getDeclaredMethod("takeOut", Integer.TYPE);
@@ -66,7 +66,7 @@ public class TestNitrogenBottle {
 
     @Test
     @Order(4)
-    public void refillWithArg () {
+    public void refillWithArg() {
         componentPort = NitrogenBottleFactory.build();
         try {
             Method takeOutMethod = componentPort.getClass().getDeclaredMethod("takeOut", Integer.TYPE);
@@ -83,7 +83,7 @@ public class TestNitrogenBottle {
 
     @Test
     @Order(5)
-    public void refill () {
+    public void refill() {
         componentPort = NitrogenBottleFactory.build();
         try {
             Method takeOutMethod = componentPort.getClass().getDeclaredMethod("takeOut", Integer.TYPE);
@@ -100,7 +100,7 @@ public class TestNitrogenBottle {
 
     @Test
     @Order(6)
-    public void startup () {
+    public void startup() {
         componentPort = NitrogenBottleFactory.build();
         try {
             Method takeOutMethod = componentPort.getClass().getDeclaredMethod("takeOut", Integer.TYPE);
@@ -121,7 +121,7 @@ public class TestNitrogenBottle {
 
     @Test
     @Order(7)
-    public void taxi () {
+    public void taxi() {
         componentPort = NitrogenBottleFactory.build();
         try {
             Method takeOutMethod = componentPort.getClass().getDeclaredMethod("takeOut", Integer.TYPE);
@@ -136,7 +136,7 @@ public class TestNitrogenBottle {
 
     @Test
     @Order(8)
-    public void otherPhases () {
+    public void otherPhases() {
         componentPort = NitrogenBottleFactory.build();
         try {
             Method takeOutMethod = componentPort.getClass().getDeclaredMethod("takeOut", Integer.TYPE);
@@ -151,7 +151,7 @@ public class TestNitrogenBottle {
 
     @Test
     @Order(9)
-    public void shutdown () {
+    public void shutdown() {
         componentPort = NitrogenBottleFactory.build();
         try {
             Method takeOutMethod = componentPort.getClass().getDeclaredMethod("refill");
@@ -165,7 +165,7 @@ public class TestNitrogenBottle {
     }
 
     @AfterEach
-    public void close () {
+    public void close() {
         FlightRecorder.instance.shutdown();
         LogEngine.instance.close();
     }

@@ -8,7 +8,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 
 public class TurbulentAirFlowSensorFactory {
-    public static Object build () {
+    public static Object build() {
         Object turbulentAirFlowSensorPort = null;
 
         try {

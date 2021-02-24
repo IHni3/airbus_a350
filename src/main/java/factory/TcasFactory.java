@@ -8,7 +8,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 
 public class TcasFactory {
-    public static Object build () {
+    public static Object build() {
         Object tcasPort = null;
 
         try {

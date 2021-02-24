@@ -46,7 +46,7 @@ public class Body extends Subscriber {
     private ArrayList<Object> turbulentAirFlowSensorPortList;
     private ArrayList<Object> weatherRadarPortList;
 
-    public Body () {
+    public Body() {
         cameraPortList = new ArrayList<>();
         gpsPortList = new ArrayList<>();
         nitrogenBottlePortList = new ArrayList<>();
@@ -57,7 +57,7 @@ public class Body extends Subscriber {
         build();
     }
 
-    public void build () {
+    public void build() {
         for (int i = 0 ; i < Configuration.instance.numberOfCameraBody ; i++) {
             cameraPortList.add(setCameraType(CameraFactory.build()));
         }
@@ -83,7 +83,7 @@ public class Body extends Subscriber {
 
 
     // --- Camera -----------------------------------------------------------------------------------------------------
-    private Object setCameraType (Object cameraPort) {
+    private Object setCameraType(Object cameraPort) {
         try {
             Method setTypeMethod = cameraPort.getClass().getDeclaredMethod("setType", String.class);
             if (cameraPortList.size() > 1) {
@@ -98,7 +98,7 @@ public class Body extends Subscriber {
     }
 
     @Subscribe
-    public void receive (CameraBodyOn cameraBodyOn) {
+    public void receive(CameraBodyOn cameraBodyOn) {
         LogEngine.instance.write("+ Body.receive(" + cameraBodyOn.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + cameraBodyOn.toString() + ")");
 
@@ -123,7 +123,7 @@ public class Body extends Subscriber {
     }
 
     @Subscribe
-    public void receive (CameraBodyOff cameraBodyOff) {
+    public void receive(CameraBodyOff cameraBodyOff) {
         LogEngine.instance.write("+ Body.receive(" + cameraBodyOff.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + cameraBodyOff.toString() + ")");
 
@@ -150,7 +150,7 @@ public class Body extends Subscriber {
     // --- GPS --------------------------------------------------------------------------------------------------------
 
     @Subscribe
-    public void receive (GPSOn gpsOn) {
+    public void receive(GPSOn gpsOn) {
         LogEngine.instance.write("+ Body.receive(" + gpsOn.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + gpsOn.toString() + ")");
 
@@ -175,7 +175,7 @@ public class Body extends Subscriber {
     }
 
     @Subscribe
-    public void receive (GPSOff gpsOff) {
+    public void receive(GPSOff gpsOff) {
         LogEngine.instance.write("+ Body.receive(" + gpsOff.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + gpsOff.toString() + ")");
 
@@ -200,7 +200,7 @@ public class Body extends Subscriber {
     }
 
     @Subscribe
-    public void receive (GPSConnect gpsConnect) {
+    public void receive(GPSConnect gpsConnect) {
         LogEngine.instance.write("+ Body.receive(" + gpsConnect.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + gpsConnect.toString() + ")");
 
@@ -225,7 +225,7 @@ public class Body extends Subscriber {
     }
 
     @Subscribe
-    public void receive (GPSSend gpsSend) {
+    public void receive(GPSSend gpsSend) {
         LogEngine.instance.write("+ Body.receive(" + gpsSend.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + gpsSend.toString() + ")");
 
@@ -243,7 +243,7 @@ public class Body extends Subscriber {
     }
 
     @Subscribe
-    public void receive (GPSReceive gpsReceive) {
+    public void receive(GPSReceive gpsReceive) {
         LogEngine.instance.write("+ Body.receive(" + gpsReceive.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + gpsReceive.toString() + ")");
 
@@ -266,7 +266,7 @@ public class Body extends Subscriber {
     // --- NitrogenBottle ---------------------------------------------------------------------------------------------
 
     @Subscribe
-    public void receive (NitrogenBottleRefill nitrogenBottleRefill) {
+    public void receive(NitrogenBottleRefill nitrogenBottleRefill) {
         LogEngine.instance.write("+ Body.receive(" + nitrogenBottleRefill.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + nitrogenBottleRefill.toString() + ")");
 
@@ -300,7 +300,7 @@ public class Body extends Subscriber {
     }
 
     @Subscribe
-    public void receive (NitrogenBottleTakeOut nitrogenBottleTakeOut) {
+    public void receive(NitrogenBottleTakeOut nitrogenBottleTakeOut) {
         LogEngine.instance.write("+ Body.receive(" + nitrogenBottleTakeOut.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + nitrogenBottleTakeOut.toString() + ")");
 
@@ -329,7 +329,7 @@ public class Body extends Subscriber {
     // --- OxygenBottle -----------------------------------------------------------------------------------------------
 
     @Subscribe
-    public void receive (OxygenBottleRefill oxygenBottleRefill) {
+    public void receive(OxygenBottleRefill oxygenBottleRefill) {
         LogEngine.instance.write("+ Body.receive(" + oxygenBottleRefill.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + oxygenBottleRefill.toString() + ")");
 
@@ -363,7 +363,7 @@ public class Body extends Subscriber {
     }
 
     @Subscribe
-    public void receive (OxygenBottleTakeOut oxygenBottleTakeOut) {
+    public void receive(OxygenBottleTakeOut oxygenBottleTakeOut) {
         LogEngine.instance.write("+ Body.receive(" + oxygenBottleTakeOut.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + oxygenBottleTakeOut.toString() + ")");
 
@@ -392,7 +392,7 @@ public class Body extends Subscriber {
     // --- TCAS -------------------------------------------------------------------------------------------------------
 
     @Subscribe
-    public void receive (TCASOn tcasOn) {
+    public void receive(TCASOn tcasOn) {
         LogEngine.instance.write("+ Body.receive(" + tcasOn.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + tcasOn.toString() + ")");
 
@@ -417,7 +417,7 @@ public class Body extends Subscriber {
     }
 
     @Subscribe
-    public void receive (TCASOff tcasOff) {
+    public void receive(TCASOff tcasOff) {
         LogEngine.instance.write("+ Body.receive(" + tcasOff.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + tcasOff.toString() + ")");
 
@@ -442,7 +442,7 @@ public class Body extends Subscriber {
     }
 
     @Subscribe
-    public void receive (TCASConnect tcasConnect) {
+    public void receive(TCASConnect tcasConnect) {
         LogEngine.instance.write("+ Body.receive(" + tcasConnect.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + tcasConnect.toString() + ")");
 
@@ -467,7 +467,7 @@ public class Body extends Subscriber {
     }
 
     @Subscribe
-    public void receive (TCASScan tcasScan) {
+    public void receive(TCASScan tcasScan) {
         LogEngine.instance.write("+ Body.receive(" + tcasScan.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + tcasScan.toString() + ")");
 
@@ -498,7 +498,7 @@ public class Body extends Subscriber {
     }
 
     @Subscribe
-    public void receive (TCASDetermineAltitude tcasDetermineAltitude) {
+    public void receive(TCASDetermineAltitude tcasDetermineAltitude) {
         LogEngine.instance.write("+ Body.receive(" + tcasDetermineAltitude.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + tcasDetermineAltitude.toString() + ")");
 
@@ -537,7 +537,7 @@ public class Body extends Subscriber {
     // --- TurbulentAirFlowSensor -------------------------------------------------------------------------------------
 
     @Subscribe
-    public void receive (TurbulentAirFlowSensorBodyMeasure turbulentAirFlowSensorBodyMeasure) {
+    public void receive(TurbulentAirFlowSensorBodyMeasure turbulentAirFlowSensorBodyMeasure) {
         LogEngine.instance.write("+ Body.receive(" + turbulentAirFlowSensorBodyMeasure.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + turbulentAirFlowSensorBodyMeasure.toString() + ")");
 
@@ -569,7 +569,7 @@ public class Body extends Subscriber {
     // --- WeatherRadar -----------------------------------------------------------------------------------------------
 
     @Subscribe
-    public void receive (WeatherRadarOn weatherRadarOn) {
+    public void receive(WeatherRadarOn weatherRadarOn) {
         LogEngine.instance.write("+ Body.receive(" + weatherRadarOn.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + weatherRadarOn.toString() + ")");
 
@@ -595,7 +595,7 @@ public class Body extends Subscriber {
     }
 
     @Subscribe
-    public void receive (WeatherRadarOff weatherRadarOff) {
+    public void receive(WeatherRadarOff weatherRadarOff) {
         LogEngine.instance.write("+ Body.receive(" + weatherRadarOff.toString() + ")");
         FlightRecorder.instance.insert("Body", "receive(" + weatherRadarOff.toString() + ")");
 
@@ -621,7 +621,7 @@ public class Body extends Subscriber {
     }
 
     @Subscribe
-    public void receive (WeatherRadarScan weatherRadarScan) {
+    public void receive(WeatherRadarScan weatherRadarScan) {
         FlightRecorder.instance.insert("Body", "receive(" + weatherRadarScan.toString() + ")");
     }
 

@@ -19,13 +19,13 @@ public class Wing extends Subscriber {
     private ArrayList<Object> cameraPortList;
     private ArrayList<Object> turbulentAirFlowSensorList;
 
-    public Wing () {
+    public Wing() {
         cameraPortList = new ArrayList<>();
         turbulentAirFlowSensorList = new ArrayList<>();
         build();
     }
 
-    public void build () {
+    public void build() {
         for (int i = 0 ; i < Configuration.instance.numberOfCameraWing ; i++) {
             cameraPortList.add(setCameraType(CameraFactory.build()));
         }
@@ -46,7 +46,7 @@ public class Wing extends Subscriber {
     }
 
     @Subscribe
-    public void receive (CameraWingOn cameraWingOn) {
+    public void receive(CameraWingOn cameraWingOn) {
         LogEngine.instance.write("+ Wing.receive(" + cameraWingOn.toString() + ")");
         FlightRecorder.instance.insert("Wing", "receive(" + cameraWingOn.toString() + ")");
 
@@ -71,7 +71,7 @@ public class Wing extends Subscriber {
     }
 
     @Subscribe
-    public void receive (CameraWingOff cameraWingOff) {
+    public void receive(CameraWingOff cameraWingOff) {
         LogEngine.instance.write("+ Wing.receive(" + cameraWingOff.toString() + ")");
         FlightRecorder.instance.insert("Wing", "receive(" + cameraWingOff.toString() + ")");
 
@@ -97,7 +97,7 @@ public class Wing extends Subscriber {
 
     // --- TurbulentAirFlowSensor--------------------------------------------------------------------------------------
     @Subscribe
-    public void receive (TurbulentAirFlowSensorWingMeasure turbulentAirFlowSensorWingMeasure) {
+    public void receive(TurbulentAirFlowSensorWingMeasure turbulentAirFlowSensorWingMeasure) {
         LogEngine.instance.write("+ Wing.receive(" + turbulentAirFlowSensorWingMeasure.toString() + ")");
         FlightRecorder.instance.insert("Wing", "receive(" + turbulentAirFlowSensorWingMeasure.toString() + ")");
 
@@ -109,7 +109,7 @@ public class Wing extends Subscriber {
                 int airFlow = (int) measureMethod.invoke(turbulentAirFlowSensorList.get(i), "laminarturbulentturbulentlaminarwindwindturbulent");
                 LogEngine.instance.write("airFlow = " + airFlow);
 
-                if(airFlow > 10) {
+                if (airFlow > 10) {
                     // Turbulences -> Alarm
                     boolean alarm = (boolean) turbulentAirFlowSensorList.get(i).getClass().getDeclaredMethod("alarm").invoke(turbulentAirFlowSensorList.get(i));
                     FlightRecorder.instance.insert("Wing", "TurbulentAirFlowSensorList (alarm): " + alarm);

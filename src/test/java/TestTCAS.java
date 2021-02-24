@@ -21,7 +21,7 @@ public class TestTCAS {
     private Object componentPort;
 
     @BeforeEach
-    public void init () {
+    public void init() {
         LogEngine.instance.init();
         FlightRecorder.instance.startup();
         FlightRecorder.instance.init();
@@ -29,14 +29,14 @@ public class TestTCAS {
 
     @Test
     @Order(1)
-    public void factory () {
+    public void factory() {
         componentPort = TcasFactory.build();
         assertNotNull(componentPort);
     }
 
     @Test
     @Order(2)
-    public void methods () {
+    public void methods() {
         componentPort = TcasFactory.build();
         try {
             Method onMethod = componentPort.getClass().getDeclaredMethod("on");
@@ -66,7 +66,7 @@ public class TestTCAS {
 
     @Test
     @Order(3)
-    public void on () {
+    public void on() {
         componentPort = TcasFactory.build();
         try {
             Method onMethod = componentPort.getClass().getDeclaredMethod("on");
@@ -79,7 +79,7 @@ public class TestTCAS {
 
     @Test
     @Order(4)
-    public void off () {
+    public void off() {
         componentPort = TcasFactory.build();
         try {
             Method offMethod = componentPort.getClass().getDeclaredMethod("off");
@@ -92,7 +92,7 @@ public class TestTCAS {
 
     @Test
     @Order(5)
-    public void connect () {
+    public void connect() {
         componentPort = TcasFactory.build();
         try {
             Method connectMethod = componentPort.getClass().getDeclaredMethod("connect", String.class);
@@ -105,7 +105,7 @@ public class TestTCAS {
 
     @Test
     @Order(6)
-    public void scan () {
+    public void scan() {
         componentPort = TcasFactory.build();
         try {
             Method scanMethod = componentPort.getClass().getDeclaredMethod("scan", String.class);
@@ -121,7 +121,7 @@ public class TestTCAS {
 
     @Test
     @Order(7)
-    public void alarm () {
+    public void alarm() {
         componentPort = TcasFactory.build();
         try {
             Method alarmMethod = componentPort.getClass().getDeclaredMethod("alarm");
@@ -134,7 +134,7 @@ public class TestTCAS {
 
     @Test
     @Order(8)
-    public void determineAltitude () {
+    public void determineAltitude() {
         componentPort = TcasFactory.build();
         try {
             Method determineAltitudeMethod = componentPort.getClass().getDeclaredMethod("determineAltitude", String.class);
@@ -147,7 +147,7 @@ public class TestTCAS {
 
     @Test
     @Order(9)
-    public void setAltitude () {
+    public void setAltitude() {
         componentPort = TcasFactory.build();
         try {
             Method setAltitudeMethod = componentPort.getClass().getDeclaredMethod("setAltitude", Integer.TYPE);
@@ -160,7 +160,7 @@ public class TestTCAS {
 
     @Test
     @Order(10)
-    public void startup () {
+    public void startup() {
         componentPort = TcasFactory.build();
         try {
             Method onMethod = componentPort.getClass().getDeclaredMethod("on");
@@ -181,7 +181,7 @@ public class TestTCAS {
 
     @Test
     @Order(11)
-    public void takeoffAndLanding () {
+    public void takeoffAndLanding() {
         componentPort = TcasFactory.build();
         try {
             Method scanMethod = componentPort.getClass().getDeclaredMethod("scan", String.class);
@@ -196,7 +196,7 @@ public class TestTCAS {
 
     @Test
     @Order(12)
-    public void climbingAndDescent () {
+    public void climbingAndDescent() {
         componentPort = TcasFactory.build();
         try {
             Method scanMethod = componentPort.getClass().getDeclaredMethod("scan", String.class);
@@ -216,7 +216,7 @@ public class TestTCAS {
 
     @Test
     @Order(13)
-    public void turning () {
+    public void turning() {
         componentPort = TcasFactory.build();
         try {
             Method scanMethod = componentPort.getClass().getDeclaredMethod("scan", String.class);
@@ -235,7 +235,7 @@ public class TestTCAS {
     }
 
     @AfterEach
-    public void close () {
+    public void close() {
         FlightRecorder.instance.shutdown();
         LogEngine.instance.close();
     }

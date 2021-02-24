@@ -83,7 +83,7 @@ public class PrimaryFlightDisplayGUI extends Application {
     private RadioButton weatherRadarOffButton;
     private RadioButton weatherRadarOnButton;
 
-    public static void main (String... args) {
+    public static void main(String... args) {
         LogEngine.instance.init();
         FlightRecorder.instance.startup();
         FlightRecorder.instance.init();
@@ -94,7 +94,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         LogEngine.instance.close();
     }
 
-    public void start (Stage primaryStage) {
+    public void start(Stage primaryStage) {
         primaryStage.setTitle("A350 - Primary Flight Display");
 
         Airplane airplane = new Airplane();
@@ -111,7 +111,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         startupButton.setPrefSize(75, 20);
 
         startupButton.setOnAction(new EventHandler<>() {
-            public void handle (ActionEvent event) {
+            public void handle(ActionEvent event) {
                 cockpit.startup();
                 update();
             }
@@ -121,7 +121,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         taxiButton.setPrefSize(75, 20);
 
         taxiButton.setOnAction(new EventHandler<>() {
-            public void handle (ActionEvent event) {
+            public void handle(ActionEvent event) {
                 cockpit.taxi();
                 update();
             }
@@ -131,7 +131,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         takeoffButton.setPrefSize(75, 20);
 
         takeoffButton.setOnAction(new EventHandler<>() {
-            public void handle (ActionEvent event) {
+            public void handle(ActionEvent event) {
                 cockpit.takeoff();
                 update();
             }
@@ -141,7 +141,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         climbingButton.setPrefSize(75, 20);
 
         climbingButton.setOnAction(new EventHandler<>() {
-            public void handle (ActionEvent event) {
+            public void handle(ActionEvent event) {
                 cockpit.climbing();
                 update();
             }
@@ -151,7 +151,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         rightTurnButton.setPrefSize(75, 20);
 
         rightTurnButton.setOnAction(new EventHandler<>() {
-            public void handle (ActionEvent event) {
+            public void handle(ActionEvent event) {
                 cockpit.rightTurn();
                 update();
             }
@@ -161,7 +161,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         leftTurnButton.setPrefSize(75, 20);
 
         leftTurnButton.setOnAction(new EventHandler<>() {
-            public void handle (ActionEvent event) {
+            public void handle(ActionEvent event) {
                 cockpit.leftTurn();
                 update();
             }
@@ -171,7 +171,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         descentButton.setPrefSize(75, 20);
 
         descentButton.setOnAction(new EventHandler<>() {
-            public void handle (ActionEvent event) {
+            public void handle(ActionEvent event) {
                 cockpit.descent();
                 update();
             }
@@ -181,7 +181,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         landingButton.setPrefSize(75, 20);
 
         landingButton.setOnAction(new EventHandler<>() {
-            public void handle (ActionEvent event) {
+            public void handle(ActionEvent event) {
                 cockpit.landing();
                 update();
             }
@@ -191,7 +191,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         shutdownButton.setPrefSize(75, 20);
 
         shutdownButton.setOnAction(new EventHandler<>() {
-            public void handle (ActionEvent event) {
+            public void handle(ActionEvent event) {
                 cockpit.shutdown();
                 update();
             }
@@ -222,7 +222,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         primaryStage.show();
     }
 
-    public GridPane buildVisualView () {
+    public GridPane buildVisualView() {
         GridPane gridPane = new GridPane();
         gridPane.setMinSize(400, 200);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
@@ -407,7 +407,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         return gridPane;
     }
 
-    public void buildTableView () {
+    public void buildTableView() {
         tableView = new TableView();
         data = getInitialTableData();
         tableView.setItems(data);
@@ -425,7 +425,7 @@ public class PrimaryFlightDisplayGUI extends Application {
     }
 
     // camera
-    public void setCameraToggleGroup (boolean isCameraOn) {
+    public void setCameraToggleGroup(boolean isCameraOn) {
         if (isCameraOn) {
             cameraOffButton.setSelected(false);
             cameraOnButton.setSelected(true);
@@ -436,7 +436,7 @@ public class PrimaryFlightDisplayGUI extends Application {
     }
 
     // gps
-    public void setGpsToggleGroup (boolean isGpsOn) {
+    public void setGpsToggleGroup(boolean isGpsOn) {
         if (isGpsOn) {
             gpsOffButton.setSelected(false);
             gpsOnButton.setSelected(true);
@@ -446,7 +446,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         }
     }
 
-    public void setGpsConnectionToggleGroup (boolean isGpsConnected) {
+    public void setGpsConnectionToggleGroup(boolean isGpsConnected) {
         if (isGpsConnected) {
             gpsDisconnectedButton.setSelected(false);
             gpsConnectedButton.setSelected(true);
@@ -457,17 +457,17 @@ public class PrimaryFlightDisplayGUI extends Application {
     }
 
     // nitrogenBottle
-    public void setNitrogenAmount (int nitrogenAmount) {
+    public void setNitrogenAmount(int nitrogenAmount) {
         amountOfNitrogenLabel.setText(Integer.toString(nitrogenAmount));
     }
 
     // oxygenBottle
-    public void setOxygenAmount (int oxygenAmount) {
+    public void setOxygenAmount(int oxygenAmount) {
         amountOfOxygenLabel.setText(Integer.toString(oxygenAmount));
     }
 
     // tcas
-    public void setTcasToggleGroup (boolean isTcasOn) {
+    public void setTcasToggleGroup(boolean isTcasOn) {
         if (isTcasOn) {
             tcasOffButton.setSelected(false);
             tcasOnButton.setSelected(true);
@@ -477,7 +477,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         }
     }
 
-    public void setTcasConnectionToggleGroup (boolean isTcasConnected) {
+    public void setTcasConnectionToggleGroup(boolean isTcasConnected) {
         if (isTcasConnected) {
             tcasDisconnectedButton.setSelected(false);
             tcasConnectedButton.setSelected(true);
@@ -487,7 +487,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         }
     }
 
-    public void setTcasAlarmToggleGroup (boolean isTcasAlarmOn) {
+    public void setTcasAlarmToggleGroup(boolean isTcasAlarmOn) {
         if (isTcasAlarmOn) {
             tcasAlarmOffButton.setSelected(false);
             tcasAlarmOnButton.setSelected(true);
@@ -497,12 +497,12 @@ public class PrimaryFlightDisplayGUI extends Application {
         }
     }
 
-    public void setTcasAltitude (int altitude) {
+    public void setTcasAltitude(int altitude) {
         altitudeTCASLabel.setText(Integer.toString(altitude));
     }
 
     // turbulent_air_flow_sensor
-    public void setTurbulentAirFlowAlarmToggleGroup (boolean isTurbulentAirFlowAlarm) {
+    public void setTurbulentAirFlowAlarmToggleGroup(boolean isTurbulentAirFlowAlarm) {
         if (isTurbulentAirFlowAlarm) {
             turbulentAirFlowAlarmOffButton.setSelected(false);
             turbulentAirFlowAlarmOnButton.setSelected(true);
@@ -513,7 +513,7 @@ public class PrimaryFlightDisplayGUI extends Application {
     }
 
     // weather_radar
-    public void setWeatherRadarToggleGroup (boolean isWeatherRadarOn) {
+    public void setWeatherRadarToggleGroup(boolean isWeatherRadarOn) {
         if (isWeatherRadarOn) {
             weatherRadarOffButton.setSelected(false);
             weatherRadarOnButton.setSelected(true);
@@ -523,7 +523,47 @@ public class PrimaryFlightDisplayGUI extends Application {
         }
     }
 
-    private void initData () {
+    public void update() {
+        // camera
+        cameraIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isCameraOn));
+        setCameraToggleGroup(PrimaryFlightDisplay.instance.isCameraOn);
+
+        // gps
+        gpsIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isGPSOn));
+        gpsIsConnectedEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isGPSConnected));
+        setGpsToggleGroup(PrimaryFlightDisplay.instance.isGPSOn);
+        setGpsConnectionToggleGroup(PrimaryFlightDisplay.instance.isGPSConnected);
+
+        // nitrogen_bottle
+        amountOfNitrogenEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.amountOfNitrogen));
+        setNitrogenAmount(PrimaryFlightDisplay.instance.amountOfNitrogen);
+
+        // oxygen_bottle
+        amountOfOxygenEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.amountOfOxygen));
+        setOxygenAmount(PrimaryFlightDisplay.instance.amountOfOxygen);
+
+        // tcas
+        isTCASOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTCASOn));
+        isTCASConnectedEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTCASConnected));
+        isTCASAlarmEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTCASAlarm));
+        altitudeTCASEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.altitudeTCAS));
+        setTcasToggleGroup(PrimaryFlightDisplay.instance.isTCASOn);
+        setTcasConnectionToggleGroup(PrimaryFlightDisplay.instance.isTCASConnected);
+        setTcasAlarmToggleGroup(PrimaryFlightDisplay.instance.isTCASAlarm);
+        setTcasAltitude(PrimaryFlightDisplay.instance.altitudeTCAS);
+
+        // turbulent_air_flow_sensor
+        isTurbulentAirFlowAlarmEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm));
+        setTurbulentAirFlowAlarmToggleGroup(PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm);
+
+        // weather_radar
+        weatherRadarIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isWeatherRadarOn));
+        setWeatherRadarToggleGroup(PrimaryFlightDisplay.instance.isWeatherRadarOn);
+
+        tableView.refresh();
+    }
+
+    private void initData() {
         dataList = new ArrayList<>();
 
         // camera
@@ -563,49 +603,9 @@ public class PrimaryFlightDisplayGUI extends Application {
         dataList.add(weatherRadarIsOnEntry);
     }
 
-    private ObservableList getInitialTableData () {
+    private ObservableList getInitialTableData() {
         initData();
         data = FXCollections.observableList(dataList);
         return data;
-    }
-
-    public void update () {
-        // camera
-        cameraIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isCameraOn));
-        setCameraToggleGroup(PrimaryFlightDisplay.instance.isCameraOn);
-
-        // gps
-        gpsIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isGPSOn));
-        gpsIsConnectedEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isGPSConnected));
-        setGpsToggleGroup(PrimaryFlightDisplay.instance.isGPSOn);
-        setGpsConnectionToggleGroup(PrimaryFlightDisplay.instance.isGPSConnected);
-
-        // nitrogen_bottle
-        amountOfNitrogenEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.amountOfNitrogen));
-        setNitrogenAmount(PrimaryFlightDisplay.instance.amountOfNitrogen);
-
-        // oxygen_bottle
-        amountOfOxygenEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.amountOfOxygen));
-        setOxygenAmount(PrimaryFlightDisplay.instance.amountOfOxygen);
-
-        // tcas
-        isTCASOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTCASOn));
-        isTCASConnectedEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTCASConnected));
-        isTCASAlarmEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTCASAlarm));
-        altitudeTCASEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.altitudeTCAS));
-        setTcasToggleGroup(PrimaryFlightDisplay.instance.isTCASOn);
-        setTcasConnectionToggleGroup(PrimaryFlightDisplay.instance.isTCASConnected);
-        setTcasAlarmToggleGroup(PrimaryFlightDisplay.instance.isTCASAlarm);
-        setTcasAltitude(PrimaryFlightDisplay.instance.altitudeTCAS);
-
-        // turbulent_air_flow_sensor
-        isTurbulentAirFlowAlarmEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm));
-        setTurbulentAirFlowAlarmToggleGroup(PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm);
-
-        // weather_radar
-        weatherRadarIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isWeatherRadarOn));
-        setWeatherRadarToggleGroup(PrimaryFlightDisplay.instance.isWeatherRadarOn);
-
-        tableView.refresh();
     }
 }

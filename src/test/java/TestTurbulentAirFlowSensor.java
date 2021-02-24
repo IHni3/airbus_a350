@@ -20,7 +20,7 @@ public class TestTurbulentAirFlowSensor {
     private Object componentPort;
 
     @BeforeEach
-    public void init () {
+    public void init() {
         LogEngine.instance.init();
         FlightRecorder.instance.startup();
         FlightRecorder.instance.init();
@@ -28,14 +28,14 @@ public class TestTurbulentAirFlowSensor {
 
     @Test
     @Order(1)
-    public void factory () {
+    public void factory() {
         componentPort = TurbulentAirFlowSensorFactory.build();
         assertNotNull(componentPort);
     }
 
     @Test
     @Order(2)
-    public void methods () {
+    public void methods() {
         componentPort = TurbulentAirFlowSensorFactory.build();
         try {
             Method measureMethod = componentPort.getClass().getDeclaredMethod("measure", String.class);
@@ -50,7 +50,7 @@ public class TestTurbulentAirFlowSensor {
 
     @Test
     @Order(3)
-    public void measure () {
+    public void measure() {
         componentPort = TurbulentAirFlowSensorFactory.build();
         try {
             Method measureMethod = componentPort.getClass().getDeclaredMethod("measure", String.class);
@@ -63,7 +63,7 @@ public class TestTurbulentAirFlowSensor {
 
     @Test
     @Order(4)
-    public void alarm () {
+    public void alarm() {
         componentPort = TurbulentAirFlowSensorFactory.build();
         try {
             Method alarmMethod = componentPort.getClass().getDeclaredMethod("alarm");
@@ -76,7 +76,7 @@ public class TestTurbulentAirFlowSensor {
 
     @Test
     @Order(5)
-    public void takeoffUntilLanding () {
+    public void takeoffUntilLanding() {
         componentPort = TurbulentAirFlowSensorFactory.build();
         try {
             Method measureMethod = componentPort.getClass().getDeclaredMethod("measure", String.class);
@@ -88,7 +88,7 @@ public class TestTurbulentAirFlowSensor {
     }
 
     @AfterEach
-    public void close () {
+    public void close() {
         FlightRecorder.instance.shutdown();
         LogEngine.instance.close();
     }
