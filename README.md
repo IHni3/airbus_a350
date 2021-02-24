@@ -4,7 +4,7 @@
 
 |    Aufgabe     | Teamnummer | Miglieder                         |
 |----------------|------------|-----------------------------------|
-| T01, T02, T03  |     13     | David Haselbauer, ??????          |
+| T01, T02, T03  |     13     | David Haselbauer, Enrico Wernado  |
 | T04, T05, T06  |     14     | Tim Hönnige, Simon Berberich      |
 | T07, T08, T09  |     15     | Johannes Freitag, René Carannante |
 | T10, T11, T12  |     16     | Tom Koppenatsch, Anton Reuter     |

@@ -13,10 +13,6 @@ public enum Configuration {
     public String dataDirectory = userDirectory + fileSeparator + "data" + fileSeparator;
     public String databaseFile = dataDirectory + "flight_recorder_a350.db";
 
-    // weather_radar
-    public String pathToWeatherRadarJavaArchive = commonPathToJavaArchive + "weather_radar" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "weather_radar.jar";
-    public int numberOfWeatherRadar = 2;
-
     // camera
     public String pathToCameraJavaArchive = commonPathToJavaArchive + "camera" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "camera.jar";
     public int numberOfCameraBody = 2;
@@ -43,5 +39,15 @@ public enum Configuration {
     public int numberOfTurbulentAirFlowSensorBody = 2;
     public int numberOfTurbulentAirFlowSensorWing = 4;
 
+    // weather_radar
+    public String pathToWeatherRadarJavaArchive = generatePathToJavaArchive("weather_radar");
+    public int numberOfWeatherRadar = 2;
 
+    // slat
+    public String pathToSlatJavaArchive = generatePathToJavaArchive("slat");
+    public int numberOfSlats = 6;
+
+    public String generatePathToJavaArchive(String archiveName){
+        return commonPathToJavaArchive + archiveName + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + archiveName + ".jar";
+    }
 }
