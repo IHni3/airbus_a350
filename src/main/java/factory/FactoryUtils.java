@@ -21,7 +21,7 @@ public class FactoryUtils {
             FlightRecorder.instance.insert(factoryName, className + "Instance: " + archiveInstance.hashCode());
 
             port = archiveClass.getDeclaredField("port").get(archiveInstance);
-            FlightRecorder.instance.insert(factoryName, className+ "Port: " + port.hashCode());
+            FlightRecorder.instance.insert(factoryName, className + "Port: " + port.hashCode());
         } catch (Exception e) {
             e.printStackTrace();
         }
