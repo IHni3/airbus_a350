@@ -3,11 +3,13 @@ package base;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -19,6 +21,7 @@ public class GridPaneBuilder {
     private int row;
     private int col;
     private List<PrimaryFlightDisplayEntry> dataList;
+    private final List<Node[]> uiNodes = new ArrayList<>();
 
     public GridPaneBuilder() {
         this(2);
@@ -42,27 +45,31 @@ public class GridPaneBuilder {
     }
 
     public void addToggle(String label, String off, String on, Consumer<Boolean> onChange) {
-        addToggle(pane, row, col, label, off, on, wrapOnChange(label, onChange, Object::toString));
+        addToggle(pane, row, col, label, off, on, wrapOnChange(label, onChange, Object::toString), uiNodes);
         addHandler(new PrimaryFlightDisplayEntry(label, "false"));
         moveNext();
     }
 
     public void addInteger(String label, int min, int max, Consumer<Integer> onChange) {
-        addInteger(pane, row, col, label, min, max, wrapOnChange(label, onChange, i -> Integer.toString(i)));
+        addInteger(pane, row, col, label, min, max, wrapOnChange(label, onChange, i -> Integer.toString(i)), uiNodes);
         addHandler(new PrimaryFlightDisplayEntry(label, Integer.toString(min)));
         moveNext();
     }
 
     public void addFloat(String label, double min, double max, Consumer<Double> onChange) {
-        addFloat(pane, row, col, label, min, max, wrapOnChange(label, onChange, d -> Double.toString(d)));
+        addFloat(pane, row, col, label, min, max, wrapOnChange(label, onChange, d -> Double.toString(d)), uiNodes);
         addHandler(new PrimaryFlightDisplayEntry(label, Double.toString(min)));
         moveNext();
     }
 
     public void addTitle(String title) {
         requireFullRow();
-        addTitle(pane, row, numColumns << 1, title);
+        addTitle(pane, row, numColumns*3, title, uiNodes);
         moveNext(true);
+    }
+
+    public Node[] getUiElement(int row) {
+        return uiNodes.get(row);
     }
 
     private void moveNext() { moveNext(false); }
@@ -99,7 +106,7 @@ public class GridPaneBuilder {
         };
     }
 
-    private static void addToggle(GridPane pane, int row, int col, String labelText, String offText, String onText, Consumer<Boolean> onChange) {
+    private static void addToggle(GridPane pane, int row, int col, String labelText, String offText, String onText, Consumer<Boolean> onChange, List<Node[]> nodes) {
         Label label = new Label(labelText + " : ");
         ToggleGroup group = new ToggleGroup();
         RadioButton off = new RadioButton(offText);
@@ -115,12 +122,14 @@ public class GridPaneBuilder {
             onChange.accept(group.getSelectedToggle() == on);
         });
 
+        nodes.add(new Node[] { label, off, on });
+
         pane.add(label, col, row);
         pane.add(off, col + 1, row);
         pane.add(on, col + 2, row);
     }
 
-    private static void addInteger(GridPane pane, int row, int col, String labelText, int min, int max, Consumer<Integer> onChange) {
+    private static void addInteger(GridPane pane, int row, int col, String labelText, int min, int max, Consumer<Integer> onChange, List<Node[]> nodes) {
         Label label = new Label(labelText + " : ");
         TextField num = new TextField(Integer.toString(min));
 
@@ -149,11 +158,13 @@ public class GridPaneBuilder {
             onChange.accept(value);
         });
 
+        nodes.add(new Node[] { label, num });
+
         pane.add(label, col, row);
         pane.add(num, col + 1, row, 2, 1);
     }
 
-    private static void addFloat(GridPane pane, int row, int col, String labelText, double min, double max, Consumer<Double> onChange) {
+    private static void addFloat(GridPane pane, int row, int col, String labelText, double min, double max, Consumer<Double> onChange, List<Node[]> nodes) {
         Label label = new Label(labelText + " : ");
         TextField num = new TextField(Double.toString(min));
 
@@ -182,15 +193,20 @@ public class GridPaneBuilder {
             onChange.accept(value);
         });
 
+        nodes.add(new Node[] { label, num });
+
         pane.add(label, col, row);
         pane.add(num, col + 1, row, 2, 1);
     }
 
-    private static void addTitle(GridPane pane, int row, int columns, String title) {
+    private static void addTitle(GridPane pane, int row, int columns, String title, List<Node[]> nodes) {
         Font f = Font.font(Font.getDefault().getName(), FontWeight.BOLD, Font.getDefault().getSize());
         Label label = new Label(title);
         label.setFont(f);
         Separator after = new Separator(Orientation.HORIZONTAL);
+
+        nodes.add(new Node[] { label, after });
+
         pane.add(label, 0, row);
         pane.add(after, 1, row, columns-1, 1);
     }
