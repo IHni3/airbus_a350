@@ -91,18 +91,36 @@ public class Airplane implements IAirplane {
 
         // weather_radar
         eventBus.post(new WeatherRadarOn());
+
+        // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
+
+        // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
+
+        // right_navigation_light
         eventBus.post(new RightNavigationLightOff());
+
+        // tail_navigation_light
         eventBus.post(new TailNavigationLightOff());
+
+        // business_class_seat
         eventBus.post(new NonSmokingSignOn());
         eventBus.post(new SeatBeltSignOff());
+
+        // crew_seat
         eventBus.post(new event.crew_seat.NonSmokingSignOn());
         eventBus.post(new event.crew_seat.SeatBeltSignOff());
+
+        // economy_class_seat
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
+
+        // ice_detector_probe
         eventBus.post(new IceDetectorProbeBodyActivate());
         eventBus.post(new IceDetectorProbeWingActivate());
+
+        // taxi_light
         eventBus.post(new TaxiLightOff());
     }
 
@@ -117,18 +135,36 @@ public class Airplane implements IAirplane {
 
         // weather_radar
         eventBus.post(new WeatherRadarOn());
+
+        // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
+
+        // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
+
+        // right_navigation_light
         eventBus.post(new RightNavigationLightOn());
+
+        // tail_navigation_light
         eventBus.post(new TailNavigationLightOff());
+
+        // business_class_seat
         eventBus.post(new NonSmokingSignOn());
         eventBus.post(new SeatBeltSignOn());
+
+        // crew_seat
         eventBus.post(new event.crew_seat.NonSmokingSignOn());
         eventBus.post(new event.crew_seat.SeatBeltSignOff());
+
+        // economy_class_seat
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOn());
+
+        // ice_detector_probe
         eventBus.post(new IceDetectorProbeBodyActivate());
         eventBus.post(new IceDetectorProbeWingActivate());
+
+        // taxi_light
         eventBus.post(new TaxiLightOn());
     }
 
@@ -152,18 +188,36 @@ public class Airplane implements IAirplane {
 
         // weather_radar
         eventBus.post(new WeatherRadarOn());
+
+        // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
+
+        // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
+
+        // right_navigation_light
         eventBus.post(new RightNavigationLightOff());
+
+        // tail_navigation_light
         eventBus.post(new TailNavigationLightOn());
+
+        // business_class_seat
         eventBus.post(new NonSmokingSignOn());
         eventBus.post(new SeatBeltSignOn());
+
+        // crew_seat
         eventBus.post(new event.crew_seat.NonSmokingSignOn());
         eventBus.post(new event.crew_seat.SeatBeltSignOn());
+
+        // economy_class_seat
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOn());
+
+        // ice_detector_probe
         eventBus.post(new IceDetectorProbeBodyActivate());
         eventBus.post(new IceDetectorProbeWingActivate());
+
+        // taxi_light
         eventBus.post(new TaxiLightOff());
     }
 
@@ -188,18 +242,36 @@ public class Airplane implements IAirplane {
 
         // weather_radar
         eventBus.post(new WeatherRadarOn());
+
+        // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
+
+        // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
+
+        // right_navigation_light
         eventBus.post(new RightNavigationLightOff());
+
+        // tail_navigation_light
         eventBus.post(new TailNavigationLightOn());
+
+        // business_class_seat
         eventBus.post(new NonSmokingSignOn());
         eventBus.post(new SeatBeltSignOff());
+
+        // crew_seat
         eventBus.post(new event.crew_seat.NonSmokingSignOn());
         eventBus.post(new event.crew_seat.SeatBeltSignOff());
+
+        // economy_class_seat
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
+
+        // ice_detector_probe
         eventBus.post(new IceDetectorProbeBodyActivate());
         eventBus.post(new IceDetectorProbeWingActivate());
+
+        // taxi_light
         eventBus.post(new TaxiLightOff());
     }
 
@@ -224,18 +296,36 @@ public class Airplane implements IAirplane {
 
         // weather_radar
         eventBus.post(new WeatherRadarOn());
+
+        // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
+
+        // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
+
+        // right_navigation_light
         eventBus.post(new RightNavigationLightOn());
+
+        // tail_navigation_light
         eventBus.post(new TailNavigationLightOn());
+
+        // business_class_seat
         eventBus.post(new NonSmokingSignOn());
         eventBus.post(new SeatBeltSignOff());
+
+        // crew_seat
         eventBus.post(new event.crew_seat.NonSmokingSignOn());
         eventBus.post(new event.crew_seat.SeatBeltSignOff());
+
+        // economy_class_seat
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
+
+        // ice_detector_probe
         eventBus.post(new IceDetectorProbeBodyActivate());
         eventBus.post(new IceDetectorProbeWingActivate());
+
+        // taxi_light
         eventBus.post(new TaxiLightOff());
     }
 
@@ -260,18 +350,36 @@ public class Airplane implements IAirplane {
 
         // weather_radar
         eventBus.post(new WeatherRadarOn());
+
+        // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
+
+        // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
+
+        // right_navigation_light
         eventBus.post(new RightNavigationLightOn());
+
+        // tail_navigation_light
         eventBus.post(new TailNavigationLightOn());
+
+        // business_class_seat
         eventBus.post(new NonSmokingSignOn());
         eventBus.post(new SeatBeltSignOff());
+
+        // crew_seat
         eventBus.post(new event.crew_seat.NonSmokingSignOn());
         eventBus.post(new event.crew_seat.SeatBeltSignOff());
+
+        // economy_class_seat
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
+
+        // ice_detector_probe
         eventBus.post(new IceDetectorProbeBodyActivate());
         eventBus.post(new IceDetectorProbeWingActivate());
+
+        // taxi_light
         eventBus.post(new TaxiLightOff());
     }
 
@@ -296,18 +404,36 @@ public class Airplane implements IAirplane {
 
         // weather_radar
         eventBus.post(new WeatherRadarOn());
+
+        // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
+
+        // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
+
+        // right_navigation_light
         eventBus.post(new RightNavigationLightOn());
+
+        // tail_navigation_light
         eventBus.post(new TailNavigationLightOn());
+
+        // business_class_seat
         eventBus.post(new NonSmokingSignOn());
         eventBus.post(new SeatBeltSignOff());
+
+        // crew_seat
         eventBus.post(new event.crew_seat.NonSmokingSignOn());
         eventBus.post(new event.crew_seat.SeatBeltSignOff());
+
+        // economy_class_seat
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOn());
+
+        // ice_detector_probe
         eventBus.post(new IceDetectorProbeBodyActivate());
         eventBus.post(new IceDetectorProbeWingActivate());
+
+        // taxi_light
         eventBus.post(new TaxiLightOff());
     }
 
@@ -331,18 +457,36 @@ public class Airplane implements IAirplane {
 
         // weather_radar
         eventBus.post(new WeatherRadarOn());
+
+        // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
+
+        // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
+
+        // right_navigation_light
         eventBus.post(new RightNavigationLightOn());
+
+        // tail_navigation_light
         eventBus.post(new TailNavigationLightOn());
+
+        // business_class_seat
         eventBus.post(new NonSmokingSignOn());
         eventBus.post(new SeatBeltSignOn());
+
+        // crew_seat
         eventBus.post(new event.crew_seat.NonSmokingSignOn());
         eventBus.post(new event.crew_seat.SeatBeltSignOn());
+
+        // economy_class_seat
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOn());
+
+        // ice_detector_probe
         eventBus.post(new IceDetectorProbeBodyActivate());
         eventBus.post(new IceDetectorProbeWingActivate());
+
+        // taxi_light
         eventBus.post(new TaxiLightOff());
     }
 
@@ -365,18 +509,36 @@ public class Airplane implements IAirplane {
 
         // weather_radar
         eventBus.post(new WeatherRadarOff());
+
+        // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
+
+        // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
+
+        // right_navigation_light
         eventBus.post(new RightNavigationLightOff());
+
+        // tail_navigation_light
         eventBus.post(new TailNavigationLightOff());
+
+        // business_class_seat
         eventBus.post(new NonSmokingSignOff());
         eventBus.post(new SeatBeltSignOff());
+
+        // crew_seat
         eventBus.post(new event.crew_seat.NonSmokingSignOff());
         eventBus.post(new event.crew_seat.SeatBeltSignOff());
+
+        // economy_class_seat
         eventBus.post(new event.economy_class_seat.NonSmokingSignOff());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
+
+        // ice_detector_probe
         eventBus.post(new IceDetectorProbeBodyDeactivate());
         eventBus.post(new IceDetectorProbeWingDeactivate());
+
+        // taxi_light
         eventBus.post(new TaxiLightOff());
     }
 }
