@@ -36,8 +36,7 @@ import recorder.FlightRecorder;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-;
-
+@SuppressWarnings({"FieldMayBeFinal", "UnstableApiUsage", "unused"})
 public class Body extends Subscriber {
     private ArrayList<Object> cameraPortList;
     private ArrayList<Object> gpsPortList;
