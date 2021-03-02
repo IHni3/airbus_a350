@@ -25,23 +25,41 @@ public enum PrimaryFlightDisplay {
 
     // turbulent_air_flow_sensor
     public boolean isTurbulentAirFlowAlarm;
+
+    // right_navigation_light
     public boolean isRightNavigationLightOn;
+
+    // tail_navigation_light
     public boolean isTailNavigationLightOn;
+
+    // taxi_light
     public boolean isTaxiLightOn;
+
+    // seats
     public boolean isNonSmokingSignOn;
     public boolean isSeatBeltSignOn;
     public int levelSeat;
+
+    // exhaust_gas_temperature_sensor
     public int temperatureExhaustGasTemperatureSensor;
     public boolean isAlarmMajorExhaustGasTemperatureSensor;
     public boolean isAlarmCriticalExhaustGasTemperatureSensor;
+
+    // fuel_flow_sensor
     public int fuelFlow;
+
+    // fuel_sensor
     public double amountOfFuel;
     public boolean isAlarmReserveFuelSensor;
     public boolean isAlarmMajorFuelSensor;
     public boolean isAlarmCriticalFuelSensor;
+
+    // ice_detector_probe
     public boolean isIceDetectorProbeBodyActivated;
     public boolean isIceDetectorProbeWingActivated;
     public boolean isIceDetected;
+
+    // fire_detector
     public boolean isFireDetectedBody;
     public boolean isFireDetectedWing;
     public boolean isOxgenSensorAlarm;
