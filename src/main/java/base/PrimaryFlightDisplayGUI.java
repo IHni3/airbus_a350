@@ -78,6 +78,8 @@ public class PrimaryFlightDisplayGUI extends Application {
     private PrimaryFlightDisplayEntry weatherRadarIsOnEntry;
     private RadioButton weatherRadarOffButton;
     private RadioButton weatherRadarOnButton;
+
+    // GUIs of group T15
     private GridPaneBuilder t15Builder;
     private boolean updates;
 
@@ -1004,19 +1006,38 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void update() {
         updates = true;
-        // weather_radar
-        weatherRadarIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isWeatherRadarOn));
-        setWeatherRadarToggleGroup(PrimaryFlightDisplay.instance.isWeatherRadarOn);
 
         // camera
         cameraIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isCameraOn));
         setCameraToggleGroup(PrimaryFlightDisplay.instance.isCameraOn);
+
+        // exhaust_gas_temperature_sensor
+        setExhaustGasTemperature(PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor);
+        setAlarmMajorExhaustGasTemperatureSensor(PrimaryFlightDisplay.instance.isAlarmMajorExhaustGasTemperatureSensor);
+        setAlarmCriticalExhaustGasTemperatureSensor(PrimaryFlightDisplay.instance.isAlarmCriticalExhaustGasTemperatureSensor);
+
+        // fire_detector
+        setFireDetectedBody(PrimaryFlightDisplay.instance.isFireDetectedBody);
+        setFireDetectedWing(PrimaryFlightDisplay.instance.isFireDetectedWing);
+
+        // fuel_flow_sensor
+        setFuelFlow(PrimaryFlightDisplay.instance.fuelFlow);
+
+        // fuel_sensor
+        setFuelAmount(PrimaryFlightDisplay.instance.amountOfFuel);
+        setAlarmMajorFuelSensor(PrimaryFlightDisplay.instance.isAlarmMajorFuelSensor);
+        setAlarmCriticalFuelSensor(PrimaryFlightDisplay.instance.isAlarmCriticalFuelSensor);
 
         // gps
         gpsIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isGPSOn));
         gpsIsConnectedEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isGPSConnected));
         setGpsToggleGroup(PrimaryFlightDisplay.instance.isGPSOn);
         setGpsConnectionToggleGroup(PrimaryFlightDisplay.instance.isGPSConnected);
+
+        // ice_detector_probe
+        setIceDetectorProbeBodyActivated(PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated);
+        setIceDetectorProbeWingActivated(PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated);
+        setIceDetected(PrimaryFlightDisplay.instance.isIceDetected);
 
         // nitrogen_bottle
         amountOfNitrogenEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.amountOfNitrogen));
@@ -1036,12 +1057,13 @@ public class PrimaryFlightDisplayGUI extends Application {
         setTcasAlarmToggleGroup(PrimaryFlightDisplay.instance.isTCASAlarm);
         setTcasAltitude(PrimaryFlightDisplay.instance.altitudeTCAS);
 
-        // turbulent_air_flow_sensor
-        isTurbulentAirFlowAlarmEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm));
-        setTurbulentAirFlowAlarmToggleGroup(PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm);
-
         // right_navigation_light
         setRightNavigationLight(PrimaryFlightDisplay.instance.isRightNavigationLightOn);
+
+        // seats
+        setNonSmokingSign(PrimaryFlightDisplay.instance.isNonSmokingSignOn);
+        setSeatBeltSign(PrimaryFlightDisplay.instance.isSeatBeltSignOn);
+        setSeatLevel(PrimaryFlightDisplay.instance.levelSeat);
 
         // tail_navigation_light
         setTailNavigationLight(PrimaryFlightDisplay.instance.isTailNavigationLightOn);
@@ -1049,32 +1071,13 @@ public class PrimaryFlightDisplayGUI extends Application {
         // taxi_light
         setTaxiLight(PrimaryFlightDisplay.instance.isTaxiLightOn);
 
-        // seats
-        setNonSmokingSign(PrimaryFlightDisplay.instance.isNonSmokingSignOn);
-        setSeatBeltSign(PrimaryFlightDisplay.instance.isSeatBeltSignOn);
-        setSeatLevel(PrimaryFlightDisplay.instance.levelSeat);
+        // turbulent_air_flow_sensor
+        isTurbulentAirFlowAlarmEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm));
+        setTurbulentAirFlowAlarmToggleGroup(PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm);
 
-        // exhaust_gas_temperature_sensor
-        setExhaustGasTemperature(PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor);
-        setAlarmMajorExhaustGasTemperatureSensor(PrimaryFlightDisplay.instance.isAlarmMajorExhaustGasTemperatureSensor);
-        setAlarmCriticalExhaustGasTemperatureSensor(PrimaryFlightDisplay.instance.isAlarmCriticalExhaustGasTemperatureSensor);
-
-        // fuel_flow_sensor
-        setFuelFlow(PrimaryFlightDisplay.instance.fuelFlow);
-
-        // fuel_sensor
-        setFuelAmount(PrimaryFlightDisplay.instance.amountOfFuel);
-        setAlarmMajorFuelSensor(PrimaryFlightDisplay.instance.isAlarmMajorFuelSensor);
-        setAlarmCriticalFuelSensor(PrimaryFlightDisplay.instance.isAlarmCriticalFuelSensor);
-
-        // ice_detector_probe
-        setIceDetectorProbeBodyActivated(PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated);
-        setIceDetectorProbeWingActivated(PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated);
-        setIceDetected(PrimaryFlightDisplay.instance.isIceDetected);
-
-        // fire_detector
-        setFireDetectedBody(PrimaryFlightDisplay.instance.isFireDetectedBody);
-        setFireDetectedWing(PrimaryFlightDisplay.instance.isFireDetectedWing);
+        // weather_radar
+        weatherRadarIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isWeatherRadarOn));
+        setWeatherRadarToggleGroup(PrimaryFlightDisplay.instance.isWeatherRadarOn);
 
         updates = false;
         tableView.refresh();
