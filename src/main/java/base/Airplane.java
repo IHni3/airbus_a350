@@ -54,7 +54,7 @@ public class Airplane implements IAirplane {
         eventBus.post(new WeatherRadarOn());
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
         eventBus.post(new FuelFlowSensorMeasure());
-        eventBus.post(new RightNavigationLightOn());
+        eventBus.post(new RightNavigationLightOff());
         eventBus.post(new TailNavigationLightOff());
         eventBus.post(new NonSmokingSignOn());
         eventBus.post(new SeatBeltSignOff());
@@ -90,7 +90,7 @@ public class Airplane implements IAirplane {
         eventBus.post(new WeatherRadarOn());
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
         eventBus.post(new FuelFlowSensorMeasure());
-        eventBus.post(new RightNavigationLightOn());
+        eventBus.post(new RightNavigationLightOff());
         eventBus.post(new TailNavigationLightOn());
         eventBus.post(new NonSmokingSignOn());
         eventBus.post(new SeatBeltSignOn());
@@ -108,7 +108,7 @@ public class Airplane implements IAirplane {
         eventBus.post(new WeatherRadarOn());
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
         eventBus.post(new FuelFlowSensorMeasure());
-        eventBus.post(new RightNavigationLightOn());
+        eventBus.post(new RightNavigationLightOff());
         eventBus.post(new TailNavigationLightOn());
         eventBus.post(new NonSmokingSignOn());
         eventBus.post(new SeatBeltSignOff());
@@ -165,7 +165,7 @@ public class Airplane implements IAirplane {
         eventBus.post(new RightNavigationLightOn());
         eventBus.post(new TailNavigationLightOn());
         eventBus.post(new NonSmokingSignOn());
-        eventBus.post(new SeatBeltSignOn());
+        eventBus.post(new SeatBeltSignOff());
         eventBus.post(new event.crew_seat.NonSmokingSignOn());
         eventBus.post(new event.crew_seat.SeatBeltSignOff());
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
