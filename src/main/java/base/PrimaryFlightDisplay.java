@@ -7,43 +7,15 @@ public enum PrimaryFlightDisplay {
     // camera
     public boolean isCameraOn;
 
-    // gps
-    public boolean isGPSOn;
-    public boolean isGPSConnected;
-
-    // nitrogen_bottle
-    public int amountOfNitrogen;
-
-    // oxygen_bottle
-    public int amountOfOxygen;
-
-    // tcas
-    public boolean isTCASOn;
-    public boolean isTCASConnected;
-    public boolean isTCASAlarm;
-    public int altitudeTCAS;
-
-    // turbulent_air_flow_sensor
-    public boolean isTurbulentAirFlowAlarm;
-
-    // right_navigation_light
-    public boolean isRightNavigationLightOn;
-
-    // tail_navigation_light
-    public boolean isTailNavigationLightOn;
-
-    // taxi_light
-    public boolean isTaxiLightOn;
-
-    // seats
-    public boolean isNonSmokingSignOn;
-    public boolean isSeatBeltSignOn;
-    public int levelSeat;
-
     // exhaust_gas_temperature_sensor
     public int temperatureExhaustGasTemperatureSensor;
     public boolean isAlarmMajorExhaustGasTemperatureSensor;
     public boolean isAlarmCriticalExhaustGasTemperatureSensor;
+
+    // fire_detector
+    public boolean isFireDetectedBody;
+    public boolean isFireDetectedWing;
+    public boolean isOxgenSensorAlarm;
 
     // fuel_flow_sensor
     public int fuelFlow;
@@ -54,13 +26,41 @@ public enum PrimaryFlightDisplay {
     public boolean isAlarmMajorFuelSensor;
     public boolean isAlarmCriticalFuelSensor;
 
+    // gps
+    public boolean isGPSOn;
+    public boolean isGPSConnected;
+
     // ice_detector_probe
     public boolean isIceDetectorProbeBodyActivated;
     public boolean isIceDetectorProbeWingActivated;
     public boolean isIceDetected;
 
-    // fire_detector
-    public boolean isFireDetectedBody;
-    public boolean isFireDetectedWing;
-    public boolean isOxgenSensorAlarm;
+    // nitrogen_bottle
+    public int amountOfNitrogen;
+
+    // oxygen_bottle
+    public int amountOfOxygen;
+
+    // right_navigation_light
+    public boolean isRightNavigationLightOn;
+
+    // seats
+    public boolean isNonSmokingSignOn;
+    public boolean isSeatBeltSignOn;
+    public int levelSeat;
+
+    // tail_navigation_light
+    public boolean isTailNavigationLightOn;
+
+    // taxi_light
+    public boolean isTaxiLightOn;
+
+    // tcas
+    public boolean isTCASOn;
+    public boolean isTCASConnected;
+    public boolean isTCASAlarm;
+    public int altitudeTCAS;
+
+    // turbulent_air_flow_sensor
+    public boolean isTurbulentAirFlowAlarm;
 }
