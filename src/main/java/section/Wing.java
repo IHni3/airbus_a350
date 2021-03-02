@@ -4,6 +4,8 @@ import base.PrimaryFlightDisplay;
 import com.google.common.eventbus.Subscribe;
 import configuration.Configuration;
 import event.Subscriber;
+import event.camera.CameraWingOff;
+import event.camera.CameraWingOn;
 import event.exhaust_gas_temperature_sensor.ExhaustGasTemperatureSensorMeasure;
 import event.fire_detector.FireDetectorWingScan;
 import event.fuel_flow_sensor.FuelFlowSensorMeasure;
@@ -12,17 +14,8 @@ import event.ice_detector_probe.IceDetectorProbeWingActivate;
 import event.ice_detector_probe.IceDetectorProbeWingDeactivate;
 import event.right_navigation_light.RightNavigationLightOff;
 import event.right_navigation_light.RightNavigationLightOn;
-import factory.*;
-import logging.LogEngine;
-import recorder.FlightRecorder;
-
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import event.camera.CameraWingOff;
-import event.camera.CameraWingOn;
 import event.turbulent_air_flow_sensor.TurbulentAirFlowSensorWingMeasure;
-import factory.CameraFactory;
-import factory.TurbulentAirFlowSensorFactory;
+import factory.*;
 import logging.LogEngine;
 import recorder.FlightRecorder;
 
