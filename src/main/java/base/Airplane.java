@@ -62,43 +62,13 @@ public class Airplane implements IAirplane {
     }
 
     public void startup() {
-        //camera
-        eventBus.post(new CameraBodyOn());
-        eventBus.post(new CameraWingOn());
-
-        // gps
-        eventBus.post(new GPSOn());
-        eventBus.post(new GPSConnect("euro-4"));
-
-        // nitrogen_bottle (Consume for Startup and refill before starting)
-        eventBus.post(new NitrogenBottleTakeOut(20));
-        eventBus.post(new NitrogenBottleRefill());
-
-        // oxygen_bottle
-        eventBus.post(new OxygenBottleRefill());
-
-        // tcas
-        eventBus.post(new TCASOn());
-        eventBus.post(new TCASConnect("118.75"));
-
-        // weather_radar
-        eventBus.post(new WeatherRadarOn());
-
-        // exhaust_gas_temperature_sensor
-        eventBus.post(new ExhaustGasTemperatureSensorMeasure());
-
-        // fuel_flow_sensor
-        eventBus.post(new FuelFlowSensorMeasure());
-
-        // right_navigation_light
-        eventBus.post(new RightNavigationLightOff());
-
-        // tail_navigation_light
-        eventBus.post(new TailNavigationLightOff());
-
         // business_class_seat
         eventBus.post(new NonSmokingSignOn());
         eventBus.post(new SeatBeltSignOff());
+
+        // camera
+        eventBus.post(new CameraBodyOn());
+        eventBus.post(new CameraWingOn());
 
         // crew_seat
         eventBus.post(new event.crew_seat.NonSmokingSignOn());
@@ -108,38 +78,46 @@ public class Airplane implements IAirplane {
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
 
-        // ice_detector_probe
-        eventBus.post(new IceDetectorProbeBodyActivate());
-        eventBus.post(new IceDetectorProbeWingActivate());
-
-        // taxi_light
-        eventBus.post(new TaxiLightOff());
-    }
-
-    // Assuming taxi means bringing the plane to takeoff-lane
-    public void taxi() {
-        // gps
-        eventBus.post(new GPSSend("request data"));
-        eventBus.post(new GPSReceive());
-
-        // nitrogen_bottle
-        eventBus.post(new NitrogenBottleTakeOut(5));
-
-        // weather_radar
-        eventBus.post(new WeatherRadarOn());
-
         // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
 
         // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
 
+        // gps
+        eventBus.post(new GPSOn());
+        eventBus.post(new GPSConnect("euro-4"));
+
+        // ice_detector_probe
+        eventBus.post(new IceDetectorProbeBodyActivate());
+        eventBus.post(new IceDetectorProbeWingActivate());
+
+        // nitrogen_bottle (Consume for Startup and refill before starting)
+        eventBus.post(new NitrogenBottleTakeOut(20));
+        eventBus.post(new NitrogenBottleRefill());
+
+        // oxygen_bottle
+        eventBus.post(new OxygenBottleRefill());
+
         // right_navigation_light
-        eventBus.post(new RightNavigationLightOn());
+        eventBus.post(new RightNavigationLightOff());
 
         // tail_navigation_light
         eventBus.post(new TailNavigationLightOff());
 
+        // taxi_light
+        eventBus.post(new TaxiLightOff());
+
+        // tcas
+        eventBus.post(new TCASOn());
+        eventBus.post(new TCASConnect("118.75"));
+
+        // weather_radar
+        eventBus.post(new WeatherRadarOn());
+    }
+
+    // Assuming taxi means bringing the plane to takeoff-lane
+    public void taxi() {
         // business_class_seat
         eventBus.post(new NonSmokingSignOn());
         eventBus.post(new SeatBeltSignOn());
@@ -152,24 +130,77 @@ public class Airplane implements IAirplane {
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOn());
 
+        // exhaust_gas_temperature_sensor
+        eventBus.post(new ExhaustGasTemperatureSensorMeasure());
+
+        // fuel_flow_sensor
+        eventBus.post(new FuelFlowSensorMeasure());
+
+        // gps
+        eventBus.post(new GPSSend("request data"));
+        eventBus.post(new GPSReceive());
+
         // ice_detector_probe
         eventBus.post(new IceDetectorProbeBodyActivate());
         eventBus.post(new IceDetectorProbeWingActivate());
 
+        // nitrogen_bottle
+        eventBus.post(new NitrogenBottleTakeOut(5));
+
+        // right_navigation_light
+        eventBus.post(new RightNavigationLightOn());
+
+        // tail_navigation_light
+        eventBus.post(new TailNavigationLightOff());
+
         // taxi_light
         eventBus.post(new TaxiLightOn());
+
+        // weather_radar
+        eventBus.post(new WeatherRadarOn());
     }
 
     public void takeoff() {
+        // business_class_seat
+        eventBus.post(new NonSmokingSignOn());
+        eventBus.post(new SeatBeltSignOn());
+
+        // crew_seat
+        eventBus.post(new event.crew_seat.NonSmokingSignOn());
+        eventBus.post(new event.crew_seat.SeatBeltSignOn());
+
+        // economy_class_seat
+        eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
+        eventBus.post(new event.economy_class_seat.SeatBeltSignOn());
+
+        // exhaust_gas_temperature_sensor
+        eventBus.post(new ExhaustGasTemperatureSensorMeasure());
+
+        // fuel_flow_sensor
+        eventBus.post(new FuelFlowSensorMeasure());
+
         // gps
         eventBus.post(new GPSSend("request data"));
         eventBus.post(new GPSReceive());
+
+        // ice_detector_probe
+        eventBus.post(new IceDetectorProbeBodyActivate());
+        eventBus.post(new IceDetectorProbeWingActivate());
 
         // nitrogen_bottle
         eventBus.post(new NitrogenBottleTakeOut(10));
 
         // oxygen_bottle
         eventBus.post(new OxygenBottleTakeOut(2));
+
+        // right_navigation_light
+        eventBus.post(new RightNavigationLightOff());
+
+        // tail_navigation_light
+        eventBus.post(new TailNavigationLightOn());
+
+        // taxi_light
+        eventBus.post(new TaxiLightOff());
 
         // tcas (do not scan for altitude yet to prevent unnecessary alarm)
         eventBus.post(new TCASScan("trees"));
@@ -180,12 +211,40 @@ public class Airplane implements IAirplane {
 
         // weather_radar
         eventBus.post(new WeatherRadarOn());
+    }
+
+    public void climbing() {
+        // business_class_seat
+        eventBus.post(new NonSmokingSignOn());
+        eventBus.post(new SeatBeltSignOff());
+
+        // crew_seat
+        eventBus.post(new event.crew_seat.NonSmokingSignOn());
+        eventBus.post(new event.crew_seat.SeatBeltSignOff());
+
+        // fuel_flow_sensor
+        eventBus.post(new FuelFlowSensorMeasure());
+
+        // economy_class_seat
+        eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
+        eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
 
         // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
 
-        // fuel_flow_sensor
-        eventBus.post(new FuelFlowSensorMeasure());
+        // gps
+        eventBus.post(new GPSSend("request data"));
+        eventBus.post(new GPSReceive());
+
+        // ice_detector_probe
+        eventBus.post(new IceDetectorProbeBodyActivate());
+        eventBus.post(new IceDetectorProbeWingActivate());
+
+        // nitrogen_bottle
+        eventBus.post(new NitrogenBottleTakeOut(10));
+
+        // oxygen_bottle
+        eventBus.post(new OxygenBottleTakeOut(2));
 
         // right_navigation_light
         eventBus.post(new RightNavigationLightOff());
@@ -193,6 +252,184 @@ public class Airplane implements IAirplane {
         // tail_navigation_light
         eventBus.post(new TailNavigationLightOn());
 
+        // taxi_light
+        eventBus.post(new TaxiLightOff());
+
+        // tcas
+        eventBus.post(new TCASDetermineAltitude("alt=400m"));
+        eventBus.post(new TCASScan("clouds"));
+
+        // turbulent_air_flow_sensor
+        eventBus.post(new TurbulentAirFlowSensorBodyMeasure());
+        eventBus.post(new TurbulentAirFlowSensorWingMeasure());
+
+        // weather_radar
+        eventBus.post(new WeatherRadarOn());
+    }
+
+    public void rightTurn() {
+        // business_class_seat
+        eventBus.post(new NonSmokingSignOn());
+        eventBus.post(new SeatBeltSignOff());
+
+        // crew_seat
+        eventBus.post(new event.crew_seat.NonSmokingSignOn());
+        eventBus.post(new event.crew_seat.SeatBeltSignOff());
+
+        // economy_class_seat
+        eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
+        eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
+
+        // exhaust_gas_temperature_sensor
+        eventBus.post(new ExhaustGasTemperatureSensorMeasure());
+
+        // fuel_flow_sensor
+        eventBus.post(new FuelFlowSensorMeasure());
+
+        // gps
+        eventBus.post(new GPSSend("request data"));
+        eventBus.post(new GPSReceive());
+
+        // ice_detector_probe
+        eventBus.post(new IceDetectorProbeBodyActivate());
+        eventBus.post(new IceDetectorProbeWingActivate());
+
+        // nitrogen_bottle
+        eventBus.post(new NitrogenBottleTakeOut(10));
+
+        // oxygen_bottle
+        eventBus.post(new OxygenBottleTakeOut(2));
+
+        // right_navigation_light
+        eventBus.post(new RightNavigationLightOn());
+
+        // tail_navigation_light
+        eventBus.post(new TailNavigationLightOn());
+
+        // taxi_light
+        eventBus.post(new TaxiLightOff());
+
+        // tcas
+        eventBus.post(new TCASDetermineAltitude("alt=1000m"));
+        eventBus.post(new TCASScan("plain sky"));
+
+        // turbulent_air_flow_sensor
+        eventBus.post(new TurbulentAirFlowSensorBodyMeasure());
+        eventBus.post(new TurbulentAirFlowSensorWingMeasure());
+
+        // weather_radar
+        eventBus.post(new WeatherRadarOn());
+    }
+
+    public void leftTurn() {
+        // business_class_seat
+        eventBus.post(new NonSmokingSignOn());
+        eventBus.post(new SeatBeltSignOff());
+
+        // crew_seat
+        eventBus.post(new event.crew_seat.NonSmokingSignOn());
+        eventBus.post(new event.crew_seat.SeatBeltSignOff());
+
+        // economy_class_seat
+        eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
+        eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
+
+        // exhaust_gas_temperature_sensor
+        eventBus.post(new ExhaustGasTemperatureSensorMeasure());
+
+        // fuel_flow_sensor
+        eventBus.post(new FuelFlowSensorMeasure());
+
+        // gps
+        eventBus.post(new GPSSend("request data"));
+        eventBus.post(new GPSReceive());
+
+        // ice_detector_probe
+        eventBus.post(new IceDetectorProbeBodyActivate());
+        eventBus.post(new IceDetectorProbeWingActivate());
+
+        // nitrogen_bottle
+        eventBus.post(new NitrogenBottleTakeOut(10));
+
+        // oxygen_bottle
+        eventBus.post(new OxygenBottleTakeOut(2));
+
+        // right_navigation_light
+        eventBus.post(new RightNavigationLightOn());
+
+        // tail_navigation_light
+        eventBus.post(new TailNavigationLightOn());
+
+        // taxi_light
+        eventBus.post(new TaxiLightOff());
+
+        // tcas
+        eventBus.post(new TCASDetermineAltitude("alt=1000m"));
+        eventBus.post(new TCASScan("plain sky"));
+
+        // turbulent_air_flow_sensor
+        eventBus.post(new TurbulentAirFlowSensorBodyMeasure());
+        eventBus.post(new TurbulentAirFlowSensorWingMeasure());
+
+        // weather_radar
+        eventBus.post(new WeatherRadarOn());
+    }
+
+    public void descent() {
+        // business_class_seat
+        eventBus.post(new NonSmokingSignOn());
+        eventBus.post(new SeatBeltSignOff());
+
+        // crew_seat
+        eventBus.post(new event.crew_seat.NonSmokingSignOn());
+        eventBus.post(new event.crew_seat.SeatBeltSignOff());
+
+        // economy_class_seat
+        eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
+        eventBus.post(new event.economy_class_seat.SeatBeltSignOn());
+
+        // exhaust_gas_temperature_sensor
+        eventBus.post(new ExhaustGasTemperatureSensorMeasure());
+
+        // fuel_flow_sensor
+        eventBus.post(new FuelFlowSensorMeasure());
+
+        // gps
+        eventBus.post(new GPSSend("request data"));
+        eventBus.post(new GPSReceive());
+
+        // ice_detector_probe
+        eventBus.post(new IceDetectorProbeBodyActivate());
+        eventBus.post(new IceDetectorProbeWingActivate());
+
+        // nitrogen_bottle
+        eventBus.post(new NitrogenBottleTakeOut(10));
+
+        // oxygen_bottle
+        eventBus.post(new OxygenBottleTakeOut(2));
+
+        // right_navigation_light
+        eventBus.post(new RightNavigationLightOn());
+
+        // tail_navigation_light
+        eventBus.post(new TailNavigationLightOn());
+
+        // taxi_light
+        eventBus.post(new TaxiLightOff());
+
+        // tcas
+        eventBus.post(new TCASDetermineAltitude("alt=400m"));
+        eventBus.post(new TCASScan("clouds"));
+
+        // turbulent_air_flow_sensor
+        eventBus.post(new TurbulentAirFlowSensorBodyMeasure());
+        eventBus.post(new TurbulentAirFlowSensorWingMeasure());
+
+        // weather_radar
+        eventBus.post(new WeatherRadarOn());
+    }
+
+    public void landing() {
         // business_class_seat
         eventBus.post(new NonSmokingSignOn());
         eventBus.post(new SeatBeltSignOn());
@@ -205,95 +442,25 @@ public class Airplane implements IAirplane {
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOn());
 
-        // ice_detector_probe
-        eventBus.post(new IceDetectorProbeBodyActivate());
-        eventBus.post(new IceDetectorProbeWingActivate());
-
-        // taxi_light
-        eventBus.post(new TaxiLightOff());
-    }
-
-    public void climbing() {
-        // gps
-        eventBus.post(new GPSSend("request data"));
-        eventBus.post(new GPSReceive());
-
-        // nitrogen_bottle
-        eventBus.post(new NitrogenBottleTakeOut(10));
-
-        // oxygen_bottle
-        eventBus.post(new OxygenBottleTakeOut(2));
-
-        // tcas
-        eventBus.post(new TCASDetermineAltitude("alt=400m"));
-        eventBus.post(new TCASScan("clouds"));
-
-        // turbulent_air_flow_sensor
-        eventBus.post(new TurbulentAirFlowSensorBodyMeasure());
-        eventBus.post(new TurbulentAirFlowSensorWingMeasure());
-
-        // weather_radar
-        eventBus.post(new WeatherRadarOn());
-
         // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
 
         // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
 
-        // right_navigation_light
-        eventBus.post(new RightNavigationLightOff());
-
-        // tail_navigation_light
-        eventBus.post(new TailNavigationLightOn());
-
-        // business_class_seat
-        eventBus.post(new NonSmokingSignOn());
-        eventBus.post(new SeatBeltSignOff());
-
-        // crew_seat
-        eventBus.post(new event.crew_seat.NonSmokingSignOn());
-        eventBus.post(new event.crew_seat.SeatBeltSignOff());
-
-        // economy_class_seat
-        eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
-        eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
+        // gps
+        eventBus.post(new GPSSend("request data"));
+        eventBus.post(new GPSReceive());
 
         // ice_detector_probe
         eventBus.post(new IceDetectorProbeBodyActivate());
         eventBus.post(new IceDetectorProbeWingActivate());
-
-        // taxi_light
-        eventBus.post(new TaxiLightOff());
-    }
-
-    public void rightTurn() {
-        // gps
-        eventBus.post(new GPSSend("request data"));
-        eventBus.post(new GPSReceive());
 
         // nitrogen_bottle
         eventBus.post(new NitrogenBottleTakeOut(10));
 
         // oxygen_bottle
         eventBus.post(new OxygenBottleTakeOut(2));
-
-        // tcas
-        eventBus.post(new TCASDetermineAltitude("alt=1000m"));
-        eventBus.post(new TCASScan("plain sky"));
-
-        // turbulent_air_flow_sensor
-        eventBus.post(new TurbulentAirFlowSensorBodyMeasure());
-        eventBus.post(new TurbulentAirFlowSensorWingMeasure());
-
-        // weather_radar
-        eventBus.post(new WeatherRadarOn());
-
-        // exhaust_gas_temperature_sensor
-        eventBus.post(new ExhaustGasTemperatureSensorMeasure());
-
-        // fuel_flow_sensor
-        eventBus.post(new FuelFlowSensorMeasure());
 
         // right_navigation_light
         eventBus.post(new RightNavigationLightOn());
@@ -301,144 +468,8 @@ public class Airplane implements IAirplane {
         // tail_navigation_light
         eventBus.post(new TailNavigationLightOn());
 
-        // business_class_seat
-        eventBus.post(new NonSmokingSignOn());
-        eventBus.post(new SeatBeltSignOff());
-
-        // crew_seat
-        eventBus.post(new event.crew_seat.NonSmokingSignOn());
-        eventBus.post(new event.crew_seat.SeatBeltSignOff());
-
-        // economy_class_seat
-        eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
-        eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
-
-        // ice_detector_probe
-        eventBus.post(new IceDetectorProbeBodyActivate());
-        eventBus.post(new IceDetectorProbeWingActivate());
-
         // taxi_light
         eventBus.post(new TaxiLightOff());
-    }
-
-    public void leftTurn() {
-        // gps
-        eventBus.post(new GPSSend("request data"));
-        eventBus.post(new GPSReceive());
-
-        // nitrogen_bottle
-        eventBus.post(new NitrogenBottleTakeOut(10));
-
-        // oxygen_bottle
-        eventBus.post(new OxygenBottleTakeOut(2));
-
-        // tcas
-        eventBus.post(new TCASDetermineAltitude("alt=1000m"));
-        eventBus.post(new TCASScan("plain sky"));
-
-        // turbulent_air_flow_sensor
-        eventBus.post(new TurbulentAirFlowSensorBodyMeasure());
-        eventBus.post(new TurbulentAirFlowSensorWingMeasure());
-
-        // weather_radar
-        eventBus.post(new WeatherRadarOn());
-
-        // exhaust_gas_temperature_sensor
-        eventBus.post(new ExhaustGasTemperatureSensorMeasure());
-
-        // fuel_flow_sensor
-        eventBus.post(new FuelFlowSensorMeasure());
-
-        // right_navigation_light
-        eventBus.post(new RightNavigationLightOn());
-
-        // tail_navigation_light
-        eventBus.post(new TailNavigationLightOn());
-
-        // business_class_seat
-        eventBus.post(new NonSmokingSignOn());
-        eventBus.post(new SeatBeltSignOff());
-
-        // crew_seat
-        eventBus.post(new event.crew_seat.NonSmokingSignOn());
-        eventBus.post(new event.crew_seat.SeatBeltSignOff());
-
-        // economy_class_seat
-        eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
-        eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
-
-        // ice_detector_probe
-        eventBus.post(new IceDetectorProbeBodyActivate());
-        eventBus.post(new IceDetectorProbeWingActivate());
-
-        // taxi_light
-        eventBus.post(new TaxiLightOff());
-    }
-
-    public void descent() {
-        // gps
-        eventBus.post(new GPSSend("request data"));
-        eventBus.post(new GPSReceive());
-
-        // nitrogen_bottle
-        eventBus.post(new NitrogenBottleTakeOut(10));
-
-        // oxygen_bottle
-        eventBus.post(new OxygenBottleTakeOut(2));
-
-        // tcas
-        eventBus.post(new TCASDetermineAltitude("alt=400m"));
-        eventBus.post(new TCASScan("clouds"));
-
-        // turbulent_air_flow_sensor
-        eventBus.post(new TurbulentAirFlowSensorBodyMeasure());
-        eventBus.post(new TurbulentAirFlowSensorWingMeasure());
-
-        // weather_radar
-        eventBus.post(new WeatherRadarOn());
-
-        // exhaust_gas_temperature_sensor
-        eventBus.post(new ExhaustGasTemperatureSensorMeasure());
-
-        // fuel_flow_sensor
-        eventBus.post(new FuelFlowSensorMeasure());
-
-        // right_navigation_light
-        eventBus.post(new RightNavigationLightOn());
-
-        // tail_navigation_light
-        eventBus.post(new TailNavigationLightOn());
-
-        // business_class_seat
-        eventBus.post(new NonSmokingSignOn());
-        eventBus.post(new SeatBeltSignOff());
-
-        // crew_seat
-        eventBus.post(new event.crew_seat.NonSmokingSignOn());
-        eventBus.post(new event.crew_seat.SeatBeltSignOff());
-
-        // economy_class_seat
-        eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
-        eventBus.post(new event.economy_class_seat.SeatBeltSignOn());
-
-        // ice_detector_probe
-        eventBus.post(new IceDetectorProbeBodyActivate());
-        eventBus.post(new IceDetectorProbeWingActivate());
-
-        // taxi_light
-        eventBus.post(new TaxiLightOff());
-    }
-
-    public void landing() {
-        // gps
-        eventBus.post(new GPSSend("request data"));
-        eventBus.post(new GPSReceive());
-
-        // nitrogen_bottle
-        eventBus.post(new NitrogenBottleTakeOut(10));
-
-        // oxygen_bottle
-        eventBus.post(new OxygenBottleTakeOut(2));
 
         // tcas (do not scan for altitude when landing to prevent unnecessary alarm)
         eventBus.post(new TCASScan("trees"));
@@ -449,74 +480,16 @@ public class Airplane implements IAirplane {
 
         // weather_radar
         eventBus.post(new WeatherRadarOn());
-
-        // exhaust_gas_temperature_sensor
-        eventBus.post(new ExhaustGasTemperatureSensorMeasure());
-
-        // fuel_flow_sensor
-        eventBus.post(new FuelFlowSensorMeasure());
-
-        // right_navigation_light
-        eventBus.post(new RightNavigationLightOn());
-
-        // tail_navigation_light
-        eventBus.post(new TailNavigationLightOn());
-
-        // business_class_seat
-        eventBus.post(new NonSmokingSignOn());
-        eventBus.post(new SeatBeltSignOn());
-
-        // crew_seat
-        eventBus.post(new event.crew_seat.NonSmokingSignOn());
-        eventBus.post(new event.crew_seat.SeatBeltSignOn());
-
-        // economy_class_seat
-        eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
-        eventBus.post(new event.economy_class_seat.SeatBeltSignOn());
-
-        // ice_detector_probe
-        eventBus.post(new IceDetectorProbeBodyActivate());
-        eventBus.post(new IceDetectorProbeWingActivate());
-
-        // taxi_light
-        eventBus.post(new TaxiLightOff());
     }
 
     public void shutdown() {
-        //camera
-        eventBus.post(new CameraBodyOff());
-        eventBus.post(new CameraWingOff());
-
-        // gps
-        eventBus.post(new GPSOff());
-
-        // nitrogen_bottle
-        eventBus.post(new NitrogenBottleRefill());
-
-        // oxygen_bottle
-        eventBus.post(new OxygenBottleRefill());
-
-        // tcas
-        eventBus.post(new TCASOff());
-
-        // weather_radar
-        eventBus.post(new WeatherRadarOff());
-
-        // exhaust_gas_temperature_sensor
-        eventBus.post(new ExhaustGasTemperatureSensorMeasure());
-
-        // fuel_flow_sensor
-        eventBus.post(new FuelFlowSensorMeasure());
-
-        // right_navigation_light
-        eventBus.post(new RightNavigationLightOff());
-
-        // tail_navigation_light
-        eventBus.post(new TailNavigationLightOff());
-
         // business_class_seat
         eventBus.post(new NonSmokingSignOff());
         eventBus.post(new SeatBeltSignOff());
+
+        // camera
+        eventBus.post(new CameraBodyOff());
+        eventBus.post(new CameraWingOff());
 
         // crew_seat
         eventBus.post(new event.crew_seat.NonSmokingSignOff());
@@ -526,11 +499,38 @@ public class Airplane implements IAirplane {
         eventBus.post(new event.economy_class_seat.NonSmokingSignOff());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
 
+        // exhaust_gas_temperature_sensor
+        eventBus.post(new ExhaustGasTemperatureSensorMeasure());
+
+        // fuel_flow_sensor
+        eventBus.post(new FuelFlowSensorMeasure());
+
+        // gps
+        eventBus.post(new GPSOff());
+
         // ice_detector_probe
         eventBus.post(new IceDetectorProbeBodyDeactivate());
         eventBus.post(new IceDetectorProbeWingDeactivate());
 
+        // nitrogen_bottle
+        eventBus.post(new NitrogenBottleRefill());
+
+        // oxygen_bottle
+        eventBus.post(new OxygenBottleRefill());
+
+        // right_navigation_light
+        eventBus.post(new RightNavigationLightOff());
+
+        // tail_navigation_light
+        eventBus.post(new TailNavigationLightOff());
+
         // taxi_light
         eventBus.post(new TaxiLightOff());
+
+        // tcas
+        eventBus.post(new TCASOff());
+
+        // weather_radar
+        eventBus.post(new WeatherRadarOff());
     }
 }
