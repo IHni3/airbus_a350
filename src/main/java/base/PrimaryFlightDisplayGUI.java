@@ -362,7 +362,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setNonSmokingSign(boolean isOn) {
         if (PrimaryFlightDisplay.instance.isNonSmokingSignOn == isOn) { return; }
-        Node[] elements = t15Builder.getUiElement(3);
+        Node[] elements = t15Builder.getUiElement(4);
         if (isOn) {
             ((RadioButton)elements[1]).setSelected(false);
             ((RadioButton)elements[2]).setSelected(true);
@@ -376,7 +376,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setSeatBeltSign(boolean isOn) {
         if (PrimaryFlightDisplay.instance.isSeatBeltSignOn == isOn) { return; }
-        Node[] elements = t15Builder.getUiElement(4);
+        Node[] elements = t15Builder.getUiElement(5);
         if (isOn) {
             ((RadioButton)elements[1]).setSelected(false);
             ((RadioButton)elements[2]).setSelected(true);
@@ -390,7 +390,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setSeatLevel(int level) {
         if (PrimaryFlightDisplay.instance.levelSeat == level) { return; }
-        Node[] elements = t15Builder.getUiElement(5);
+        Node[] elements = t15Builder.getUiElement(6);
         ((TextField)elements[1]).setText(Integer.toString(level));
         PrimaryFlightDisplay.instance.levelSeat = level;
         tableView.refresh();
@@ -398,7 +398,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setTemperature(int temperature) {
         if (PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor == temperature) { return; }
-        Node[] elements = t15Builder.getUiElement(6);
+        Node[] elements = t15Builder.getUiElement(8);
         ((TextField)elements[1]).setText(Integer.toString(temperature));
         PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = temperature;
         tableView.refresh();
@@ -406,7 +406,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setAlarmMajorExhaustGasTemperatureSensor(boolean isOn) {
         if (PrimaryFlightDisplay.instance.isAlarmMajorExhaustGasTemperatureSensor == isOn) { return; }
-        Node[] elements = t15Builder.getUiElement(7);
+        Node[] elements = t15Builder.getUiElement(9);
         if (isOn) {
             ((RadioButton)elements[1]).setSelected(false);
             ((RadioButton)elements[2]).setSelected(true);
@@ -420,7 +420,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setAlarmCriticalExhaustGasTemperatureSensor(boolean isOn) {
         if (PrimaryFlightDisplay.instance.isAlarmCriticalExhaustGasTemperatureSensor == isOn) { return; }
-        Node[] elements = t15Builder.getUiElement(8);
+        Node[] elements = t15Builder.getUiElement(10);
         if (isOn) {
             ((RadioButton)elements[1]).setSelected(false);
             ((RadioButton)elements[2]).setSelected(true);
@@ -434,7 +434,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setFuelFlow(int fuelFlow) {
         if (PrimaryFlightDisplay.instance.fuelFlow == fuelFlow) { return; }
-        Node[] elements = t15Builder.getUiElement(9);
+        Node[] elements = t15Builder.getUiElement(12);
         ((TextField)elements[1]).setText(Integer.toString(fuelFlow));
         PrimaryFlightDisplay.instance.fuelFlow = fuelFlow;
         tableView.refresh();
@@ -442,7 +442,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setFuelAmount(double amountOfFuel) {
         if (PrimaryFlightDisplay.instance.amountOfFuel == amountOfFuel) { return; }
-        Node[] elements = t15Builder.getUiElement(10);
+        Node[] elements = t15Builder.getUiElement(13);
         ((TextField)elements[1]).setText(Double.toString(amountOfFuel));
         PrimaryFlightDisplay.instance.amountOfFuel = amountOfFuel;
         tableView.refresh();
@@ -450,7 +450,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setAlarmReserveFuelSensor(boolean isOn) {
         if (PrimaryFlightDisplay.instance.isAlarmReserveFuelSensor == isOn) { return; }
-        Node[] elements = t15Builder.getUiElement(11);
+        Node[] elements = t15Builder.getUiElement(14);
         if (isOn) {
             ((RadioButton)elements[1]).setSelected(false);
             ((RadioButton)elements[2]).setSelected(true);
@@ -464,7 +464,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setAlarmMajorFuelSensor(boolean isOn) {
         if (PrimaryFlightDisplay.instance.isAlarmMajorFuelSensor == isOn) { return; }
-        Node[] elements = t15Builder.getUiElement(12);
+        Node[] elements = t15Builder.getUiElement(15);
         if (isOn) {
             ((RadioButton)elements[1]).setSelected(false);
             ((RadioButton)elements[2]).setSelected(true);
@@ -478,7 +478,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setAlarmCriticalFuelSensor(boolean isOn) {
         if (PrimaryFlightDisplay.instance.isAlarmCriticalFuelSensor == isOn) { return; }
-        Node[] elements = t15Builder.getUiElement(13);
+        Node[] elements = t15Builder.getUiElement(16);
         if (isOn) {
             ((RadioButton)elements[1]).setSelected(false);
             ((RadioButton)elements[2]).setSelected(true);
@@ -492,7 +492,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setIceDetectorProbeBodyActivated(boolean isOn) {
         if (PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated == isOn) { return; }
-        Node[] elements = t15Builder.getUiElement(14);
+        Node[] elements = t15Builder.getUiElement(18);
         if (isOn) {
             ((RadioButton)elements[1]).setSelected(false);
             ((RadioButton)elements[2]).setSelected(true);
@@ -506,7 +506,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setIceDetectorProbeWingActivated(boolean isOn) {
         if (PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated == isOn) { return; }
-        Node[] elements = t15Builder.getUiElement(15);
+        Node[] elements = t15Builder.getUiElement(19);
         if (isOn) {
             ((RadioButton)elements[1]).setSelected(false);
             ((RadioButton)elements[2]).setSelected(true);
@@ -520,7 +520,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setIceDetected(boolean isOn) {
         if (PrimaryFlightDisplay.instance.isIceDetected == isOn) { return; }
-        Node[] elements = t15Builder.getUiElement(16);
+        Node[] elements = t15Builder.getUiElement(20);
         if (isOn) {
             ((RadioButton)elements[1]).setSelected(false);
             ((RadioButton)elements[2]).setSelected(true);
@@ -534,7 +534,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setFireDetectedBody(boolean isOn) {
         if (PrimaryFlightDisplay.instance.isFireDetectedBody == isOn) { return; }
-        Node[] elements = t15Builder.getUiElement(17);
+        Node[] elements = t15Builder.getUiElement(22);
         if (isOn) {
             ((RadioButton)elements[1]).setSelected(false);
             ((RadioButton)elements[2]).setSelected(true);
@@ -548,7 +548,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setFireDetectedWing(boolean isOn) {
         if (PrimaryFlightDisplay.instance.isFireDetectedWing == isOn) { return; }
-        Node[] elements = t15Builder.getUiElement(18);
+        Node[] elements = t15Builder.getUiElement(23);
         if (isOn) {
             ((RadioButton)elements[1]).setSelected(false);
             ((RadioButton)elements[2]).setSelected(true);
@@ -562,7 +562,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void setOxgenSensorAlarm(boolean isOn) {
         if (PrimaryFlightDisplay.instance.isOxgenSensorAlarm == isOn) { return; }
-        Node[] elements = t15Builder.getUiElement(19);
+        Node[] elements = t15Builder.getUiElement(24);
         if (isOn) {
             ((RadioButton)elements[1]).setSelected(false);
             ((RadioButton)elements[2]).setSelected(true);
