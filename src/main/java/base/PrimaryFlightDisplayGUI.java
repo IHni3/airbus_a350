@@ -1040,38 +1040,40 @@ public class PrimaryFlightDisplayGUI extends Application {
         isTurbulentAirFlowAlarmEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm));
         setTurbulentAirFlowAlarmToggleGroup(PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm);
 
+        // right_navigation_light
         setRightNavigationLight(PrimaryFlightDisplay.instance.isRightNavigationLightOn);
 
+        // tail_navigation_light
         setTailNavigationLight(PrimaryFlightDisplay.instance.isTailNavigationLightOn);
 
+        // taxi_light
         setTaxiLight(PrimaryFlightDisplay.instance.isTaxiLightOn);
 
+        // seats
         setNonSmokingSign(PrimaryFlightDisplay.instance.isNonSmokingSignOn);
-
         setSeatBeltSign(PrimaryFlightDisplay.instance.isSeatBeltSignOn);
+        setSeatLevel(PrimaryFlightDisplay.instance.levelSeat);
 
+        // exhaust_gas_temperature_sensor
         setExhaustGasTemperature(PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor);
-
         setAlarmMajorExhaustGasTemperatureSensor(PrimaryFlightDisplay.instance.isAlarmMajorExhaustGasTemperatureSensor);
-
         setAlarmCriticalExhaustGasTemperatureSensor(PrimaryFlightDisplay.instance.isAlarmCriticalExhaustGasTemperatureSensor);
 
+        // fuel_flow_sensor
         setFuelFlow(PrimaryFlightDisplay.instance.fuelFlow);
 
+        // fuel_sensor
         setFuelAmount(PrimaryFlightDisplay.instance.amountOfFuel);
-
         setAlarmMajorFuelSensor(PrimaryFlightDisplay.instance.isAlarmMajorFuelSensor);
-
         setAlarmCriticalFuelSensor(PrimaryFlightDisplay.instance.isAlarmCriticalFuelSensor);
 
+        // ice_detector_probe
         setIceDetectorProbeBodyActivated(PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated);
-
         setIceDetectorProbeWingActivated(PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated);
-
         setIceDetected(PrimaryFlightDisplay.instance.isIceDetected);
 
+        // fire_detector
         setFireDetectedBody(PrimaryFlightDisplay.instance.isFireDetectedBody);
-
         setFireDetectedWing(PrimaryFlightDisplay.instance.isFireDetectedWing);
 
         updates = false;
