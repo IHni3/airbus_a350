@@ -6,28 +6,24 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import logging.LogEngine;
 import recorder.FlightRecorder;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
+import java.util.regex.Pattern;
 
 public class PrimaryFlightDisplayGUI extends Application {
     private TableView tableView;
@@ -83,6 +79,10 @@ public class PrimaryFlightDisplayGUI extends Application {
     private RadioButton weatherRadarOffButton;
     private RadioButton weatherRadarOnButton;
 
+    // GUIs of group T15
+    private GridPaneBuilder t15Builder;
+    private boolean updates;
+
     public static void main(String... args) {
         LogEngine.instance.init();
         FlightRecorder.instance.startup();
@@ -112,6 +112,16 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         startupButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
+                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+                PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
+                PrimaryFlightDisplay.instance.amountOfFuel = 69.420;
+                PrimaryFlightDisplay.instance.isRightNavigationLightOn = true;
+                PrimaryFlightDisplay.instance.isTailNavigationLightOn = true;
+                PrimaryFlightDisplay.instance.isNonSmokingSignOn = true;
+                PrimaryFlightDisplay.instance.isSeatBeltSignOn = false;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated = true;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = true;
+                PrimaryFlightDisplay.instance.isTaxiLightOn = false;
                 cockpit.startup();
                 update();
             }
@@ -122,6 +132,16 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         taxiButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
+                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+                PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
+                PrimaryFlightDisplay.instance.amountOfFuel = 69.420;
+                PrimaryFlightDisplay.instance.isRightNavigationLightOn = false;
+                PrimaryFlightDisplay.instance.isTailNavigationLightOn = true;
+                PrimaryFlightDisplay.instance.isNonSmokingSignOn = true;
+                PrimaryFlightDisplay.instance.isSeatBeltSignOn = true;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated = true;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = true;
+                PrimaryFlightDisplay.instance.isTaxiLightOn = true;
                 cockpit.taxi();
                 update();
             }
@@ -133,6 +153,16 @@ public class PrimaryFlightDisplayGUI extends Application {
         takeoffButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
                 cockpit.takeoff();
+                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+                PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
+                PrimaryFlightDisplay.instance.amountOfFuel = 69.420;
+                PrimaryFlightDisplay.instance.isRightNavigationLightOn = true;
+                PrimaryFlightDisplay.instance.isTailNavigationLightOn = true;
+                PrimaryFlightDisplay.instance.isNonSmokingSignOn = true;
+                PrimaryFlightDisplay.instance.isSeatBeltSignOn = false;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated = true;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = true;
+                PrimaryFlightDisplay.instance.isTaxiLightOn = false;
                 update();
             }
         });
@@ -143,6 +173,16 @@ public class PrimaryFlightDisplayGUI extends Application {
         climbingButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
                 cockpit.climbing();
+                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+                PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
+                PrimaryFlightDisplay.instance.amountOfFuel = 69.420;
+                PrimaryFlightDisplay.instance.isRightNavigationLightOn = false;
+                PrimaryFlightDisplay.instance.isTailNavigationLightOn = true;
+                PrimaryFlightDisplay.instance.isNonSmokingSignOn = true;
+                PrimaryFlightDisplay.instance.isSeatBeltSignOn = false;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated = true;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = true;
+                PrimaryFlightDisplay.instance.isTaxiLightOn = false;
                 update();
             }
         });
@@ -153,6 +193,16 @@ public class PrimaryFlightDisplayGUI extends Application {
         rightTurnButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
                 cockpit.rightTurn();
+                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+                PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
+                PrimaryFlightDisplay.instance.amountOfFuel = 69.420;
+                PrimaryFlightDisplay.instance.isRightNavigationLightOn = true;
+                PrimaryFlightDisplay.instance.isTailNavigationLightOn = true;
+                PrimaryFlightDisplay.instance.isNonSmokingSignOn = true;
+                PrimaryFlightDisplay.instance.isSeatBeltSignOn = false;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated = true;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = true;
+                PrimaryFlightDisplay.instance.isTaxiLightOn = false;
                 update();
             }
         });
@@ -163,6 +213,16 @@ public class PrimaryFlightDisplayGUI extends Application {
         leftTurnButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
                 cockpit.leftTurn();
+                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+                PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
+                PrimaryFlightDisplay.instance.amountOfFuel = 69.420;
+                PrimaryFlightDisplay.instance.isRightNavigationLightOn = false;
+                PrimaryFlightDisplay.instance.isTailNavigationLightOn = true;
+                PrimaryFlightDisplay.instance.isNonSmokingSignOn = true;
+                PrimaryFlightDisplay.instance.isSeatBeltSignOn = false;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated = true;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = true;
+                PrimaryFlightDisplay.instance.isTaxiLightOn = false;
                 update();
             }
         });
@@ -173,6 +233,16 @@ public class PrimaryFlightDisplayGUI extends Application {
         descentButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
                 cockpit.descent();
+                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+                PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
+                PrimaryFlightDisplay.instance.amountOfFuel = 69.420;
+                PrimaryFlightDisplay.instance.isRightNavigationLightOn = false;
+                PrimaryFlightDisplay.instance.isTailNavigationLightOn = true;
+                PrimaryFlightDisplay.instance.isNonSmokingSignOn = true;
+                PrimaryFlightDisplay.instance.isSeatBeltSignOn = false;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated = true;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = true;
+                PrimaryFlightDisplay.instance.isTaxiLightOn = false;
                 update();
             }
         });
@@ -183,6 +253,16 @@ public class PrimaryFlightDisplayGUI extends Application {
         landingButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
                 cockpit.landing();
+                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+                PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
+                PrimaryFlightDisplay.instance.amountOfFuel = 69.420;
+                PrimaryFlightDisplay.instance.isRightNavigationLightOn = false;
+                PrimaryFlightDisplay.instance.isTailNavigationLightOn = true;
+                PrimaryFlightDisplay.instance.isNonSmokingSignOn = true;
+                PrimaryFlightDisplay.instance.isSeatBeltSignOn = true;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated = true;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = true;
+                PrimaryFlightDisplay.instance.isTaxiLightOn = false;
                 update();
             }
         });
@@ -193,6 +273,16 @@ public class PrimaryFlightDisplayGUI extends Application {
         shutdownButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
                 cockpit.shutdown();
+                PrimaryFlightDisplay.instance.isWeatherRadarOn = false;
+                PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 0;
+                PrimaryFlightDisplay.instance.amountOfFuel = 0;
+                PrimaryFlightDisplay.instance.isRightNavigationLightOn = false;
+                PrimaryFlightDisplay.instance.isTailNavigationLightOn = false;
+                PrimaryFlightDisplay.instance.isNonSmokingSignOn = false;
+                PrimaryFlightDisplay.instance.isSeatBeltSignOn = false;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated = false;
+                PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = false;
+                PrimaryFlightDisplay.instance.isTaxiLightOn = false;
                 update();
             }
         });
@@ -212,6 +302,11 @@ public class PrimaryFlightDisplayGUI extends Application {
         buildTableView();
         tableTab.setContent(tableView);
         tabPane.getTabs().add(tableTab);
+
+        Tab t15Tab = new Tab();
+        t15Tab.setText("T15");
+        t15Tab.setContent(buildT15View());
+        tabPane.getTabs().add(t15Tab);
 
         VBox vbox = new VBox(20);
         vbox.setPadding(new Insets(25, 25, 25, 25));
@@ -512,6 +607,50 @@ public class PrimaryFlightDisplayGUI extends Application {
         }
     }
 
+    public ScrollPane buildT15View() {
+        t15Builder = new GridPaneBuilder();
+        t15Builder.setDataList(data);
+
+        ScrollPane scroller = new ScrollPane();
+        scroller.setContent(t15Builder.gridPane());
+        scroller.setFitToWidth(true);
+
+        t15Builder.addToggle("Right navigation-light", "Off", "On", this::setRightNavigationLight);
+        t15Builder.addToggle("Tail navigation-light", "Off", "On", this::setTailNavigationLight);
+        t15Builder.addToggle("Taxi light", "Off", "On", this::setTaxiLight);
+
+        t15Builder.addTitle("Seats");
+        t15Builder.addToggle("Non smoking sign", "Off", "On", this::setNonSmokingSign);
+        t15Builder.addToggle("Seat belt sign", "Off", "On", this::setSeatBeltSign);
+        t15Builder.addInteger("Level Seat", Integer.MIN_VALUE, Integer.MAX_VALUE, this::setSeatLevel);
+
+        t15Builder.addTitle("Exhaust-gas sensor");
+        t15Builder.addInteger("Temperature", Integer.MIN_VALUE, Integer.MAX_VALUE, this::setExhaustGasTemperature);
+        t15Builder.addToggle("Alarm major", "Off", "On", this::setAlarmMajorExhaustGasTemperatureSensor);
+        t15Builder.addToggle("Alarm critical", "Off", "On", this::setAlarmCriticalExhaustGasTemperatureSensor);
+
+        t15Builder.addTitle("Fuel");
+        t15Builder.addInteger("Fuel flow", 0, Integer.MAX_VALUE, this::setFuelFlow);
+        t15Builder.addFloat("Fuel amount", 0, Double.MAX_VALUE, this::setFuelAmount);
+        t15Builder.addToggle("Alarm reserve", "Off", "On", this::setAlarmReserveFuelSensor);
+        t15Builder.addToggle("Alarm major reserve", "Off", "On", this::setAlarmMajorFuelSensor);
+        t15Builder.addToggle("Alarm critical reserve", "Off", "On", this::setAlarmCriticalFuelSensor);
+
+        t15Builder.addTitle("Ice detector probe");
+        t15Builder.addToggle("Body-probe", "Off", "On", this::setIceDetectorProbeBodyActivated);
+        t15Builder.addToggle("Wind-probe", "Off", "On", this::setIceDetectorProbeWingActivated);
+        t15Builder.addToggle("Ice detected", "No", "Yes", this::setIceDetected);
+
+        t15Builder.addTitle("Fire detector");
+        t15Builder.addToggle("Body: fire detected", "No", "Yes", this::setFireDetectedBody);
+        t15Builder.addToggle("Wing: fire detected", "No", "Yes", this::setFireDetectedWing);
+
+        t15Builder.addTitle("Oxygen sensor");
+        t15Builder.addToggle("Alarm", "Off", "On", this::setOxgenSensorAlarm);
+
+        return scroller;
+    }
+
     // weather_radar
     public void setWeatherRadarToggleGroup(boolean isWeatherRadarOn) {
         if (isWeatherRadarOn) {
@@ -523,44 +662,300 @@ public class PrimaryFlightDisplayGUI extends Application {
         }
     }
 
-    public void update() {
-        // camera
-        cameraIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isCameraOn));
-        setCameraToggleGroup(PrimaryFlightDisplay.instance.isCameraOn);
+    public void setRightNavigationLight(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isRightNavigationLightOn == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(0);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isRightNavigationLightOn = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
 
-        // gps
-        gpsIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isGPSOn));
-        gpsIsConnectedEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isGPSConnected));
-        setGpsToggleGroup(PrimaryFlightDisplay.instance.isGPSOn);
-        setGpsConnectionToggleGroup(PrimaryFlightDisplay.instance.isGPSConnected);
+    public void setTailNavigationLight(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isTailNavigationLightOn == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(1);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isTailNavigationLightOn = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
 
-        // nitrogen_bottle
-        amountOfNitrogenEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.amountOfNitrogen));
-        setNitrogenAmount(PrimaryFlightDisplay.instance.amountOfNitrogen);
+    public void setTaxiLight(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isTaxiLightOn == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(2);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isTaxiLightOn = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
 
-        // oxygen_bottle
-        amountOfOxygenEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.amountOfOxygen));
-        setOxygenAmount(PrimaryFlightDisplay.instance.amountOfOxygen);
+    public void setNonSmokingSign(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isNonSmokingSignOn == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(4);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isNonSmokingSignOn = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
 
-        // tcas
-        isTCASOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTCASOn));
-        isTCASConnectedEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTCASConnected));
-        isTCASAlarmEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTCASAlarm));
-        altitudeTCASEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.altitudeTCAS));
-        setTcasToggleGroup(PrimaryFlightDisplay.instance.isTCASOn);
-        setTcasConnectionToggleGroup(PrimaryFlightDisplay.instance.isTCASConnected);
-        setTcasAlarmToggleGroup(PrimaryFlightDisplay.instance.isTCASAlarm);
-        setTcasAltitude(PrimaryFlightDisplay.instance.altitudeTCAS);
+    public void setSeatBeltSign(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isSeatBeltSignOn == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(5);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isSeatBeltSignOn = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
 
-        // turbulent_air_flow_sensor
-        isTurbulentAirFlowAlarmEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm));
-        setTurbulentAirFlowAlarmToggleGroup(PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm);
+    public void setSeatLevel(int level) {
+        if (PrimaryFlightDisplay.instance.levelSeat == level && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(6);
+        ((TextField)elements[1]).setText(Integer.toString(level));
+        PrimaryFlightDisplay.instance.levelSeat = level;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
 
-        // weather_radar
-        weatherRadarIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isWeatherRadarOn));
-        setWeatherRadarToggleGroup(PrimaryFlightDisplay.instance.isWeatherRadarOn);
+    public void setExhaustGasTemperature(int temperature) {
+        if (PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor == temperature && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(8);
+        ((TextField)elements[1]).setText(Integer.toString(temperature));
+        PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = temperature;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
 
-        tableView.refresh();
+    public void setAlarmMajorExhaustGasTemperatureSensor(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isAlarmMajorExhaustGasTemperatureSensor == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(9);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isAlarmMajorExhaustGasTemperatureSensor = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
+
+    public void setAlarmCriticalExhaustGasTemperatureSensor(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isAlarmCriticalExhaustGasTemperatureSensor == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(10);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isAlarmCriticalExhaustGasTemperatureSensor = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
+
+    public void setFuelFlow(int fuelFlow) {
+        if (PrimaryFlightDisplay.instance.fuelFlow == fuelFlow && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(12);
+        ((TextField)elements[1]).setText(Integer.toString(fuelFlow));
+        PrimaryFlightDisplay.instance.fuelFlow = fuelFlow;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
+
+    public void setFuelAmount(double amountOfFuel) {
+        if (PrimaryFlightDisplay.instance.amountOfFuel == amountOfFuel && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(13);
+        ((TextField)elements[1]).setText(Double.toString(amountOfFuel));
+        PrimaryFlightDisplay.instance.amountOfFuel = amountOfFuel;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
+
+    public void setAlarmReserveFuelSensor(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isAlarmReserveFuelSensor == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(14);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isAlarmReserveFuelSensor = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
+
+    public void setAlarmMajorFuelSensor(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isAlarmMajorFuelSensor == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(15);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isAlarmMajorFuelSensor = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
+
+    public void setAlarmCriticalFuelSensor(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isAlarmCriticalFuelSensor == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(16);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isAlarmCriticalFuelSensor = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
+
+    public void setIceDetectorProbeBodyActivated(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(18);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
+
+    public void setIceDetectorProbeWingActivated(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(19);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
+
+    public void setIceDetected(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isIceDetected == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(20);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isIceDetected = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
+
+    public void setFireDetectedBody(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isFireDetectedBody == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(22);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isFireDetectedBody = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
+
+    public void setFireDetectedWing(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isFireDetectedWing == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(23);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isFireDetectedWing = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
+    }
+
+    public void setOxgenSensorAlarm(boolean isOn) {
+        if (PrimaryFlightDisplay.instance.isOxgenSensorAlarm == isOn && !updates) { return; }
+        Node[] elements = t15Builder.getUiElement(24);
+        if (isOn) {
+            ((RadioButton)elements[1]).setSelected(false);
+            ((RadioButton)elements[2]).setSelected(true);
+        } else {
+            ((RadioButton)elements[1]).setSelected(true);
+            ((RadioButton)elements[2]).setSelected(false);
+        }
+        PrimaryFlightDisplay.instance.isOxgenSensorAlarm = isOn;
+        if (!updates) {
+            tableView.refresh();
+        }
     }
 
     private void initData() {
@@ -607,5 +1002,84 @@ public class PrimaryFlightDisplayGUI extends Application {
         initData();
         data = FXCollections.observableList(dataList);
         return data;
+    }
+
+    public void update() {
+        updates = true;
+
+        // camera
+        cameraIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isCameraOn));
+        setCameraToggleGroup(PrimaryFlightDisplay.instance.isCameraOn);
+
+        // exhaust_gas_temperature_sensor
+        setExhaustGasTemperature(PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor);
+        setAlarmMajorExhaustGasTemperatureSensor(PrimaryFlightDisplay.instance.isAlarmMajorExhaustGasTemperatureSensor);
+        setAlarmCriticalExhaustGasTemperatureSensor(PrimaryFlightDisplay.instance.isAlarmCriticalExhaustGasTemperatureSensor);
+
+        // fire_detector
+        setFireDetectedBody(PrimaryFlightDisplay.instance.isFireDetectedBody);
+        setFireDetectedWing(PrimaryFlightDisplay.instance.isFireDetectedWing);
+
+        // fuel_flow_sensor
+        setFuelFlow(PrimaryFlightDisplay.instance.fuelFlow);
+
+        // fuel_sensor
+        setFuelAmount(PrimaryFlightDisplay.instance.amountOfFuel);
+        setAlarmMajorFuelSensor(PrimaryFlightDisplay.instance.isAlarmMajorFuelSensor);
+        setAlarmCriticalFuelSensor(PrimaryFlightDisplay.instance.isAlarmCriticalFuelSensor);
+
+        // gps
+        gpsIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isGPSOn));
+        gpsIsConnectedEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isGPSConnected));
+        setGpsToggleGroup(PrimaryFlightDisplay.instance.isGPSOn);
+        setGpsConnectionToggleGroup(PrimaryFlightDisplay.instance.isGPSConnected);
+
+        // ice_detector_probe
+        setIceDetectorProbeBodyActivated(PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated);
+        setIceDetectorProbeWingActivated(PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated);
+        setIceDetected(PrimaryFlightDisplay.instance.isIceDetected);
+
+        // nitrogen_bottle
+        amountOfNitrogenEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.amountOfNitrogen));
+        setNitrogenAmount(PrimaryFlightDisplay.instance.amountOfNitrogen);
+
+        // oxygen_bottle
+        amountOfOxygenEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.amountOfOxygen));
+        setOxygenAmount(PrimaryFlightDisplay.instance.amountOfOxygen);
+
+        // tcas
+        isTCASOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTCASOn));
+        isTCASConnectedEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTCASConnected));
+        isTCASAlarmEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTCASAlarm));
+        altitudeTCASEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.altitudeTCAS));
+        setTcasToggleGroup(PrimaryFlightDisplay.instance.isTCASOn);
+        setTcasConnectionToggleGroup(PrimaryFlightDisplay.instance.isTCASConnected);
+        setTcasAlarmToggleGroup(PrimaryFlightDisplay.instance.isTCASAlarm);
+        setTcasAltitude(PrimaryFlightDisplay.instance.altitudeTCAS);
+
+        // right_navigation_light
+        setRightNavigationLight(PrimaryFlightDisplay.instance.isRightNavigationLightOn);
+
+        // seats
+        setNonSmokingSign(PrimaryFlightDisplay.instance.isNonSmokingSignOn);
+        setSeatBeltSign(PrimaryFlightDisplay.instance.isSeatBeltSignOn);
+        setSeatLevel(PrimaryFlightDisplay.instance.levelSeat);
+
+        // tail_navigation_light
+        setTailNavigationLight(PrimaryFlightDisplay.instance.isTailNavigationLightOn);
+
+        // taxi_light
+        setTaxiLight(PrimaryFlightDisplay.instance.isTaxiLightOn);
+
+        // turbulent_air_flow_sensor
+        isTurbulentAirFlowAlarmEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm));
+        setTurbulentAirFlowAlarmToggleGroup(PrimaryFlightDisplay.instance.isTurbulentAirFlowAlarm);
+
+        // weather_radar
+        weatherRadarIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isWeatherRadarOn));
+        setWeatherRadarToggleGroup(PrimaryFlightDisplay.instance.isWeatherRadarOn);
+
+        updates = false;
+        tableView.refresh();
     }
 }
