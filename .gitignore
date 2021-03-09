@@ -28,16 +28,9 @@ hs_err_pid*
 
 # IntelliJ
 **/.idea
-/components/_template/
-/components/generator.py
-/src/main/java/event/event.template
-/src/main/java/event/event_generator.py
-/src/main/java/event/_configs/
-/src/main/java/factory/_configs/
-/src/main/java/factory/factory.template
-/src/main/java/factory/factory_generator.py
-/src/main/java/section/_configs/
-/src/main/java/section/_configs/
-/src/main/java/section/_configs/
-/src/main/java/section/receiver.template
-/src/main/java/section/section_generator.py
+
+# Templating
+*.py
+*.template
+**/_template
+**/_configs
