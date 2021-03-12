@@ -1,14 +1,33 @@
 package section;
 
 import com.google.common.eventbus.Subscribe;
+import configuration.Configuration;
 import event.Subscriber;
 import event.engine_oil_tank.EngineOilTankDecreaseLevel;
 import event.engine_oil_tank.EngineOilTankIncreaseLevel;
 import event.fuel_tank.FuelTankRefill;
 import event.fuel_tank.FuelTankTakeOut;
 import event.pitot_tube.PitotTubeMeasureVelocity;
+import factory.PitotTubeFactory;
+import factory.RadarAltimeterFactory;
+import factory.WeatherRadarFactory;
+
+import java.util.ArrayList;
 
 public class Wing extends Subscriber {
+    private ArrayList<Object> engineOilTankPortList;
+    private ArrayList<Object> fuelTankPortList;
+
+    public void build() {
+        for (int i = 0; i < Configuration.instance.numberOfEngineOilTank; i++) {
+            engineOilTankPortList.add(WeatherRadarFactory.build());
+        }
+
+        for (int i = 0; i < Configuration.instance.numberOfFuelTank; i++) {
+            fuelTankPortList.add(PitotTubeFactory.build());
+        }
+    }
+
     //EngineOilTank
     @Subscribe
     public void receive(EngineOilTankDecreaseLevel engineOilTankDecreaseLevel) {

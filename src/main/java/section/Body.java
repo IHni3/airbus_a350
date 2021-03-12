@@ -12,8 +12,11 @@ import event.radar_altimeter.*;
 import event.weather_radar.WeatherRadarOff;
 import event.weather_radar.WeatherRadarOn;
 import event.weather_radar.WeatherRadarScan;
+import factory.PitotTubeFactory;
+import factory.RadarAltimeterFactory;
 import factory.WeatherRadarFactory;
 import logging.LogEngine;
+import org.checkerframework.checker.units.qual.A;
 import recorder.FlightRecorder;
 
 import java.lang.reflect.Method;
@@ -21,15 +24,27 @@ import java.util.ArrayList;
 
 public class Body extends Subscriber {
     private ArrayList<Object> weatherRadarPortList;
+    private ArrayList<Object> pitotTubePortList;
+    private ArrayList<Object> radarAltimeterPortList;
 
     public Body() {
         weatherRadarPortList = new ArrayList<>();
+        pitotTubePortList = new ArrayList<>();
+        radarAltimeterPortList = new ArrayList<>();
         build();
     }
 
     public void build() {
         for (int i = 0; i < Configuration.instance.numberOfWeatherRadar; i++) {
             weatherRadarPortList.add(WeatherRadarFactory.build());
+        }
+
+        for (int i = 0; i < Configuration.instance.numberOfPitotTube; i++) {
+            pitotTubePortList.add(PitotTubeFactory.build());
+        }
+
+        for (int i = 0; i < Configuration.instance.numberOfRadarAltimeter; i++) {
+            radarAltimeterPortList.add(RadarAltimeterFactory.build());
         }
     }
 
