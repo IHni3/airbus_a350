@@ -11,12 +11,20 @@ import event.pitot_tube.PitotTubeMeasureVelocity;
 import factory.PitotTubeFactory;
 import factory.RadarAltimeterFactory;
 import factory.WeatherRadarFactory;
+import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 
 public class Wing extends Subscriber {
     private ArrayList<Object> engineOilTankPortList;
     private ArrayList<Object> fuelTankPortList;
+
+    public Wing(){
+        engineOilTankPortList = new ArrayList<>();
+        fuelTankPortList = new ArrayList<>();
+
+        build();
+    }
 
     public void build() {
         for (int i = 0; i < Configuration.instance.numberOfEngineOilTank; i++) {
