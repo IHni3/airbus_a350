@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -471,7 +472,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(cameraOnButton, 2, cameraRowIndex);
 
         //engine_oil_tank
-        int engineOilTankRowIndex = 3;
+        int engineOilTankRowIndex = 6;
         Label engineOilLabel = new Label("Engine Oil Level:");
         gridPane.add(engineOilLabel, 0, engineOilTankRowIndex);
 
@@ -479,7 +480,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(levelEngineOilTankLabel, 1, engineOilTankRowIndex);
       
         //fuel_tank
-        int fuelTankRowIndex = 5;
+        int fuelTankRowIndex = 7;
         Label fuelTankLabel = new Label("Fuel Tank Amount: ");
         gridPane.add(fuelTankLabel, 0, fuelTankRowIndex);
 
@@ -487,7 +488,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(amountOfFuelLabel, 1, fuelTankRowIndex);
       
         // gps
-        int gpsRowIndex = 7;
+        int gpsRowIndex = 8;
         Label gpsLabel = new Label("GPS : ");
         gridPane.add(gpsLabel, 0, gpsRowIndex);
 
@@ -531,7 +532,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(amountOfOxygenLabel, 1, oxygenRowIndex);
       
         //pitot_tube
-        int pitotTubeRowIndex = 7;
+        int pitotTubeRowIndex = 11;
         Label pitotTubeCleanLabel = new Label("Pitottube is clean: ");
         gridPane.add(pitotTubeCleanLabel, 0, pitotTubeRowIndex);
 
@@ -554,7 +555,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(velocityLabel, 4, pitotTubeRowIndex);
 
         //radar_altimeter
-        int radarAltimeterRowIndex = 9;
+        int radarAltimeterRowIndex = 12;
         Label radarAltimeterIsOnLabel = new Label("Radar Altimeter is on: ");
         gridPane.add(radarAltimeterIsOnLabel, 0, radarAltimeterRowIndex);
 
@@ -576,7 +577,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(altitudeRadarAltimeterLabel, 4, radarAltimeterRowIndex);
 
         // tcas
-        int tcasRowIndex = 12;
+        int tcasRowIndex = 13;
         Label tcasLabel = new Label("TCAS : ");
         gridPane.add(tcasLabel, 0, tcasRowIndex);
 
@@ -635,20 +636,21 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(turbulentAirFlowAlarmOnButton, 2, turbulentAirFlowSensorRowIndex);
 
         // weather_radar
+        int weatherRadarRowIndex = 15;
         Label weatherRadarLabel = new Label("WeatherRadar : ");
-        gridPane.add(weatherRadarLabel, 6, 0);
+        gridPane.add(weatherRadarLabel, 0, weatherRadarRowIndex);
 
         ToggleGroup weatherRadarToggleGroup = new ToggleGroup();
 
         weatherRadarOffButton = new RadioButton("Off");
         weatherRadarOffButton.setToggleGroup(weatherRadarToggleGroup);
         weatherRadarOffButton.setSelected(true);
-        gridPane.add(weatherRadarOffButton, 7, 0);
+        gridPane.add(weatherRadarOffButton, 1, weatherRadarRowIndex);
 
         weatherRadarOnButton = new RadioButton("On");
         weatherRadarOnButton.setToggleGroup(weatherRadarToggleGroup);
         weatherRadarOnButton.setSelected(false);
-        gridPane.add(weatherRadarOnButton, 8, 0);
+        gridPane.add(weatherRadarOnButton, 2, weatherRadarRowIndex);
         // --- insert section: end
 
         Label frequencyLabel = new Label("Frequency : ");
@@ -811,6 +813,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         t15Builder.addToggle("Alarm", "Off", "On", this::setOxgenSensorAlarm);
 
         return scroller;
+    }
 
 //    is needed in projekt with other teams components
 //    public ScrollPane buildT16View() {

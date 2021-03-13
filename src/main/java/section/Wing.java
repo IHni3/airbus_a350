@@ -407,7 +407,7 @@ public class Wing extends Subscriber {
     }
 
     // ----------------------------------------------------------------------------------------------------------------
-}
+
 
     //engine_oil_tank
     @Subscribe
@@ -473,7 +473,7 @@ public class Wing extends Subscriber {
 
         try {
             for (int i = 0; i < Configuration.instance.numberOfFuelTank; i++) {
-                int level = 0;
+                int level;
                 if(fuelTankRefill.getAmount() == -1){
                     Method refillMethod = fuelTankPortList.get(i).getClass().getDeclaredMethod("refill");
                     LogEngine.instance.write("refillMethod = " + refillMethod);
