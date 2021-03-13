@@ -91,7 +91,9 @@ public class TestRadarAltimeter {
         try {
             Method outMethod = componentPort.getClass().getDeclaredMethod("receive", String.class);
             int result = (int) outMethod.invoke(componentPort, "ping");
-            assertEquals(result, -1);
+            assertEquals(400, result);
+            result = (int) outMethod.invoke(componentPort, "");
+            assertEquals(0, result);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -106,7 +108,7 @@ public class TestRadarAltimeter {
         try {
             Method outMethod = componentPort.getClass().getDeclaredMethod("measureAltitude");
             int result = (int) outMethod.invoke(componentPort);
-            assertEquals(result, -1);
+            assertEquals(0, result);
 
         } catch (Exception e) {
             System.out.println(e);

@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -811,7 +812,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         t15Builder.addToggle("Alarm", "Off", "On", this::setOxgenSensorAlarm);
 
         return scroller;
-
+    }
 //    is needed in projekt with other teams components
 //    public ScrollPane buildT16View() {
 //        t16Builder = new GridPaneBuilder();
