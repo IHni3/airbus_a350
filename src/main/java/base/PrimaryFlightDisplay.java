@@ -8,7 +8,7 @@ public enum PrimaryFlightDisplay {
     public int levelEngineOilTank;
 
     //fuel_tank
-    public int amountOfFuel;
+    public int amountOfFuelInTank;
 
     //pitot_tube
     public boolean isPitotTubeCleaned;

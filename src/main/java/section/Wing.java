@@ -8,10 +8,8 @@ import event.engine_oil_tank.EngineOilTankDecreaseLevel;
 import event.engine_oil_tank.EngineOilTankIncreaseLevel;
 import event.fuel_tank.FuelTankRefill;
 import event.fuel_tank.FuelTankTakeOut;
-import event.pitot_tube.PitotTubeMeasureVelocity;
 import factory.*;
 import logging.LogEngine;
-import org.checkerframework.checker.units.qual.A;
 import recorder.FlightRecorder;
 
 import java.lang.reflect.Method;
@@ -115,7 +113,7 @@ public class Wing extends Subscriber {
 
                 LogEngine.instance.write("amount = " + level);
 
-                PrimaryFlightDisplay.instance.amountOfFuel = level;
+                PrimaryFlightDisplay.instance.amountOfFuelInTank = level;
                 FlightRecorder.instance.insert("Body", "Fuel Tank (amount): " + level);
 
                 LogEngine.instance.write("+");
@@ -124,8 +122,8 @@ public class Wing extends Subscriber {
             System.out.println(e.getMessage());
         }
 
-        LogEngine.instance.write("PrimaryFlightDisplay (amountOfFuel): " + PrimaryFlightDisplay.instance.amountOfFuel);
-        FlightRecorder.instance.insert("PrimaryFlightDisplay", "amountOfFuel: " + PrimaryFlightDisplay.instance.amountOfFuel);
+        LogEngine.instance.write("PrimaryFlightDisplay (amountOfFuel): " + PrimaryFlightDisplay.instance.amountOfFuelInTank);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "amountOfFuel: " + PrimaryFlightDisplay.instance.amountOfFuelInTank);
     }
 
     @Subscribe
@@ -142,7 +140,7 @@ public class Wing extends Subscriber {
 
                 LogEngine.instance.write("amount = " + amount);
 
-                PrimaryFlightDisplay.instance.amountOfFuel = amount;
+                PrimaryFlightDisplay.instance.amountOfFuelInTank = amount;
                 FlightRecorder.instance.insert("Body", "Fuel Tank (amount): " + amount);
 
                 LogEngine.instance.write("+");
@@ -151,7 +149,7 @@ public class Wing extends Subscriber {
             System.out.println(e.getMessage());
         }
 
-        LogEngine.instance.write("PrimaryFlightDisplay (amountOfFuel): " + PrimaryFlightDisplay.instance.amountOfFuel);
-        FlightRecorder.instance.insert("PrimaryFlightDisplay", "amountOfFuel: " + PrimaryFlightDisplay.instance.amountOfFuel);
+        LogEngine.instance.write("PrimaryFlightDisplay (amountOfFuel): " + PrimaryFlightDisplay.instance.amountOfFuelInTank);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "amountOfFuel: " + PrimaryFlightDisplay.instance.amountOfFuelInTank);
     }
 }

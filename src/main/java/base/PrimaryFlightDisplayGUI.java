@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -454,10 +453,10 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     //fuel_tank
     public void setAmountOfFuel(int amountOfFuel){
-        if(PrimaryFlightDisplay.instance.amountOfFuel == amountOfFuel && !updates){return;}
+        if(PrimaryFlightDisplay.instance.amountOfFuelInTank == amountOfFuel && !updates){return;}
 //        Node[] elements = t16Builder.getUiElement(3);
 //        ((TextField) elements[1]).setText(Integer.toString(amountOfFuel));
-        PrimaryFlightDisplay.instance.amountOfFuel = amountOfFuel;
+        PrimaryFlightDisplay.instance.amountOfFuelInTank = amountOfFuel;
 
         amountOfFuelLabel.setText(Integer.toString(amountOfFuel));
 
@@ -537,7 +536,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         dataList.add(levelEngineOilTankEntry);
 
         //fuel_tank
-        amountOfFuelEntry = new PrimaryFlightDisplayEntry("Fuel Tank Level (amount)", Integer.toString(PrimaryFlightDisplay.instance.amountOfFuel));
+        amountOfFuelEntry = new PrimaryFlightDisplayEntry("Fuel Tank Level (amount)", Integer.toString(PrimaryFlightDisplay.instance.amountOfFuelInTank));
         dataList.add(amountOfFuelEntry);
 
         //pitot_tube
@@ -573,8 +572,8 @@ public class PrimaryFlightDisplayGUI extends Application {
         setEngineOilTankLevel(PrimaryFlightDisplay.instance.levelEngineOilTank);
 
         //fuel_tank
-        amountOfFuelEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.amountOfFuel));
-        setAmountOfFuel(PrimaryFlightDisplay.instance.amountOfFuel);
+        amountOfFuelEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.amountOfFuelInTank));
+        setAmountOfFuel(PrimaryFlightDisplay.instance.amountOfFuelInTank);
 
         //pitot_tube
         isPitotTubeCleanedEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isPitotTubeCleaned));
