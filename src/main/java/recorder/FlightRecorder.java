@@ -53,8 +53,8 @@ public enum FlightRecorder {
         StringBuilder sqlStringBuilder = new StringBuilder();
         sqlStringBuilder.append("CREATE TABLE data ").append(" ( ");
         sqlStringBuilder.append("id BIGINT NOT NULL").append(",");
-        sqlStringBuilder.append("className VARCHAR(20) NOT NULL").append(",");
-        sqlStringBuilder.append("message VARCHAR(50) NOT NULL").append(",");
+        sqlStringBuilder.append("className VARCHAR(50) NOT NULL").append(","); //has to be longer than 20 for longer modulenames to fit
+        sqlStringBuilder.append("message VARCHAR(100) NOT NULL").append(","); //has to be longer than 50 for longer messages to fit
         sqlStringBuilder.append("PRIMARY KEY (id)");
         sqlStringBuilder.append(" )");
         update(sqlStringBuilder.toString());

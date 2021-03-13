@@ -11,6 +11,10 @@ public class FuelTankRefill {
         this.amount = amount;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     public String toString() {
         return "Event: FuelTank - Refill (amount: " + amount + ")";
     }

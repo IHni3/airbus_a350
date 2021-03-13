@@ -13,9 +13,13 @@ public enum Configuration {
     public String dataDirectory = userDirectory + fileSeparator + "data" + fileSeparator;
     public String databaseFile = dataDirectory + "flight_recorder_a350.db";
 
-    // weather_radar
-    public String pathToWeatherRadarJavaArchive = generatePathToJavaArchive("weather_radar");
-    public int numberOfWeatherRadar = 2;
+    // engine_oil_tank
+    public String pathToEngineOilTankJavaArchive = generatePathToJavaArchive("tank_bottle", "engine_oil_tank");
+    public int numberOfEngineOilTank = 4;
+
+    // fuel_tank
+    public String pathToFuelTankJavaArchive = generatePathToJavaArchive("tank_bottle", "fuel_tank");
+    public int numberOfFuelTank = 3;
 
     // pitot_tube
     public String pathToPitotTubeJavaArchive = generatePathToJavaArchive("sensor_03", "pitot_tube");
@@ -25,13 +29,9 @@ public enum Configuration {
     public String pathToRadarAltimeterJavaArchive = generatePathToJavaArchive("sensor_03", "radar_altimeter");
     public int numberOfRadarAltimeter = 2;
 
-    // engine_oil_tank
-    public String pathToEngineOilTankJavaArchive = generatePathToJavaArchive("tank_bottle", "engine_oil_tank");
-    public int numberOfEngineOilTank = 4;
-
-    // fuel_tank
-    public String pathToFuelTankJavaArchive = generatePathToJavaArchive("tank_bottle", "fuel_tank");
-    public int numberOfFuelTank = 3;
+    // weather_radar
+    public String pathToWeatherRadarJavaArchive = generatePathToJavaArchive("weather_radar");
+    public int numberOfWeatherRadar = 2;
 
     // slat
     public String pathToSlatJavaArchive = generatePathToJavaArchive("slat");

@@ -10,4 +10,8 @@ public class RadarAltimeterReceive {
     public String toString() {
         return "Event: RadarAltimeter - RadarAlitmeter - Receive - RadioWave: " + radioWave;
     }
+
+    public String getRadioWave() {
+        return radioWave;
+    }
 }

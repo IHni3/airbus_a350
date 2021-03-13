@@ -6,7 +6,7 @@ public class EngineOilTank {
     private final String id = "8843476 / 9668368";
     // port
     public Port port;
-    private int level;
+    private int level = 1000;
 
     // private constructor
     private EngineOilTank() {
@@ -27,7 +27,10 @@ public class EngineOilTank {
         level += value;
         if (level < 0) {
             level = 0;
+        }else if(level > 1200) {
+            level = 1200;
         }
+
         return level;
     }
 
@@ -35,7 +38,10 @@ public class EngineOilTank {
         level -= value;
         if (level < 0) {
             level = 0;
+        }else if(level > 1200) {
+            level = 1200;
         }
+
         return level;
     }
 

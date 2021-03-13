@@ -31,16 +31,23 @@ public class RadarAltimeter {
     }
 
     public void innerSend(String radioWave) {
-
+        if(radioWave == null){
+            return;
+        }
+        altitude = radioWave.length()*100;
     }
 
     public int innerReceive(String radioWave) {
-        return -1;
+        if (radioWave == null) {
+            return altitude;
+        }
+        altitude = radioWave.length() * 100;
+        return altitude;
     }
 
     public int innerMeasureAltitude() {
-        innerSend("ping");
-        altitude = innerReceive("ping");
+        innerSend(null);
+        innerReceive(null);
         return altitude;
     }
 

@@ -7,6 +7,10 @@ public class FuelTankTakeOut {
         this.amount = amount;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     public String toString() {
         return "Event: FuelTank - TakeOut (amount: " + amount + ")";
     }
