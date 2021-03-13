@@ -4,8 +4,12 @@ public enum PrimaryFlightDisplay {
     instance;
     public boolean isWeatherRadarOn;
 
+
     // camera
     public boolean isCameraOn;
+  
+    //engine_oil_tank
+    public int levelEngineOilTank;
 
     // exhaust_gas_temperature_sensor
     public int temperatureExhaustGasTemperatureSensor;
@@ -25,6 +29,9 @@ public enum PrimaryFlightDisplay {
     public boolean isAlarmReserveFuelSensor;
     public boolean isAlarmMajorFuelSensor;
     public boolean isAlarmCriticalFuelSensor;
+  
+    //fuel_tank
+    public int amountOfFuel;
 
     // gps
     public boolean isGPSOn;
@@ -40,6 +47,14 @@ public enum PrimaryFlightDisplay {
 
     // oxygen_bottle
     public int amountOfOxygen;
+  
+    //pitot_tube
+    public boolean isPitotTubeCleaned;
+    public int velocity;
+  
+    //radar_altimeter
+    public boolean isRadarAltimeterOn;
+    public int altitudeRadarAltimeter;
 
     // right_navigation_light
     public boolean isRightNavigationLightOn;
