@@ -6,7 +6,7 @@ public class WeatherRadarFactory {
 
     public static Object build() {
         return FactoryUtils.build("WeatherRadarFactory",
-                Configuration.instance.pathToWeatherRadarJavaArchive,
-                "WeatherRadar");
+                                  Configuration.instance.pathToWeatherRadarJavaArchive,
+                                  "WeatherRadar");
     }
 }

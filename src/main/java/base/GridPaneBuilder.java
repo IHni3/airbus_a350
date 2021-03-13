@@ -210,5 +210,4 @@ public class GridPaneBuilder {
         pane.add(label, 0, row);
         pane.add(after, 1, row, columns-1, 1);
     }
-
 }
