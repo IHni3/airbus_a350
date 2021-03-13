@@ -30,6 +30,15 @@ import event.taxi_light.TaxiLightOn;
 import event.tcas.*;
 import event.turbulent_air_flow_sensor.TurbulentAirFlowSensorBodyMeasure;
 import event.turbulent_air_flow_sensor.TurbulentAirFlowSensorWingMeasure;
+import event.engine_oil_tank.EngineOilTankDecreaseLevel;
+import event.engine_oil_tank.EngineOilTankIncreaseLevel;
+import event.fuel_tank.FuelTankRefill;
+import event.fuel_tank.FuelTankTakeOut;
+import event.pitot_tube.PitotTubeClean;
+import event.pitot_tube.PitotTubeMeasureStaticPressure;
+import event.pitot_tube.PitotTubeMeasureTotalPressure;
+import event.pitot_tube.PitotTubeMeasureVelocity;
+import event.radar_altimeter.*;
 import event.weather_radar.WeatherRadarOff;
 import event.weather_radar.WeatherRadarOn;
 import section.Body;
@@ -78,12 +87,18 @@ public class Airplane implements IAirplane {
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
 
+        //engine_oil_tank
+        eventBus.post(new EngineOilTankIncreaseLevel());
+      
         // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
 
         // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
 
+        //fuel_tank
+        eventBus.post(new FuelTankRefill());
+      
         // gps
         eventBus.post(new GPSOn());
         eventBus.post(new GPSConnect("euro-4"));
@@ -99,6 +114,17 @@ public class Airplane implements IAirplane {
         // oxygen_bottle
         eventBus.post(new OxygenBottleRefill());
 
+        //pitot_tube
+        eventBus.post(new PitotTubeClean());
+        eventBus.post(new PitotTubeMeasureStaticPressure());
+        eventBus.post(new PitotTubeMeasureTotalPressure());
+      
+        //radar_altimeter
+        eventBus.post(new RadarAltimeterOn());
+        eventBus.post(new RadarAltimeterSend(""));
+        eventBus.post(new RadarAltimeterReceive(""));
+        eventBus.post(new RadarAlitmeterMeasureAltitude());
+      
         // right_navigation_light
         eventBus.post(new RightNavigationLightOff());
 
@@ -130,12 +156,17 @@ public class Airplane implements IAirplane {
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOn());
 
+        //engine_oil_tank
+      
         // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
 
         // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
-
+        
+        //fuel_tank
+        eventBus.post(new FuelTankTakeOut(1));
+      
         // gps
         eventBus.post(new GPSSend("request data"));
         eventBus.post(new GPSReceive());
@@ -147,6 +178,16 @@ public class Airplane implements IAirplane {
         // nitrogen_bottle
         eventBus.post(new NitrogenBottleTakeOut(5));
 
+        //pitot_tube
+        eventBus.post(new PitotTubeMeasureStaticPressure());
+        eventBus.post(new PitotTubeMeasureTotalPressure());
+
+        //radar_altimeter
+        eventBus.post(new RadarAltimeterOn());
+        eventBus.post(new RadarAltimeterSend(""));
+        eventBus.post(new RadarAltimeterReceive(""));
+        eventBus.post(new RadarAlitmeterMeasureAltitude());
+      
         // right_navigation_light
         eventBus.post(new RightNavigationLightOn());
 
@@ -173,12 +214,18 @@ public class Airplane implements IAirplane {
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOn());
 
+        //engine_oil_tank
+        eventBus.post(new EngineOilTankDecreaseLevel());
+      
         // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
 
         // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
 
+        //fuel_tank
+        eventBus.post(new FuelTankTakeOut(10));
+      
         // gps
         eventBus.post(new GPSSend("request data"));
         eventBus.post(new GPSReceive());
@@ -190,9 +237,19 @@ public class Airplane implements IAirplane {
         // nitrogen_bottle
         eventBus.post(new NitrogenBottleTakeOut(10));
 
+         //pitot_tube
+        eventBus.post(new PitotTubeMeasureStaticPressure());
+        eventBus.post(new PitotTubeMeasureTotalPressure());
+
         // oxygen_bottle
         eventBus.post(new OxygenBottleTakeOut(2));
 
+        //radar_altimeter
+        eventBus.post(new RadarAltimeterOn());
+        eventBus.post(new RadarAltimeterSend("pingpong"));
+        eventBus.post(new RadarAltimeterReceive("pingpong"));
+        eventBus.post(new RadarAlitmeterMeasureAltitude());
+      
         // right_navigation_light
         eventBus.post(new RightNavigationLightOff());
 
@@ -222,16 +279,22 @@ public class Airplane implements IAirplane {
         eventBus.post(new event.crew_seat.NonSmokingSignOn());
         eventBus.post(new event.crew_seat.SeatBeltSignOff());
 
-        // fuel_flow_sensor
-        eventBus.post(new FuelFlowSensorMeasure());
-
         // economy_class_seat
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
 
+        //engine_oil_tank
+        eventBus.post(new EngineOilTankDecreaseLevel());
+      
         // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
 
+        // fuel_flow_sensor
+        eventBus.post(new FuelFlowSensorMeasure());
+      
+        //fuel_tank
+        eventBus.post(new FuelTankTakeOut(4));
+      
         // gps
         eventBus.post(new GPSSend("request data"));
         eventBus.post(new GPSReceive());
@@ -245,7 +308,17 @@ public class Airplane implements IAirplane {
 
         // oxygen_bottle
         eventBus.post(new OxygenBottleTakeOut(2));
+      
+        //pitot_tube
+        eventBus.post(new PitotTubeMeasureStaticPressure());
+        eventBus.post(new PitotTubeMeasureTotalPressure());
 
+        //radar_altimeter
+        eventBus.post(new RadarAltimeterOn());
+        eventBus.post(new RadarAltimeterSend("pingpongpingpong"));
+        eventBus.post(new RadarAltimeterReceive("pingpongpingpong"));
+        eventBus.post(new RadarAlitmeterMeasureAltitude());
+      
         // right_navigation_light
         eventBus.post(new RightNavigationLightOff());
 
@@ -280,11 +353,16 @@ public class Airplane implements IAirplane {
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
 
+        //engine_oil_tank
+      
         // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
 
         // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
+      
+        //fuel_tank
+        eventBus.post(new FuelTankTakeOut(2));
 
         // gps
         eventBus.post(new GPSSend("request data"));
@@ -299,7 +377,17 @@ public class Airplane implements IAirplane {
 
         // oxygen_bottle
         eventBus.post(new OxygenBottleTakeOut(2));
+      
+        //pitot_tube
+        eventBus.post(new PitotTubeMeasureStaticPressure());
+        eventBus.post(new PitotTubeMeasureTotalPressure());
 
+        //radar_altimeter
+        eventBus.post(new RadarAltimeterOn());
+        eventBus.post(new RadarAltimeterSend("pingpongpingpongpingpong"));
+        eventBus.post(new RadarAltimeterReceive("pingpongpingpongpingpong"));
+        eventBus.post(new RadarAlitmeterMeasureAltitude());
+        
         // right_navigation_light
         eventBus.post(new RightNavigationLightOn());
 
@@ -334,11 +422,16 @@ public class Airplane implements IAirplane {
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
 
+        //engine_oil_tank
+        
         // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
 
         // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
+      
+        //fuel_tank
+        eventBus.post(new FuelTankTakeOut(2));
 
         // gps
         eventBus.post(new GPSSend("request data"));
@@ -353,7 +446,17 @@ public class Airplane implements IAirplane {
 
         // oxygen_bottle
         eventBus.post(new OxygenBottleTakeOut(2));
+      
+        //pitot_tube
+        eventBus.post(new PitotTubeMeasureStaticPressure());
+        eventBus.post(new PitotTubeMeasureTotalPressure());
 
+        //radar_altimeter
+        eventBus.post(new RadarAltimeterOn());
+        eventBus.post(new RadarAltimeterSend("pingpongpingpongpingpong"));
+        eventBus.post(new RadarAltimeterReceive("pingpongpingpongpingpong"));
+        eventBus.post(new RadarAlitmeterMeasureAltitude());
+      
         // right_navigation_light
         eventBus.post(new RightNavigationLightOn());
 
@@ -388,11 +491,16 @@ public class Airplane implements IAirplane {
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOn());
 
+        //engine_oil_tank
+      
         // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
 
         // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
+      
+        //fuel_tank
+        eventBus.post(new FuelTankTakeOut(1));
 
         // gps
         eventBus.post(new GPSSend("request data"));
@@ -407,7 +515,17 @@ public class Airplane implements IAirplane {
 
         // oxygen_bottle
         eventBus.post(new OxygenBottleTakeOut(2));
+      
+        //pitot_tube
+        eventBus.post(new PitotTubeMeasureStaticPressure());
+        eventBus.post(new PitotTubeMeasureTotalPressure());
 
+        //radar_altimeter
+        eventBus.post(new RadarAltimeterOn());
+        eventBus.post(new RadarAltimeterSend("pingpongpingpong"));
+        eventBus.post(new RadarAltimeterReceive("pingpongpingpong"));
+        eventBus.post(new RadarAlitmeterMeasureAltitude());
+      
         // right_navigation_light
         eventBus.post(new RightNavigationLightOn());
 
@@ -441,12 +559,17 @@ public class Airplane implements IAirplane {
         // economy_class_seat
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOn());
-
+  
+        //engine_oil_tank
+        
         // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
 
         // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
+      
+        //fuel_tank
+        eventBus.post(new FuelTankTakeOut(1));
 
         // gps
         eventBus.post(new GPSSend("request data"));
@@ -462,6 +585,16 @@ public class Airplane implements IAirplane {
         // oxygen_bottle
         eventBus.post(new OxygenBottleTakeOut(2));
 
+        //pitot_tube
+        eventBus.post(new PitotTubeMeasureStaticPressure());
+        eventBus.post(new PitotTubeMeasureTotalPressure());
+      
+        //radar_altimeter
+        eventBus.post(new RadarAltimeterOn());
+        eventBus.post(new RadarAltimeterSend("pingpong"));
+        eventBus.post(new RadarAltimeterReceive("pingpong"));
+        eventBus.post(new RadarAlitmeterMeasureAltitude());
+      
         // right_navigation_light
         eventBus.post(new RightNavigationLightOn());
 
@@ -498,12 +631,18 @@ public class Airplane implements IAirplane {
         // economy_class_seat
         eventBus.post(new event.economy_class_seat.NonSmokingSignOff());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
+      
+         //engine_oil_tank
+        eventBus.post(new EngineOilTankIncreaseLevel());
 
         // exhaust_gas_temperature_sensor
         eventBus.post(new ExhaustGasTemperatureSensorMeasure());
 
         // fuel_flow_sensor
         eventBus.post(new FuelFlowSensorMeasure());
+      
+        //fuel_tank
+        eventBus.post(new FuelTankRefill());
 
         // gps
         eventBus.post(new GPSOff());
@@ -517,6 +656,17 @@ public class Airplane implements IAirplane {
 
         // oxygen_bottle
         eventBus.post(new OxygenBottleRefill());
+      
+        //pitot_tube
+        eventBus.post(new PitotTubeMeasureStaticPressure());
+        eventBus.post(new PitotTubeMeasureTotalPressure());
+        eventBus.post(new PitotTubeClean());
+      
+        //radar_altimeter
+        eventBus.post(new RadarAltimeterSend(""));
+        eventBus.post(new RadarAltimeterReceive(""));
+        eventBus.post(new RadarAlitmeterMeasureAltitude());
+        eventBus.post(new RadarAltimeterOff());
 
         // right_navigation_light
         eventBus.post(new RightNavigationLightOff());

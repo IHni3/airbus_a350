@@ -8,7 +8,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -34,6 +33,14 @@ public class PrimaryFlightDisplayGUI extends Application {
     private PrimaryFlightDisplayEntry cameraIsOnEntry;
     private RadioButton cameraOffButton;
     private RadioButton cameraOnButton;
+  
+    //engine_oil_tank
+    private PrimaryFlightDisplayEntry levelEngineOilTankEntry;
+    private Label levelEngineOilTankLabel;
+  
+    //fuel_tank
+    private PrimaryFlightDisplayEntry amountOfFuelEntry;
+    private Label amountOfFuelLabel;
 
     // gps
     private PrimaryFlightDisplayEntry gpsIsOnEntry;
@@ -53,6 +60,22 @@ public class PrimaryFlightDisplayGUI extends Application {
     private PrimaryFlightDisplayEntry amountOfOxygenEntry;
 
     private Label amountOfOxygenLabel;
+  
+    //pitot_tube
+    private PrimaryFlightDisplayEntry isPitotTubeCleanedEntry;
+    private PrimaryFlightDisplayEntry velocityEntry;
+
+    private RadioButton isPitotTubeCleanedOnButton;
+    private RadioButton isPitotTubeCleanedOffButton;
+    private Label velocityLabel;
+  
+    //radar_altimeter
+    private PrimaryFlightDisplayEntry isRadarAltimeterOnEntry;
+    private PrimaryFlightDisplayEntry altitudeRadarAltimeterEntry;
+
+    private RadioButton isRadarAltimeterOnOnButton;
+    private RadioButton isRadarAltimeterOnOffButton;
+    private Label altitudeRadarAltimeterLabel;
 
     // tcas
     private PrimaryFlightDisplayEntry isTCASOnEntry;
@@ -82,6 +105,10 @@ public class PrimaryFlightDisplayGUI extends Application {
     // GUIs of group T15
     private GridPaneBuilder t15Builder;
     private boolean updates;
+
+    //GUIs of group T16
+    private GridPaneBuilder t16Builder;
+
 
     public static void main(String... args) {
         LogEngine.instance.init();
@@ -114,7 +141,7 @@ public class PrimaryFlightDisplayGUI extends Application {
             public void handle(ActionEvent event) {
                 PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
                 PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
-                PrimaryFlightDisplay.instance.amountOfFuel = 69.420;
+//               PrimaryFlightDisplay.instance.amountOfFuel = 69.420;
                 PrimaryFlightDisplay.instance.isRightNavigationLightOn = true;
                 PrimaryFlightDisplay.instance.isTailNavigationLightOn = true;
                 PrimaryFlightDisplay.instance.isNonSmokingSignOn = true;
@@ -122,6 +149,14 @@ public class PrimaryFlightDisplayGUI extends Application {
                 PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated = true;
                 PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = true;
                 PrimaryFlightDisplay.instance.isTaxiLightOn = false;
+//                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+//                PrimaryFlightDisplay.instance.levelEngineOilTank = PrimaryFlightDisplay.instance.levelEngineOilTank;
+//                PrimaryFlightDisplay.instance.amountOfFuel = 1000;
+//                PrimaryFlightDisplay.instance.isPitotTubeCleaned = true;
+                PrimaryFlightDisplay.instance.velocity = 0;
+//                PrimaryFlightDisplay.instance.isRadarAltimeterOn = true;
+//                PrimaryFlightDisplay.instance.altitudeRadarAltimeter = 0;
+
                 cockpit.startup();
                 update();
             }
@@ -134,7 +169,7 @@ public class PrimaryFlightDisplayGUI extends Application {
             public void handle(ActionEvent event) {
                 PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
                 PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
-                PrimaryFlightDisplay.instance.amountOfFuel = 69.420;
+//                PrimaryFlightDisplay.instance.amountOfFuel = 69.420;        //TODO logisch durch gruppe 16 belegt
                 PrimaryFlightDisplay.instance.isRightNavigationLightOn = false;
                 PrimaryFlightDisplay.instance.isTailNavigationLightOn = true;
                 PrimaryFlightDisplay.instance.isNonSmokingSignOn = true;
@@ -142,6 +177,15 @@ public class PrimaryFlightDisplayGUI extends Application {
                 PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated = true;
                 PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated = true;
                 PrimaryFlightDisplay.instance.isTaxiLightOn = true;
+
+//                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+//                PrimaryFlightDisplay.instance.levelEngineOilTank = PrimaryFlightDisplay.instance.levelEngineOilTank;
+//                PrimaryFlightDisplay.instance.amountOfFuel = 9999;
+//                PrimaryFlightDisplay.instance.isPitotTubeCleaned = true;
+                PrimaryFlightDisplay.instance.velocity = 10;
+//                PrimaryFlightDisplay.instance.isRadarAltimeterOn = true;
+//                PrimaryFlightDisplay.instance.altitudeRadarAltimeter = 0;
+
                 cockpit.taxi();
                 update();
             }
@@ -152,6 +196,13 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         takeoffButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
+//                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+//                PrimaryFlightDisplay.instance.levelEngineOilTank = 1000;
+//                PrimaryFlightDisplay.instance.amountOfFuel = 9800;
+//                PrimaryFlightDisplay.instance.isPitotTubeCleaned = true;
+                PrimaryFlightDisplay.instance.velocity = 200;
+//                PrimaryFlightDisplay.instance.isRadarAltimeterOn = true;
+//                PrimaryFlightDisplay.instance.altitudeRadarAltimeter = 0;
                 cockpit.takeoff();
                 PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
                 PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
@@ -172,6 +223,13 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         climbingButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
+//                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+//                PrimaryFlightDisplay.instance.levelEngineOilTank = 1000;
+//                PrimaryFlightDisplay.instance.amountOfFuel = 9700;
+//                PrimaryFlightDisplay.instance.isPitotTubeCleaned = true;
+                PrimaryFlightDisplay.instance.velocity = 240;
+//                PrimaryFlightDisplay.instance.isRadarAltimeterOn = true;
+//                PrimaryFlightDisplay.instance.altitudeRadarAltimeter = 1000;
                 cockpit.climbing();
                 PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
                 PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
@@ -192,6 +250,13 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         rightTurnButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
+//                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+//                PrimaryFlightDisplay.instance.levelEngineOilTank = 1000;
+//                PrimaryFlightDisplay.instance.amountOfFuel = 9600;
+//                PrimaryFlightDisplay.instance.isPitotTubeCleaned = true;
+                PrimaryFlightDisplay.instance.velocity = 250;
+//                PrimaryFlightDisplay.instance.isRadarAltimeterOn = true;
+//                PrimaryFlightDisplay.instance.altitudeRadarAltimeter = 5000;
                 cockpit.rightTurn();
                 PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
                 PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
@@ -212,6 +277,13 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         leftTurnButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
+//                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+//                PrimaryFlightDisplay.instance.levelEngineOilTank = 1000;
+//                PrimaryFlightDisplay.instance.amountOfFuel = 9600;
+//                PrimaryFlightDisplay.instance.isPitotTubeCleaned = true;
+                PrimaryFlightDisplay.instance.velocity = 250;
+//                PrimaryFlightDisplay.instance.isRadarAltimeterOn = true;
+//                PrimaryFlightDisplay.instance.altitudeRadarAltimeter = 5000;
                 cockpit.leftTurn();
                 PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
                 PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
@@ -232,6 +304,13 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         descentButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
+//                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+//                PrimaryFlightDisplay.instance.levelEngineOilTank = 1000;
+//                PrimaryFlightDisplay.instance.amountOfFuel = 9400;
+//                PrimaryFlightDisplay.instance.isPitotTubeCleaned = true;
+                PrimaryFlightDisplay.instance.velocity = 240;
+//                PrimaryFlightDisplay.instance.isRadarAltimeterOn = true;
+//                PrimaryFlightDisplay.instance.altitudeRadarAltimeter = 4000;
                 cockpit.descent();
                 PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
                 PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
@@ -252,6 +331,13 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         landingButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
+//                PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
+//                PrimaryFlightDisplay.instance.levelEngineOilTank = 1000;
+//                PrimaryFlightDisplay.instance.amountOfFuel = 9300;
+//                PrimaryFlightDisplay.instance.isPitotTubeCleaned = true;
+                PrimaryFlightDisplay.instance.velocity = 200;
+//                PrimaryFlightDisplay.instance.isRadarAltimeterOn = true;
+//                PrimaryFlightDisplay.instance.altitudeRadarAltimeter = 1000;
                 cockpit.landing();
                 PrimaryFlightDisplay.instance.isWeatherRadarOn = true;
                 PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 777;
@@ -272,6 +358,13 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         shutdownButton.setOnAction(new EventHandler<>() {
             public void handle(ActionEvent event) {
+//                PrimaryFlightDisplay.instance.isWeatherRadarOn = false;
+//                PrimaryFlightDisplay.instance.levelEngineOilTank = 1000;
+//                PrimaryFlightDisplay.instance.amountOfFuel = 9200;
+//                PrimaryFlightDisplay.instance.isPitotTubeCleaned = true;
+                PrimaryFlightDisplay.instance.velocity = 0;
+//                PrimaryFlightDisplay.instance.isRadarAltimeterOn = false;
+//                PrimaryFlightDisplay.instance.altitudeRadarAltimeter = 0;
                 cockpit.shutdown();
                 PrimaryFlightDisplay.instance.isWeatherRadarOn = false;
                 PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor = 0;
@@ -307,6 +400,13 @@ public class PrimaryFlightDisplayGUI extends Application {
         t15Tab.setText("T15");
         t15Tab.setContent(buildT15View());
         tabPane.getTabs().add(t15Tab);
+
+//        // is needed when other teams are implemented
+//        Tab t16Tab = new Tab();
+//        t16Tab.setText("T16");
+//        t16Tab.setContent(buildT16View());
+//        tabPane.getTabs().add(t16Tab);
+
 
         VBox vbox = new VBox(20);
         vbox.setPadding(new Insets(25, 25, 25, 25));
@@ -370,6 +470,22 @@ public class PrimaryFlightDisplayGUI extends Application {
         cameraOnButton.setSelected(false);
         gridPane.add(cameraOnButton, 2, cameraRowIndex);
 
+        //engine_oil_tank
+        int engineOilTankRowIndex = 3;
+        Label engineOilLabel = new Label("Engine Oil Level:");
+        gridPane.add(engineOilLabel, 0, engineOilTankRowIndex);
+
+        levelEngineOilTankLabel = new Label("1000");
+        gridPane.add(levelEngineOilTankLabel, 1, engineOilTankRowIndex);
+      
+        //fuel_tank
+        int fuelTankRowIndex = 5;
+        Label fuelTankLabel = new Label("Fuel Tank Amount: ");
+        gridPane.add(fuelTankLabel, 0, fuelTankRowIndex);
+
+        amountOfFuelLabel = new Label("10000");
+        gridPane.add(amountOfFuelLabel, 1, fuelTankRowIndex);
+      
         // gps
         int gpsRowIndex = 7;
         Label gpsLabel = new Label("GPS : ");
@@ -413,6 +529,51 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         amountOfOxygenLabel = new Label("100");
         gridPane.add(amountOfOxygenLabel, 1, oxygenRowIndex);
+      
+        //pitot_tube
+        int pitotTubeRowIndex = 7;
+        Label pitotTubeCleanLabel = new Label("Pitottube is clean: ");
+        gridPane.add(pitotTubeCleanLabel, 0, pitotTubeRowIndex);
+
+
+        ToggleGroup pitotTubeIsCleanGroup = new ToggleGroup();
+        isPitotTubeCleanedOffButton = new RadioButton("Not clean");
+        isPitotTubeCleanedOffButton.setToggleGroup(pitotTubeIsCleanGroup);
+        isPitotTubeCleanedOffButton.setSelected(false);
+        gridPane.add(isPitotTubeCleanedOffButton, 1, pitotTubeRowIndex);
+
+        isPitotTubeCleanedOnButton = new RadioButton("Clean");
+        isPitotTubeCleanedOnButton.setToggleGroup(pitotTubeIsCleanGroup);
+        isPitotTubeCleanedOnButton.setSelected(true);
+        gridPane.add(isPitotTubeCleanedOnButton, 2, pitotTubeRowIndex);
+
+        Label pitotTubeVelocityLabel = new Label("Pitottube measured velocity: ");
+        velocityLabel = new Label("0");
+
+        gridPane.add(pitotTubeVelocityLabel, 3, pitotTubeRowIndex);
+        gridPane.add(velocityLabel, 4, pitotTubeRowIndex);
+
+        //radar_altimeter
+        int radarAltimeterRowIndex = 9;
+        Label radarAltimeterIsOnLabel = new Label("Radar Altimeter is on: ");
+        gridPane.add(radarAltimeterIsOnLabel, 0, radarAltimeterRowIndex);
+
+        ToggleGroup isRadarAltimeterOnGroup = new ToggleGroup();
+        isRadarAltimeterOnOffButton = new RadioButton("Off");
+        isRadarAltimeterOnOffButton.setSelected(true);
+        isRadarAltimeterOnOffButton.setToggleGroup(isRadarAltimeterOnGroup);
+        gridPane.add(isRadarAltimeterOnOffButton, 1, radarAltimeterRowIndex);
+
+        isRadarAltimeterOnOnButton = new RadioButton("On");
+        isRadarAltimeterOnOnButton.setSelected(false);
+        isRadarAltimeterOnOnButton.setToggleGroup(isRadarAltimeterOnGroup);
+        gridPane.add(isRadarAltimeterOnOnButton, 2, radarAltimeterRowIndex);
+
+        Label radarAltimeterAltitudeLabel = new Label("Radar Altimeter altitude: ");
+        gridPane.add(radarAltimeterAltitudeLabel, 3, radarAltimeterRowIndex);
+
+        altitudeRadarAltimeterLabel = new Label("0");
+        gridPane.add(altitudeRadarAltimeterLabel, 4, radarAltimeterRowIndex);
 
         // tcas
         int tcasRowIndex = 12;
@@ -518,6 +679,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         tableView.setPrefHeight(450);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
+
 
     // camera
     public void setCameraToggleGroup(boolean isCameraOn) {
@@ -649,6 +811,109 @@ public class PrimaryFlightDisplayGUI extends Application {
         t15Builder.addToggle("Alarm", "Off", "On", this::setOxgenSensorAlarm);
 
         return scroller;
+
+//    is needed in projekt with other teams components
+//    public ScrollPane buildT16View() {
+//        t16Builder = new GridPaneBuilder();
+//        t16Builder.setDataList(data);
+//
+//        ScrollPane scroller = new ScrollPane();
+//        scroller.setContent(t16Builder.gridPane());
+//        scroller.setFitToWidth(true);
+//
+//        t16Builder.addTitle("Engine Oil Tank");
+//        t16Builder.addInteger("Engine Oil Tank Level", 0, 1000, this::setEngineOilTankLevel);
+//
+//        t16Builder.addTitle("Fuel Tank");
+//        t16Builder.addInteger("Fuel Amount", 0, 50000, this::setAmountOfFuel);
+//
+//        t16Builder.addTitle("Pitot Tube");
+//        t16Builder.addToggle("Pitot Tube Cleaning", "Off", "On",this::setPitotTubeCleanedToggleGroup);
+//        t16Builder.addInteger("Velocity", 0, 1500, this::setVelocity);
+//
+//        t16Builder.addTitle("Radar Altimeter");
+//        t16Builder.addToggle("Radar Altimeter", "Off", "On", this::setRadarAltimeterOnToggleGroup);
+//        t16Builder.addInteger("Radar Altimeter Altitude", 0, 5000, this::setRadarAltimeterAltitude);
+//
+//        return scroller;
+//    }
+
+    //engine_oil_tank
+    public void setEngineOilTankLevel(int oilTankLevel){
+        if(PrimaryFlightDisplay.instance.levelEngineOilTank == oilTankLevel && !updates){return;}
+//        Node[] elements = t16Builder.getUiElement(1);
+//        ((TextField) elements[1]).setText(Integer.toString(oilTankLevel));
+        PrimaryFlightDisplay.instance.levelEngineOilTank = oilTankLevel;
+
+        levelEngineOilTankLabel.setText(Integer.toString(oilTankLevel));
+
+        if(!updates)
+            tableView.refresh();
+    }
+
+    //fuel_tank
+    public void setAmountOfFuel(int amountOfFuel){
+        if(PrimaryFlightDisplay.instance.amountOfFuelInTank == amountOfFuel && !updates){return;}
+//        Node[] elements = t16Builder.getUiElement(3);
+//        ((TextField) elements[1]).setText(Integer.toString(amountOfFuel));
+        PrimaryFlightDisplay.instance.amountOfFuelInTank = amountOfFuel;
+
+        amountOfFuelLabel.setText(Integer.toString(amountOfFuel));
+
+        if(!updates)
+            tableView.refresh();
+    }
+
+    //pitot_tube
+    public void setPitotTubeCleanedToggleGroup(boolean isCleaned){
+        if(PrimaryFlightDisplay.instance.isPitotTubeCleaned == isCleaned && !updates){return;}
+//        Node[] elements = t16Builder.getUiElement(5);
+//        ((RadioButton)elements[1]).setSelected(!isCleaned);
+//        ((RadioButton)elements[2]).setSelected(isCleaned);
+        PrimaryFlightDisplay.instance.isPitotTubeCleaned = isCleaned;
+
+        isPitotTubeCleanedOnButton.setSelected(isCleaned);
+        isPitotTubeCleanedOffButton.setSelected(!isCleaned);
+
+        if(!updates)
+            tableView.refresh();
+    }
+
+    public void setVelocity(int velocity){
+        if(PrimaryFlightDisplay.instance.velocity == velocity && !updates){return;}
+//        Node[] elements = t16Builder.getUiElement(6);
+//        ((TextField) elements[1]).setText(Integer.toString(velocity));
+        PrimaryFlightDisplay.instance.velocity = velocity;
+        velocityLabel.setText(Integer.toString(velocity));
+
+        if(!updates)
+            tableView.refresh();
+    }
+
+    //radar_altimeter
+    public void setRadarAltimeterOnToggleGroup(boolean isRadarAltimeterOn){
+        if(PrimaryFlightDisplay.instance.isRadarAltimeterOn == isRadarAltimeterOn && !updates){return;}
+//        Node[] elements = t16Builder.getUiElement(8);
+//        ((RadioButton)elements[1]).setSelected(!isRadarAltimeterOn);
+//        ((RadioButton)elements[2]).setSelected(isRadarAltimeterOn);
+        PrimaryFlightDisplay.instance.isRadarAltimeterOn = isRadarAltimeterOn;
+
+        isRadarAltimeterOnOnButton.setSelected(isRadarAltimeterOn);
+        isRadarAltimeterOnOffButton.setSelected(!isRadarAltimeterOn);
+
+        if(!updates)
+            tableView.refresh();
+    }
+
+    public void setRadarAltimeterAltitude(int altitude){
+        if(PrimaryFlightDisplay.instance.altitudeRadarAltimeter == altitude && !updates){return;}
+//        Node[] elements = t16Builder.getUiElement(9);
+//        ((TextField) elements[1]).setText(Integer.toString(altitude));
+        PrimaryFlightDisplay.instance.altitudeRadarAltimeter = altitude;
+        altitudeRadarAltimeterLabel.setText(Integer.toString(altitude));
+
+        if(!updates)
+            tableView.refresh();
     }
 
     // weather_radar
@@ -964,6 +1229,15 @@ public class PrimaryFlightDisplayGUI extends Application {
         // camera
         cameraIsOnEntry = new PrimaryFlightDisplayEntry("Camera (isOn)", Boolean.toString(PrimaryFlightDisplay.instance.isCameraOn));
         dataList.add(cameraIsOnEntry);
+      
+        //engine_oil_tank
+        levelEngineOilTankEntry = new PrimaryFlightDisplayEntry("Engine Oil Tank Level (amount)",
+                Integer.toString(PrimaryFlightDisplay.instance.levelEngineOilTank));
+        dataList.add(levelEngineOilTankEntry);
+      
+        //fuel_tank
+        amountOfFuelEntry = new PrimaryFlightDisplayEntry("Fuel Tank Level (amount)", Integer.toString(PrimaryFlightDisplay.instance.amountOfFuelInTank));
+        dataList.add(amountOfFuelEntry);
 
         // gps
         gpsIsOnEntry = new PrimaryFlightDisplayEntry("GPS (isOn)", Boolean.toString(PrimaryFlightDisplay.instance.isGPSOn));
@@ -978,6 +1252,20 @@ public class PrimaryFlightDisplayGUI extends Application {
         // oxygen_bottle
         amountOfOxygenEntry = new PrimaryFlightDisplayEntry("OxygenBottle (amount)", Integer.toString(PrimaryFlightDisplay.instance.amountOfOxygen));
         dataList.add(amountOfOxygenEntry);
+      
+        //pitot_tube
+        isPitotTubeCleanedEntry = new PrimaryFlightDisplayEntry("PitotTube (isCleaned)", Boolean.toString(PrimaryFlightDisplay.instance.isPitotTubeCleaned));
+        dataList.add(isPitotTubeCleanedEntry);
+
+        velocityEntry = new PrimaryFlightDisplayEntry("Pitot Tube (velocity)", Integer.toString(PrimaryFlightDisplay.instance.velocity));
+        dataList.add(velocityEntry);
+      
+        //radar_altimeter
+        isRadarAltimeterOnEntry = new PrimaryFlightDisplayEntry("Radar Altimeter (isOn)", Boolean.toString(PrimaryFlightDisplay.instance.isRadarAltimeterOn));
+        dataList.add(isRadarAltimeterOnEntry);
+
+        altitudeRadarAltimeterEntry = new PrimaryFlightDisplayEntry("Radar Altimeter (altitude)", Integer.toString(PrimaryFlightDisplay.instance.altitudeRadarAltimeter));
+        dataList.add(altitudeRadarAltimeterEntry);
 
         // tcas
         isTCASOnEntry = new PrimaryFlightDisplayEntry("TCAS (isOn)", Boolean.toString(PrimaryFlightDisplay.instance.isTCASOn));
@@ -1010,6 +1298,10 @@ public class PrimaryFlightDisplayGUI extends Application {
         // camera
         cameraIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isCameraOn));
         setCameraToggleGroup(PrimaryFlightDisplay.instance.isCameraOn);
+      
+        //engine_oil_tank
+        levelEngineOilTankEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.levelEngineOilTank));
+        setEngineOilTankLevel(PrimaryFlightDisplay.instance.levelEngineOilTank);
 
         // exhaust_gas_temperature_sensor
         setExhaustGasTemperature(PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor);
@@ -1027,6 +1319,10 @@ public class PrimaryFlightDisplayGUI extends Application {
         setFuelAmount(PrimaryFlightDisplay.instance.amountOfFuel);
         setAlarmMajorFuelSensor(PrimaryFlightDisplay.instance.isAlarmMajorFuelSensor);
         setAlarmCriticalFuelSensor(PrimaryFlightDisplay.instance.isAlarmCriticalFuelSensor);
+      
+        //fuel_tank
+        amountOfFuelEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.amountOfFuelInTank));
+        setAmountOfFuel(PrimaryFlightDisplay.instance.amountOfFuelInTank);
 
         // gps
         gpsIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isGPSOn));
@@ -1046,6 +1342,20 @@ public class PrimaryFlightDisplayGUI extends Application {
         // oxygen_bottle
         amountOfOxygenEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.amountOfOxygen));
         setOxygenAmount(PrimaryFlightDisplay.instance.amountOfOxygen);
+      
+        //pitot_tube
+        isPitotTubeCleanedEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isPitotTubeCleaned));
+        setPitotTubeCleanedToggleGroup(PrimaryFlightDisplay.instance.isPitotTubeCleaned);
+      
+        velocityEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.velocity));
+        setVelocity(PrimaryFlightDisplay.instance.velocity);
+
+        //radar_altimeter
+        isRadarAltimeterOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isRadarAltimeterOn));
+        setRadarAltimeterOnToggleGroup(PrimaryFlightDisplay.instance.isRadarAltimeterOn);
+
+        altitudeRadarAltimeterEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.altitudeRadarAltimeter));
+        setRadarAltimeterAltitude(PrimaryFlightDisplay.instance.altitudeRadarAltimeter);
 
         // tcas
         isTCASOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isTCASOn));
