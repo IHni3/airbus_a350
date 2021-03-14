@@ -2,7 +2,6 @@ package logging;
 
 import configuration.Configuration;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -27,8 +26,7 @@ public enum LogEngine {
 
     public void createPathIfNotExists(String path) throws IOException {
         var p = Paths.get(path);
-        if(!Files.exists(p))
-        {
+        if (!Files.exists(p)) {
             Files.createDirectory(p);
         }
     }

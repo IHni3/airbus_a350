@@ -29,3 +29,9 @@ hs_err_pid*
 
 # IntelliJ
 **/.idea
+
+# Templating
+*.py
+*.template
+**/_template
+**/_configs
