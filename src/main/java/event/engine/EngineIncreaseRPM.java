@@ -9,4 +9,8 @@ public class EngineIncreaseRPM {
 	public String toString() {
 		return "Event: Engine - IncreaseRPM";
 	}
+
+	public int getValue() {
+		return value;
+	}
 }

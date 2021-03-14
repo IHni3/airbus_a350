@@ -10,4 +10,8 @@ public class GearSetBrakePercentage {
 	public String toString() {
 		return "Event: Gear - SetBrakePercentage";
 	}
+
+	public int getValue() {
+		return value;
+	}
 }

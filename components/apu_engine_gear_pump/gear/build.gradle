@@ -1,0 +1,21 @@
+plugins {
+    id 'java-library'
+}
+
+group 'dhbw'
+version null
+
+repositories {
+    mavenCentral()
+}
+
+task build_jar(type: Jar) {
+    project.archivesBaseName = "gear"
+
+    manifest {
+        attributes["Main-Class"] = "Gear"
+    }
+
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}

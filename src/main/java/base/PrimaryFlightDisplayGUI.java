@@ -27,6 +27,16 @@ public class PrimaryFlightDisplayGUI extends Application {
     private PrimaryFlightDisplayEntry weatherRadarIsOnEntry;
     private RadioButton weatherRadarOffButton;
     private RadioButton weatherRadarOnButton;
+    private RadioButton apuOffButton;
+    private RadioButton apuOnButton;
+    private RadioButton engineOffButton;
+    private RadioButton engineOnButton;
+    private PrimaryFlightDisplayEntry apuIsStartedEntry;
+    private PrimaryFlightDisplayEntry apuRPMEntry;
+    private Label apuRPMLabel;
+    private PrimaryFlightDisplayEntry engineIsStartedEntry;
+    private PrimaryFlightDisplayEntry engineRPMEntry;
+    private Label engineRPMLabel;
 
     public static void main(String... args) {
         LogEngine.instance.init();
@@ -222,6 +232,49 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         // --- insert section: end
 
+        // APU
+        Label apuLabel = new Label("APU : ");
+        gridPane.add(apuLabel, 0, 4);
+
+        ToggleGroup apuToggleGroup = new ToggleGroup();
+
+        apuOffButton = new RadioButton("Off");
+        apuOffButton.setToggleGroup(apuToggleGroup);
+        apuOffButton.setSelected(true);
+        gridPane.add(apuOffButton, 1, 4);
+
+        apuOnButton = new RadioButton("On");
+        apuOnButton.setToggleGroup(apuToggleGroup);
+        apuOnButton.setSelected(false);
+        gridPane.add(apuOnButton, 2, 4);
+
+        apuRPMLabel = new Label("0 rpm");
+        gridPane.add(apuRPMLabel, 3, 4);
+
+        // --- insert section: end
+
+        // Engine
+        Label engineLabel = new Label("Engine : ");
+        gridPane.add(engineLabel, 0, 5);
+
+        ToggleGroup engineToggleGroup = new ToggleGroup();
+
+        engineOffButton = new RadioButton("Off");
+        engineOffButton.setToggleGroup(engineToggleGroup);
+        engineOffButton.setSelected(true);
+        gridPane.add(engineOffButton, 1, 5);
+
+        engineOnButton = new RadioButton("On");
+        engineOnButton.setToggleGroup(engineToggleGroup);
+        engineOnButton.setSelected(false);
+        gridPane.add(engineOnButton, 2, 5);
+
+        engineRPMLabel = new Label("0 rpm");
+        gridPane.add(engineRPMLabel, 3, 5);
+
+
+        // --- insert section: end
+
         Label frequencyLabel = new Label("Frequency : ");
         gridPane.add(frequencyLabel, 0, 2);
 
@@ -262,12 +315,56 @@ public class PrimaryFlightDisplayGUI extends Application {
         }
     }
 
+    //APU
+    public void setAPUToggleGroup(boolean isAPUOn) {
+        if (isAPUOn) {
+            apuOffButton.setSelected(false);
+            apuOnButton.setSelected(true);
+        } else {
+            apuOffButton.setSelected(true);
+            apuOnButton.setSelected(false);
+        }
+    }
+
+    public void setAPURPMLabel(int rpm) {
+        apuRPMLabel.setText(rpm + " rpm");
+    }
+
+    //Engine
+    public void setEngineToggleGroup(boolean isEngineOn) {
+        if (isEngineOn) {
+            engineOffButton.setSelected(false);
+            engineOnButton.setSelected(true);
+        } else {
+            engineOffButton.setSelected(true);
+            engineOnButton.setSelected(false);
+        }
+    }
+
+    public void setEngineRPMLabel(int rpm) {
+        engineRPMLabel.setText(rpm + " rpm");
+    }
+
+
     private void initData() {
         dataList = new ArrayList<>();
 
         // weather_radar
         weatherRadarIsOnEntry = new PrimaryFlightDisplayEntry("WeatherRadar (isOn)", Boolean.toString(PrimaryFlightDisplay.instance.isWeatherRadarOn));
         dataList.add(weatherRadarIsOnEntry);
+
+        apuIsStartedEntry = new PrimaryFlightDisplayEntry("APU (isStarted)", Boolean.toString(PrimaryFlightDisplay.instance.isAPUStarted));
+        dataList.add(apuIsStartedEntry);
+        apuRPMEntry = new PrimaryFlightDisplayEntry("APU (rpm)", Integer.toString(PrimaryFlightDisplay.instance.rpmAPU));
+        dataList.add(apuRPMEntry);
+
+        engineIsStartedEntry = new PrimaryFlightDisplayEntry("Engine (isStarted)", Boolean.toString(PrimaryFlightDisplay.instance.isEngineStarted));
+        dataList.add(engineIsStartedEntry);
+        engineRPMEntry = new PrimaryFlightDisplayEntry("Engine (rpm)", Integer.toString(PrimaryFlightDisplay.instance.rpmEngine));
+        dataList.add(engineRPMEntry);
+
+
+
     }
 
     private ObservableList getInitialTableData() {
@@ -280,6 +377,16 @@ public class PrimaryFlightDisplayGUI extends Application {
         // weather_radar
         weatherRadarIsOnEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isWeatherRadarOn));
         setWeatherRadarToggleGroup(PrimaryFlightDisplay.instance.isWeatherRadarOn);
+
+        apuIsStartedEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isAPUStarted));
+        setAPUToggleGroup(PrimaryFlightDisplay.instance.isAPUStarted);
+        apuRPMEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.rpmAPU));
+        setAPURPMLabel(PrimaryFlightDisplay.instance.rpmAPU);
+
+        engineIsStartedEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isEngineStarted));
+        setEngineToggleGroup(PrimaryFlightDisplay.instance.isEngineStarted);
+        engineRPMEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.rpmEngine));
+        setEngineRPMLabel(PrimaryFlightDisplay.instance.rpmEngine);
 
         tableView.refresh();
     }

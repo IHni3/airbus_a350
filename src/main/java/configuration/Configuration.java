@@ -19,28 +19,28 @@ public enum Configuration {
     public int numberOfWeatherRadar = 2;
 
     // apu
-    public String pathToAPUJavaArchive = commonPathToJavaArchive + "apu" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "apu.jar";
+    public String pathToAPUJavaArchive = commonPathToJavaArchive + "apu_engine_gear_pump"+ fileSeparator + "apu" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "apu.jar";
     public int numberOfAPU = 1;
 
     // engine
-    public String pathToEngineJavaArchive = commonPathToJavaArchive + "engine" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "engine.jar";
+    public String pathToEngineJavaArchive = commonPathToJavaArchive + "apu_engine_gear_pump"+ fileSeparator + "engine" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "engine.jar";
     public int numberOfEngine = 1;
 
     // gear
-    public String pathToGearJavaArchive = commonPathToJavaArchive + "gear" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "gear.jar";
+    public String pathToGearJavaArchive = commonPathToJavaArchive + "apu_engine_gear_pump"+ fileSeparator + "gear" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "gear.jar";
     public int numberOfGear = 3;
 
-    // hydraulic_pump
-    public String pathToHydraulicPumpJavaArchive = commonPathToJavaArchive + "hydraulic_pump" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "hydraulic_pump.jar";
+     // hydraulic_pump
+    public String pathToHydraulicPumpJavaArchive = commonPathToJavaArchive + "apu_engine_gear_pump"+ fileSeparator + "hydraulic_pump" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "hydraulic_pump.jar";
     public int numberOfHydraulicPumpBody = 6;
     public int numberOfHydraulicPumpWing = 4;
 
     // air_conditioning
-    public String pathToAirConditioningJavaArchive = commonPathToJavaArchive + "air_conditioning" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "air_conditioning.jar";
+    public String pathToAirConditioningJavaArchive = commonPathToJavaArchive + "cabin"+ fileSeparator + "air_conditioning" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "air_conditioning.jar";
     public int numberOfAirConditioning = 4;
 
     // kitchen
-    public String pathToKitchenJavaArchive = commonPathToJavaArchive + "kitchen" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "kitchen.jar";
+    public String pathToKitchenJavaArchive = commonPathToJavaArchive + "cabin"+ fileSeparator + "kitchen" + fileSeparator + "build" + fileSeparator + "libs" + fileSeparator + "kitchen.jar";
     public int numberOfKitchen = 3;
 
     // slat

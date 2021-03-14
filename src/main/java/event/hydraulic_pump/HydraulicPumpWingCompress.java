@@ -9,4 +9,8 @@ public class HydraulicPumpWingCompress {
 	public String toString() {
 		return "Event: HydraulicPump - Wing - Compress";
 	}
+
+	public int getValue() {
+		return value;
+	}
 }
