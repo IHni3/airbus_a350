@@ -76,7 +76,7 @@ public class TestRadarAltimeter {
         try {
             Method increaseMethod = componentPort.getClass().getDeclaredMethod("on");
             boolean result = (boolean) increaseMethod.invoke(componentPort);
-            assertEquals(result, true);
+            assertTrue(result);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -92,8 +92,6 @@ public class TestRadarAltimeter {
             Method outMethod = componentPort.getClass().getDeclaredMethod("receive", String.class);
             int result = (int) outMethod.invoke(componentPort, "ping");
             assertEquals(400, result);
-            result = (int) outMethod.invoke(componentPort, "");
-            assertEquals(0, result);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -110,8 +108,16 @@ public class TestRadarAltimeter {
             int result = (int) outMethod.invoke(componentPort);
             assertEquals(0, result);
 
+            Method sendMethod = componentPort.getClass().getDeclaredMethod("send", String.class);
+            Method receiveMethod = componentPort.getClass().getDeclaredMethod("receive", String.class);
+            sendMethod.invoke(componentPort, "pingpong");
+            receiveMethod.invoke(componentPort, "pingpong");
+
+            result = (int) outMethod.invoke(componentPort);
+            assertEquals(800, result);
+
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             fail();
         }
     }
@@ -123,7 +129,7 @@ public class TestRadarAltimeter {
         try {
             Method increaseMethod = componentPort.getClass().getDeclaredMethod("off");
             boolean result = (boolean) increaseMethod.invoke(componentPort);
-            assertEquals(result, false);
+            assertFalse(result);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
