@@ -392,7 +392,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         // --- insert section: begin
         // camera
-        int cameraRowIndex = 1;
+        int cameraRowIndex = 3;
         Label cameraLabel = new Label("Camera : ");
         gridPane.add(cameraLabel, 0, cameraRowIndex);
 
@@ -409,7 +409,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(cameraOnButton, 2, cameraRowIndex);
       
         //engine_oil_tank
-        int engineOilTankRowIndex = 2;
+        int engineOilTankRowIndex = 4;
         Label engineOilLabel = new Label("Engine Oil Level:");
         gridPane.add(engineOilLabel, 0, engineOilTankRowIndex);
 
@@ -417,7 +417,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(levelEngineOilTankLabel, 1, engineOilTankRowIndex);
       
         //fuel_tank
-        int fuelTankRowIndex = 1;
+        int fuelTankRowIndex = 5;
         Label fuelTankLabel = new Label("Fuel Tank Amount: ");
         gridPane.add(fuelTankLabel, 0, fuelTankRowIndex);
 
@@ -425,7 +425,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(amountOfFuelLabel, 1, fuelTankRowIndex);
 
         // gps
-        int gpsRowIndex = 3;
+        int gpsRowIndex = 6;
         Label gpsLabel = new Label("GPS : ");
         gridPane.add(gpsLabel, 0, gpsRowIndex);
 
@@ -453,7 +453,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(gpsConnectedButton, 4, gpsRowIndex);
 
         // nitrogenBottle
-        int nitrogenRowIndex = 4;
+        int nitrogenRowIndex = 7;
         Label nitrogenLabel = new Label("Nitrogen : ");
         gridPane.add(nitrogenLabel, 0, nitrogenRowIndex);
 
@@ -461,7 +461,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(amountOfNitrogenLabel, 1, nitrogenRowIndex);
 
         // oxygenBottle
-        int oxygenRowIndex = 5;
+        int oxygenRowIndex = 8;
         Label oxygenLabel = new Label("Oxygen : ");
         gridPane.add(oxygenLabel, 0, oxygenRowIndex);
 
@@ -469,7 +469,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(amountOfOxygenLabel, 1, oxygenRowIndex);
       
         //pitot_tube
-        int pitotTubeRowIndex = 6;
+        int pitotTubeRowIndex = 9;
         Label pitotTubeCleanLabel = new Label("Pitottube is clean: ");
         gridPane.add(pitotTubeCleanLabel, 0, pitotTubeRowIndex);
 
@@ -492,7 +492,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(velocityLabel, 4, pitotTubeRowIndex);
       
         //radar_altimeter
-        int radarAltimeterRowIndex = 7;
+        int radarAltimeterRowIndex = 10;
         Label radarAltimeterIsOnLabel = new Label("Radar Altimeter is on: ");
         gridPane.add(radarAltimeterIsOnLabel, 0, radarAltimeterRowIndex);
 
@@ -514,7 +514,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(altitudeRadarAltimeterLabel, 4, radarAltimeterRowIndex);
 
         // tcas
-        int tcasRowIndex = 8;
+        int tcasRowIndex = 11;
         Label tcasLabel = new Label("TCAS : ");
         gridPane.add(tcasLabel, 0, tcasRowIndex);
 
@@ -556,7 +556,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         gridPane.add(altitudeTCASLabel, 8, tcasRowIndex);
 
         // turbulent_air_flow_sensor
-        int turbulentAirFlowSensorRowIndex = 9;
+        int turbulentAirFlowSensorRowIndex = 12;
         Label turbulentAirFlowSensorLabel = new Label("TurbulentAirFlowSensorAlarm : ");
         gridPane.add(turbulentAirFlowSensorLabel, 0, turbulentAirFlowSensorRowIndex);
 
