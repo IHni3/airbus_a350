@@ -88,13 +88,13 @@ public class TestFuelTank {
         try {
             Method outMethod = componentPort.getClass().getDeclaredMethod("takeOut", int.class);
             int result = (int) outMethod.invoke(componentPort, 10);
-            assertEquals(result, 10);
+            assertEquals(990, result);
 
             Method refillMethod = componentPort.getClass().getDeclaredMethod("refill");
             refillMethod.invoke(componentPort);
 
             result = (int) outMethod.invoke(componentPort, 10000);
-            assertEquals(result, 1000);
+            assertEquals(0, result);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             fail();

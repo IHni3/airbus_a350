@@ -68,7 +68,7 @@ public class TestEngineOilTank {
         try {
             Method increaseMethod = componentPort.getClass().getDeclaredMethod("increaseLevel", int.class);
             int result = (int) increaseMethod.invoke(componentPort, 20);
-            assertEquals(result, 20);
+            assertEquals(1020, result);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -83,7 +83,7 @@ public class TestEngineOilTank {
         try {
             Method outMethod = componentPort.getClass().getDeclaredMethod("decreaseLevel", int.class);
             int result = (int) outMethod.invoke(componentPort, 10);
-            assertEquals(result, 0);
+            assertEquals(990, result);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
