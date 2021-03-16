@@ -1,13 +1,13 @@
 rootProject.name = 'implementation'
 
 file("components").eachDir {
-	if (it.isDirectory() && it.name.charAt(0).isLetterOrDigit()) {
-		if (it.list().contains("build.gradle")) {
-			include settingsDir.relativePath(it).replace("/", ":")
-		} else {
-			file(it.absolutePath).eachDir {
-				include settingsDir.relativePath(it).replace("/", ":")
-			}
-		}
-	}
+    if (it.isDirectory() && it.name.charAt(0).isLetterOrDigit()) {
+        if (it.list().contains("build.gradle")) {
+            include settingsDir.relativePath(it).replace("/", ":")
+        } else {
+            file(it.absolutePath).eachDir {
+                include settingsDir.relativePath(it).replace("/", ":")
+            }
+        }
+    }
 }

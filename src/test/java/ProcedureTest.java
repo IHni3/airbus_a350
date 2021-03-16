@@ -29,6 +29,37 @@ public class ProcedureTest {
     @Order(1)
     public void startUpTest() {
         cockpit.startup();
+        // business_class_seat
+        assertTrue(PrimaryFlightDisplay.instance.isNonSmokingSignOn);
+        assertFalse(PrimaryFlightDisplay.instance.isSeatBeltSignOn);
+
+        // camera
+        assertTrue(PrimaryFlightDisplay.instance.isCameraOn);
+
+        // exhaust_gas_temperaure_sensor
+        assertTrue(PrimaryFlightDisplay.instance.levelEngineOilTank>0);
+
+        //fuel_flow_sensor
+        assertTrue(PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor>0);
+
+        assertTrue(PrimaryFlightDisplay.instance.fuelFlow>0);
+        assertTrue(PrimaryFlightDisplay.instance.amountOfFuelInTank>0);
+        assertTrue(PrimaryFlightDisplay.instance.isGPSOn);
+        //assertTrue(PrimaryFlightDisplay.instance.isGPSConnected);
+        assertTrue(PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated);
+        assertTrue(PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated);
+        assertTrue(PrimaryFlightDisplay.instance.amountOfNitrogen>0);
+        assertTrue(PrimaryFlightDisplay.instance.amountOfOxygen>0);
+        assertTrue(PrimaryFlightDisplay.instance.isPitotTubeCleaned);
+
+        assertTrue(PrimaryFlightDisplay.instance.isRadarAltimeterOn);
+        //assertTrue(PrimaryFlightDisplay.instance.altitudeRadarAltimeter>0);
+
+        //assertFalse(PrimaryFlightDisplay.instance.isRightNavigationLightOn);
+        assertFalse(PrimaryFlightDisplay.instance.isTailNavigationLightOn);
+        assertFalse(PrimaryFlightDisplay.instance.isTaxiLightOn);
+        assertTrue(PrimaryFlightDisplay.instance.isTCASOn);
+        //assertTrue(PrimaryFlightDisplay.instance.isTCASConnected);
 
         // weather_radar
         assertTrue(PrimaryFlightDisplay.instance.isWeatherRadarOn);
@@ -38,6 +69,20 @@ public class ProcedureTest {
     @Order(2)
     public void taxiTest() {
         cockpit.taxi();
+
+        assertTrue(PrimaryFlightDisplay.instance.isNonSmokingSignOn);
+        assertTrue(PrimaryFlightDisplay.instance.isSeatBeltSignOn);
+        assertFalse(PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor>0);
+        assertTrue(PrimaryFlightDisplay.instance.fuelFlow>0);
+        //assertTrue(PrimaryFlightDisplay.instance.amountOfFuelInTank>0);
+        assertTrue(PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated);
+        assertTrue(PrimaryFlightDisplay.instance.isIceDetectorProbeBodyActivated);
+        assertTrue(PrimaryFlightDisplay.instance.amountOfNitrogen>0);
+        assertTrue(PrimaryFlightDisplay.instance.isRadarAltimeterOn);
+        assertFalse(PrimaryFlightDisplay.instance.altitudeRadarAltimeter>0);
+        assertTrue(PrimaryFlightDisplay.instance.isRightNavigationLightOn);
+        assertFalse(PrimaryFlightDisplay.instance.isTailNavigationLightOn);
+        assertTrue(PrimaryFlightDisplay.instance.isTaxiLightOn);
 
         // weather_radar
         assertTrue(PrimaryFlightDisplay.instance.isWeatherRadarOn);
