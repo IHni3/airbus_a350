@@ -4,22 +4,20 @@ import base.PrimaryFlightDisplay;
 import com.google.common.eventbus.Subscribe;
 import configuration.Configuration;
 import event.Subscriber;
-import event.engine_oil_tank.EngineOilTankDecreaseLevel;
-import event.engine_oil_tank.EngineOilTankIncreaseLevel;
-import event.fuel_tank.FuelTankRefill;
-import event.fuel_tank.FuelTankTakeOut;
-import factory.*;
-import logging.LogEngine;
-import recorder.FlightRecorder;
-
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import event.camera.CameraWingOff;
 import event.camera.CameraWingOn;
+import event.engine.EngineDecreaseRPM;
+import event.engine.EngineIncreaseRPM;
+import event.engine.EngineShutdown;
+import event.engine.EngineStart;
+import event.engine_oil_tank.EngineOilTankDecreaseLevel;
+import event.engine_oil_tank.EngineOilTankIncreaseLevel;
 import event.exhaust_gas_temperature_sensor.ExhaustGasTemperatureSensorMeasure;
 import event.fire_detector.FireDetectorWingScan;
 import event.fuel_flow_sensor.FuelFlowSensorMeasure;
 import event.fuel_sensor.FuelSensorMeasure;
+import event.fuel_tank.FuelTankRefill;
+import event.fuel_tank.FuelTankTakeOut;
 import event.ice_detector_probe.IceDetectorProbeWingActivate;
 import event.ice_detector_probe.IceDetectorProbeWingDeactivate;
 import event.right_navigation_light.RightNavigationLightOff;
@@ -34,6 +32,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"FieldMayBeFinal", "UnstableApiUsage", "unused"})
 public class Wing extends Subscriber {
+    private ArrayList<Object> enginePortList;
     private ArrayList<Object> engineOilTankPortList;
     private ArrayList<Object> fuelTankPortList;
     private ArrayList<Object> cameraPortList;
@@ -41,11 +40,13 @@ public class Wing extends Subscriber {
     private ArrayList<Object> fireDetectorPortList;
     private ArrayList<Object> fuelFlowSensorPortList;
     private ArrayList<Object> fuelSensorPortList;
+    private ArrayList<Object> hydraulicPumpPortList;
     private ArrayList<Object> iceDetectorProbePortList;
     private ArrayList<Object> rightNavigationLightPortList;
     private ArrayList<Object> turbulentAirFlowSensorList;
 
     public Wing() {
+        enginePortList = new ArrayList<>();
         engineOilTankPortList = new ArrayList<>();
         fuelTankPortList = new ArrayList<>();
         cameraPortList = new ArrayList<>();
@@ -53,6 +54,7 @@ public class Wing extends Subscriber {
         fireDetectorPortList = new ArrayList<>();
         fuelFlowSensorPortList = new ArrayList<>();
         fuelSensorPortList = new ArrayList<>();
+        hydraulicPumpPortList = new ArrayList<>();
         iceDetectorProbePortList = new ArrayList<>();
         rightNavigationLightPortList = new ArrayList<>();
         turbulentAirFlowSensorList = new ArrayList<>();
@@ -60,6 +62,9 @@ public class Wing extends Subscriber {
     }
 
     public void build() {
+        for (int i = 0; i < Configuration.instance.numberOfEngine; i++) {
+            enginePortList.add(EngineFactory.build());
+        }
         for (int i = 0; i < Configuration.instance.numberOfEngineOilTank; i++) {
             engineOilTankPortList.add(EngineOilTankFactory.build());
         }
@@ -67,7 +72,7 @@ public class Wing extends Subscriber {
         for (int i = 0; i < Configuration.instance.numberOfFuelTank; i++) {
             fuelTankPortList.add(FuelTankFactory.build());
         }
-      
+
         for (int i = 0 ; i < Configuration.instance.numberOfCameraWing ; i++) {
             cameraPortList.add(setCameraType(CameraFactory.build()));
         }
@@ -82,6 +87,9 @@ public class Wing extends Subscriber {
         }
         for (int i = 0; i < Configuration.instance.numberOfFuelSensor; i++) {
             fuelSensorPortList.add(FuelSensorFactory.build());
+        }
+        for (int i = 0; i < Configuration.instance.numberOfHydraulicPumpWing; i++) {
+            hydraulicPumpPortList.add(HydraulicPumpFactory.build());
         }
         for (int i = 0; i < Configuration.instance.numberOfIceDetectorProbeWing; i++) {
             iceDetectorProbePortList.add(IceDetectorProbeFactory.build());
@@ -153,6 +161,112 @@ public class Wing extends Subscriber {
 
         LogEngine.instance.write("PrimaryFlightDisplay (isWingCameraOff): " + PrimaryFlightDisplay.instance.isCameraOn);
         FlightRecorder.instance.insert("PrimaryFlightDisplay", "isWingCameraOn: " + PrimaryFlightDisplay.instance.isCameraOn);
+    }
+
+    // --- Engine -----------------------------------------------------------------------------------------------------
+
+    @Subscribe
+    public void receive(EngineStart engineStart) {
+        LogEngine.instance.write("+ Wing.receive(" + engineStart.toString() + ")");
+        FlightRecorder.instance.insert("Wing", "receive(" + engineStart.toString() + ")");
+
+        try {
+            for (int i = 0; i < Configuration.instance.numberOfEngine; i++) {
+                Method startMethod = enginePortList.get(i).getClass().getDeclaredMethod("start");
+                LogEngine.instance.write("startMethod = " + startMethod);
+
+                boolean isStarted = (boolean) startMethod.invoke(enginePortList.get(i));
+                LogEngine.instance.write("isStarted = " + isStarted);
+
+                PrimaryFlightDisplay.instance.isEngineStarted = isStarted;
+                FlightRecorder.instance.insert("Wing", "Engine (isStarted): " + isStarted);
+
+                LogEngine.instance.write("+");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        LogEngine.instance.write("PrimaryFlightDisplay (isEngineStarted): " + PrimaryFlightDisplay.instance.isEngineStarted);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "isEngineStarted: " + PrimaryFlightDisplay.instance.isEngineStarted);
+    }
+
+    @Subscribe
+    public void receive(EngineShutdown engineShutdown) {
+        LogEngine.instance.write("+ Wing.receive(" + engineShutdown.toString() + ")");
+        FlightRecorder.instance.insert("Wing", "receive(" + engineShutdown.toString() + ")");
+
+        try {
+            for (int i = 0; i < Configuration.instance.numberOfEngine; i++) {
+                Method shutdownMethod = enginePortList.get(i).getClass().getDeclaredMethod("shutdown");
+                LogEngine.instance.write("shutdownMethod = " + shutdownMethod);
+
+                boolean isStarted = (boolean) shutdownMethod.invoke(enginePortList.get(i));
+                LogEngine.instance.write("isStarted = " + isStarted);
+
+                PrimaryFlightDisplay.instance.isEngineStarted = isStarted;
+                FlightRecorder.instance.insert("Wing", "Engine (isStarted): " + isStarted);
+
+                LogEngine.instance.write("+");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        LogEngine.instance.write("PrimaryFlightDisplay (isEngineStarted): " + PrimaryFlightDisplay.instance.isEngineStarted);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "isEngineStarted: " + PrimaryFlightDisplay.instance.isEngineStarted);
+    }
+
+    @Subscribe
+    public void receive(EngineIncreaseRPM engineIncreaseRPM) {
+        LogEngine.instance.write("+ Wing.receive(" + engineIncreaseRPM.toString() + ")");
+        FlightRecorder.instance.insert("Wing", "receive(" + engineIncreaseRPM.toString() + ")");
+
+        try {
+            for (int i = 0; i < Configuration.instance.numberOfEngine; i++) {
+                Method increaseRPMMethod = enginePortList.get(i).getClass().getDeclaredMethod("increaseRPM", Integer.TYPE);
+                LogEngine.instance.write("increaseRPMMethod = " + increaseRPMMethod);
+
+                int rpm = (int) increaseRPMMethod.invoke(enginePortList.get(i), engineIncreaseRPM.getValue());
+                LogEngine.instance.write("rpm = " + rpm);
+
+                PrimaryFlightDisplay.instance.rpmEngine = rpm;
+                FlightRecorder.instance.insert("Wing", "Engine (rpm): " + rpm);
+
+                LogEngine.instance.write("+");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        LogEngine.instance.write("PrimaryFlightDisplay (rpmEngine): " + PrimaryFlightDisplay.instance.rpmEngine);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "rpmEngine: " + PrimaryFlightDisplay.instance.rpmEngine);
+    }
+
+    @Subscribe
+    public void receive(EngineDecreaseRPM engineDecreaseRPM) {
+        LogEngine.instance.write("+ Wing.receive(" + engineDecreaseRPM.toString() + ")");
+        FlightRecorder.instance.insert("Wing", "receive(" + engineDecreaseRPM.toString() + ")");
+
+        try {
+            for (int i = 0; i < Configuration.instance.numberOfEngine; i++) {
+                Method decreaseRPMMethod = enginePortList.get(i).getClass().getDeclaredMethod("decreaseRPM", Integer.TYPE);
+                LogEngine.instance.write("decreaseRPMMethod = " + decreaseRPMMethod);
+
+                int rpm = (int) decreaseRPMMethod.invoke(enginePortList.get(i),engineDecreaseRPM.getValue());
+                LogEngine.instance.write("rpm = " + rpm);
+
+                PrimaryFlightDisplay.instance.rpmEngine = rpm;
+                FlightRecorder.instance.insert("Wing", "Engine (rpm): " + rpm);
+
+                LogEngine.instance.write("+");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        LogEngine.instance.write("PrimaryFlightDisplay (rpmEngine): " + PrimaryFlightDisplay.instance.rpmEngine);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "rpmEngine: " + PrimaryFlightDisplay.instance.rpmEngine);
     }
 
     // --- ExhaustGasTemperatureSensor --------------------------------------------------------------------------------
@@ -407,7 +521,7 @@ public class Wing extends Subscriber {
     }
 
     // ----------------------------------------------------------------------------------------------------------------
-  
+
         //engine_oil_tank
     @Subscribe
     public void receive(EngineOilTankDecreaseLevel engineOilTankDecreaseLevel) {

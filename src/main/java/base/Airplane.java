@@ -2,15 +2,9 @@ package base;
 
 import com.google.common.eventbus.EventBus;
 import event.Subscriber;
-import event.engine_oil_tank.EngineOilTankDecreaseLevel;
-import event.engine_oil_tank.EngineOilTankIncreaseLevel;
-import event.fuel_tank.FuelTankRefill;
-import event.fuel_tank.FuelTankTakeOut;
-import event.pitot_tube.PitotTubeClean;
-import event.pitot_tube.PitotTubeMeasureStaticPressure;
-import event.pitot_tube.PitotTubeMeasureTotalPressure;
-import event.pitot_tube.PitotTubeMeasureVelocity;
-import event.radar_altimeter.*;
+import event.apu.APUIncreaseRPM;
+import event.apu.APUShutdown;
+import event.apu.APUStart;
 import event.business_class_seat.NonSmokingSignOff;
 import event.business_class_seat.NonSmokingSignOn;
 import event.business_class_seat.SeatBeltSignOff;
@@ -19,8 +13,15 @@ import event.camera.CameraBodyOff;
 import event.camera.CameraBodyOn;
 import event.camera.CameraWingOff;
 import event.camera.CameraWingOn;
+import event.engine.EngineIncreaseRPM;
+import event.engine.EngineShutdown;
+import event.engine.EngineStart;
+import event.engine_oil_tank.EngineOilTankDecreaseLevel;
+import event.engine_oil_tank.EngineOilTankIncreaseLevel;
 import event.exhaust_gas_temperature_sensor.ExhaustGasTemperatureSensorMeasure;
 import event.fuel_flow_sensor.FuelFlowSensorMeasure;
+import event.fuel_tank.FuelTankRefill;
+import event.fuel_tank.FuelTankTakeOut;
 import event.gps.*;
 import event.ice_detector_probe.IceDetectorProbeBodyActivate;
 import event.ice_detector_probe.IceDetectorProbeBodyDeactivate;
@@ -30,6 +31,10 @@ import event.nitrogen_bottle.NitrogenBottleRefill;
 import event.nitrogen_bottle.NitrogenBottleTakeOut;
 import event.oxygen_bottle.OxygenBottleRefill;
 import event.oxygen_bottle.OxygenBottleTakeOut;
+import event.pitot_tube.PitotTubeClean;
+import event.pitot_tube.PitotTubeMeasureStaticPressure;
+import event.pitot_tube.PitotTubeMeasureTotalPressure;
+import event.radar_altimeter.*;
 import event.right_navigation_light.RightNavigationLightOff;
 import event.right_navigation_light.RightNavigationLightOn;
 import event.tail_navigation_light.TailNavigationLightOff;
@@ -70,7 +75,11 @@ public class Airplane implements IAirplane {
         addSubscriber(rightWing);
     }
 
-    public void startup() {      
+    public void startup() {
+        //apu
+        eventBus.post(new APUStart());
+        eventBus.post(new APUIncreaseRPM(100));
+
         // business_class_seat
         eventBus.post(new NonSmokingSignOn());
         eventBus.post(new SeatBeltSignOff());
@@ -86,6 +95,10 @@ public class Airplane implements IAirplane {
         // economy_class_seat
         eventBus.post(new event.economy_class_seat.NonSmokingSignOn());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
+
+        //engine
+        eventBus.post(new EngineStart());
+        eventBus.post(new EngineIncreaseRPM(100));
 
         //engine_oil_tank
         eventBus.post(new EngineOilTankIncreaseLevel());
@@ -616,6 +629,9 @@ public class Airplane implements IAirplane {
     }
 
     public void shutdown() {
+        //apu
+        eventBus.post(new APUShutdown());
+
         // business_class_seat
         eventBus.post(new NonSmokingSignOff());
         eventBus.post(new SeatBeltSignOff());
@@ -631,7 +647,10 @@ public class Airplane implements IAirplane {
         // economy_class_seat
         eventBus.post(new event.economy_class_seat.NonSmokingSignOff());
         eventBus.post(new event.economy_class_seat.SeatBeltSignOff());
-      
+
+        //engine
+        eventBus.post(new EngineShutdown());
+
         //engine_oil_tank
         eventBus.post(new EngineOilTankIncreaseLevel());
 

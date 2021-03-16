@@ -4,8 +4,16 @@ public enum PrimaryFlightDisplay {
     instance;
     public boolean isWeatherRadarOn;
 
-    // camera
+    //apu
+    public boolean isAPUStarted;
+    public int rpmAPU;
+
+    //camera
     public boolean isCameraOn;
+
+    //engine
+    public int rpmEngine;
+    public boolean isEngineStarted;
 
     //engine_oil_tank
     public int levelEngineOilTank;

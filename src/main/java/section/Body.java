@@ -6,17 +6,10 @@ import base.PrimaryFlightDisplay;
 import com.google.common.eventbus.Subscribe;
 import configuration.Configuration;
 import event.Subscriber;
-import event.pitot_tube.PitotTubeClean;
-import event.pitot_tube.PitotTubeMeasureStaticPressure;
-import event.pitot_tube.PitotTubeMeasureTotalPressure;
-import event.pitot_tube.PitotTubeMeasureVelocity;
-import event.radar_altimeter.*;
-import event.weather_radar.WeatherRadarOff;
-import event.weather_radar.WeatherRadarOn;
-import event.weather_radar.WeatherRadarScan;
-import factory.PitotTubeFactory;
-import factory.RadarAltimeterFactory;
-import factory.WeatherRadarFactory;
+import event.apu.APUDecreaseRPM;
+import event.apu.APUIncreaseRPM;
+import event.apu.APUShutdown;
+import event.apu.APUStart;
 import event.business_class_seat.SeatAssignPassenger;
 import event.camera.CameraBodyOff;
 import event.camera.CameraBodyOn;
@@ -31,6 +24,11 @@ import event.nitrogen_bottle.NitrogenBottleTakeOut;
 import event.oxygen_bottle.OxygenBottleRefill;
 import event.oxygen_bottle.OxygenBottleTakeOut;
 import event.oxygen_sensor.OxygenSensorMeasure;
+import event.pitot_tube.PitotTubeClean;
+import event.pitot_tube.PitotTubeMeasureStaticPressure;
+import event.pitot_tube.PitotTubeMeasureTotalPressure;
+import event.pitot_tube.PitotTubeMeasureVelocity;
+import event.radar_altimeter.*;
 import event.tail_navigation_light.TailNavigationLightOff;
 import event.tail_navigation_light.TailNavigationLightOn;
 import event.taxi_light.TaxiLightOff;
@@ -49,12 +47,15 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"FieldMayBeFinal", "UnstableApiUsage", "unused"})
 public class Body extends Subscriber {
+    private ArrayList<Object> aPUPortList;
     private ArrayList<Object> businessClassSeatPortList;
     private ArrayList<Object> cameraPortList;
     private ArrayList<Object> crewSeatPortList;
     private ArrayList<Object> economyClassSeatPortList;
     private ArrayList<Object> fireDetectorPortList;
+    private ArrayList<Object> gearPortList;
     private ArrayList<Object> gpsPortList;
+    private ArrayList<Object> hydraulicPumpPortList;
     private ArrayList<Object> iceDetectorProbePortList;
     private ArrayList<Object> nitrogenBottlePortList;
     private ArrayList<Object> oxygenBottlePortList;
@@ -68,8 +69,11 @@ public class Body extends Subscriber {
     private ArrayList<Object> radarAltimeterPortList;
 
     public Body() {
+        aPUPortList = new ArrayList<>();
         cameraPortList = new ArrayList<>();
+        gearPortList = new ArrayList<>();
         gpsPortList = new ArrayList<>();
+        hydraulicPumpPortList = new ArrayList<>();
         nitrogenBottlePortList = new ArrayList<>();
         oxygenBottlePortList = new ArrayList<>();
         tcasPortList = new ArrayList<>();
@@ -89,6 +93,9 @@ public class Body extends Subscriber {
     }
 
     public void build() {
+        for (int i = 0; i < Configuration.instance.numberOfAPU; i++) {
+            aPUPortList.add(APUFactory.build());
+        }
         for (int i = 0; i < Configuration.instance.numberOfBusinessClassSeat; i++) {
             businessClassSeatPortList.add(BusinessClassSeatFactory.build());
         }
@@ -104,8 +111,14 @@ public class Body extends Subscriber {
         for (int i = 0; i < Configuration.instance.numberOfFireDetectorProbeBody; i++) {
             fireDetectorPortList.add(FireDetectorFactory.build());
         }
+        for (int i = 0; i < Configuration.instance.numberOfGear; i++) {
+            gearPortList.add(GearFactory.build());
+        }
         for (int i = 0 ; i < Configuration.instance.numberOfGps ; i++) {
             gpsPortList.add(GpsFactory.build());
+        }
+        for (int i = 0; i < Configuration.instance.numberOfHydraulicPumpBody; i++) {
+            hydraulicPumpPortList.add(HydraulicPumpFactory.build());
         }
         for (int i = 0; i < Configuration.instance.numberOfIceDetectorProbeBody; i++) {
             iceDetectorProbePortList.add(IceDetectorProbeFactory.build());
@@ -144,6 +157,106 @@ public class Body extends Subscriber {
         }
     }
 
+    // ----------------------------------------------------------------------------------------------------------------
+    // --- APU --------------------------------------------------------------------------------------------------------
+
+    @Subscribe
+    public void receive(APUStart aPUStart) {
+        LogEngine.instance.write("+ Body.receive(" + aPUStart.toString() + ")");
+        FlightRecorder.instance.insert("Body", "receive(" + aPUStart.toString() + ")");
+
+        try {
+            for (int i = 0; i < Configuration.instance.numberOfAPU; i++) {
+                Method startMethod = aPUPortList.get(i).getClass().getDeclaredMethod("start");
+                LogEngine.instance.write("startMethod = " + startMethod);
+
+                boolean isStarted = (boolean) startMethod.invoke(aPUPortList.get(i));
+                LogEngine.instance.write("isStarted = " + isStarted);
+
+                PrimaryFlightDisplay.instance.isAPUStarted = isStarted;
+                FlightRecorder.instance.insert("Body", "APU (isStarted): " + isStarted);
+
+                LogEngine.instance.write("+");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        LogEngine.instance.write("PrimaryFlightDisplay (isAPUStarted): " + PrimaryFlightDisplay.instance.isAPUStarted);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "isAPUStarted: " + PrimaryFlightDisplay.instance.isAPUStarted);
+    }
+
+    @Subscribe
+    public void receive(APUShutdown aPUShutdown) {
+        LogEngine.instance.write("+ Body.receive(" + aPUShutdown.toString() + ")");
+        FlightRecorder.instance.insert("Body", "receive(" + aPUShutdown.toString() + ")");
+
+        try {
+            for (int i = 0; i < Configuration.instance.numberOfAPU; i++) {
+                Method shutdownMethod = aPUPortList.get(i).getClass().getDeclaredMethod("shutdown");
+                LogEngine.instance.write("shutdownMethod = " + shutdownMethod);
+
+                LogEngine.instance.write("+");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        LogEngine.instance.write("PrimaryFlightDisplay (isAPUStarted): " + PrimaryFlightDisplay.instance.isAPUStarted);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "isAPUStarted: " + PrimaryFlightDisplay.instance.isAPUStarted);
+    }
+
+    @Subscribe
+    public void receive(APUIncreaseRPM aPUIncreaseRPM) {
+        LogEngine.instance.write("+ Body.receive(" + aPUIncreaseRPM.toString() + ")");
+        FlightRecorder.instance.insert("Body", "receive(" + aPUIncreaseRPM.toString() + ")");
+
+        try {
+            for (int i = 0; i < Configuration.instance.numberOfAPU; i++) {
+                Method increaseRPMMethod = aPUPortList.get(i).getClass().getDeclaredMethod("increaseRPM", Integer.TYPE);
+                LogEngine.instance.write("increaseRPMMethod = " + increaseRPMMethod);
+
+                int rpm = (int) increaseRPMMethod.invoke(aPUPortList.get(i), aPUIncreaseRPM.getValue());
+                LogEngine.instance.write("rpm = " + rpm);
+
+                PrimaryFlightDisplay.instance.rpmAPU = rpm;
+                FlightRecorder.instance.insert("Body", "APU (rpm): " + rpm);
+
+                LogEngine.instance.write("+");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        LogEngine.instance.write("PrimaryFlightDisplay (rpmAPU): " + PrimaryFlightDisplay.instance.rpmAPU);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "rpmAPU: " + PrimaryFlightDisplay.instance.rpmAPU);
+    }
+
+    @Subscribe
+    public void receive(APUDecreaseRPM aPUDecreaseRPM) {
+        LogEngine.instance.write("+ Body.receive(" + aPUDecreaseRPM.toString() + ")");
+        FlightRecorder.instance.insert("Body", "receive(" + aPUDecreaseRPM.toString() + ")");
+
+        try {
+            for (int i = 0; i < Configuration.instance.numberOfAPU; i++) {
+                Method decreaseRPMMethod = aPUPortList.get(i).getClass().getDeclaredMethod("decreaseRPM", Integer.TYPE);
+                LogEngine.instance.write("decreaseRPMMethod = " + decreaseRPMMethod);
+
+                int rpm = (int) decreaseRPMMethod.invoke(aPUPortList.get(i), aPUDecreaseRPM.getValue());
+                LogEngine.instance.write("rpm = " + rpm);
+
+                PrimaryFlightDisplay.instance.rpmAPU = rpm;
+                FlightRecorder.instance.insert("Body", "APU (rpm): " + rpm);
+
+                LogEngine.instance.write("+");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        LogEngine.instance.write("PrimaryFlightDisplay (rpmAPU): " + PrimaryFlightDisplay.instance.rpmAPU);
+        FlightRecorder.instance.insert("PrimaryFlightDisplay", "rpmAPU: " + PrimaryFlightDisplay.instance.rpmAPU);
+    }
 
     // --- BusinessClassSeat ------------------------------------------------------------------------------------------
 

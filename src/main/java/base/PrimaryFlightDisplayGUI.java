@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -15,20 +14,30 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import logging.LogEngine;
 import recorder.FlightRecorder;
 
 import java.util.ArrayList;
-import java.util.function.Consumer;
-import java.util.regex.Pattern;
 
 public class PrimaryFlightDisplayGUI extends Application {
     private TableView tableView;
     private ArrayList<PrimaryFlightDisplayEntry> dataList;
     private ObservableList data;
+
+    //apu
+    private RadioButton apuOffButton;
+    private RadioButton apuOnButton;
+    private PrimaryFlightDisplayEntry apuIsStartedEntry;
+    private PrimaryFlightDisplayEntry apuRPMEntry;
+    private Label apuRPMLabel;
+
+    //engine
+    private RadioButton engineOffButton;
+    private RadioButton engineOnButton;
+    private PrimaryFlightDisplayEntry engineIsStartedEntry;
+    private PrimaryFlightDisplayEntry engineRPMEntry;
+    private Label engineRPMLabel;
 
     //engine_oil_tank
     private PrimaryFlightDisplayEntry levelEngineOilTankEntry;
@@ -105,7 +114,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     //shared GUIs for groups
     private boolean updates;
-  
+
     //GUIs of group T16
     private GridPaneBuilder t16Builder;
 
@@ -407,7 +416,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         cameraOnButton.setToggleGroup(cameraToggleGroup);
         cameraOnButton.setSelected(false);
         gridPane.add(cameraOnButton, 2, cameraRowIndex);
-      
+
         //engine_oil_tank
         int engineOilTankRowIndex = 4;
         Label engineOilLabel = new Label("Engine Oil Level:");
@@ -415,7 +424,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         levelEngineOilTankLabel = new Label("1000");
         gridPane.add(levelEngineOilTankLabel, 1, engineOilTankRowIndex);
-      
+
         //fuel_tank
         int fuelTankRowIndex = 5;
         Label fuelTankLabel = new Label("Fuel Tank Amount: ");
@@ -467,7 +476,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         amountOfOxygenLabel = new Label("100");
         gridPane.add(amountOfOxygenLabel, 1, oxygenRowIndex);
-      
+
         //pitot_tube
         int pitotTubeRowIndex = 9;
         Label pitotTubeCleanLabel = new Label("Pitottube is clean: ");
@@ -490,7 +499,7 @@ public class PrimaryFlightDisplayGUI extends Application {
 
         gridPane.add(pitotTubeVelocityLabel, 3, pitotTubeRowIndex);
         gridPane.add(velocityLabel, 4, pitotTubeRowIndex);
-      
+
         //radar_altimeter
         int radarAltimeterRowIndex = 10;
         Label radarAltimeterIsOnLabel = new Label("Radar Altimeter is on: ");
@@ -587,6 +596,48 @@ public class PrimaryFlightDisplayGUI extends Application {
         weatherRadarOnButton.setToggleGroup(weatherRadarToggleGroup);
         weatherRadarOnButton.setSelected(false);
         gridPane.add(weatherRadarOnButton, 8, 0);
+
+
+        // APU
+        Label apuLabel = new Label("APU : ");
+        gridPane.add(apuLabel, 0, 13);
+
+        ToggleGroup apuToggleGroup = new ToggleGroup();
+
+        apuOffButton = new RadioButton("Off");
+        apuOffButton.setToggleGroup(apuToggleGroup);
+        apuOffButton.setSelected(true);
+        gridPane.add(apuOffButton, 1, 13);
+
+        apuOnButton = new RadioButton("On");
+        apuOnButton.setToggleGroup(apuToggleGroup);
+        apuOnButton.setSelected(false);
+        gridPane.add(apuOnButton, 2, 13);
+
+        apuRPMLabel = new Label("0 rpm");
+        gridPane.add(apuRPMLabel, 3, 13);
+
+
+        // Engine
+        Label engineLabel = new Label("Engine : ");
+        gridPane.add(engineLabel, 0, 14);
+
+        ToggleGroup engineToggleGroup = new ToggleGroup();
+
+        engineOffButton = new RadioButton("Off");
+        engineOffButton.setToggleGroup(engineToggleGroup);
+        engineOffButton.setSelected(true);
+        gridPane.add(engineOffButton, 1, 14);
+
+        engineOnButton = new RadioButton("On");
+        engineOnButton.setToggleGroup(engineToggleGroup);
+        engineOnButton.setSelected(false);
+        gridPane.add(engineOnButton, 2, 14);
+
+        engineRPMLabel = new Label("0 rpm");
+        gridPane.add(engineRPMLabel, 3, 14);
+
+
         // --- insert section: end
 
         Label frequencyLabel = new Label("Frequency : ");
@@ -681,7 +732,7 @@ public class PrimaryFlightDisplayGUI extends Application {
         if(!updates)
             tableView.refresh();
     }
-  
+
     // camera
     public void setCameraToggleGroup(boolean isCameraOn) {
         if (isCameraOn) {
@@ -1121,8 +1172,51 @@ public class PrimaryFlightDisplayGUI extends Application {
         }
     }
 
+    //APU
+    public void setAPUToggleGroup(boolean isAPUOn) {
+        if (isAPUOn) {
+            apuOffButton.setSelected(false);
+            apuOnButton.setSelected(true);
+        } else {
+            apuOffButton.setSelected(true);
+            apuOnButton.setSelected(false);
+        }
+    }
+
+    public void setAPURPMLabel(int rpm) {
+        apuRPMLabel.setText(rpm + " rpm");
+    }
+
+    //Engine
+    public void setEngineToggleGroup(boolean isEngineOn) {
+        if (isEngineOn) {
+            engineOffButton.setSelected(false);
+            engineOnButton.setSelected(true);
+        } else {
+            engineOffButton.setSelected(true);
+            engineOnButton.setSelected(false);
+        }
+    }
+
+    public void setEngineRPMLabel(int rpm) {
+        engineRPMLabel.setText(rpm + " rpm");
+    }
+
+
     private void initData() {
         dataList = new ArrayList<>();
+
+        //apu
+        apuIsStartedEntry = new PrimaryFlightDisplayEntry("APU (isStarted)", Boolean.toString(PrimaryFlightDisplay.instance.isAPUStarted));
+        dataList.add(apuIsStartedEntry);
+        apuRPMEntry = new PrimaryFlightDisplayEntry("APU (rpm)", Integer.toString(PrimaryFlightDisplay.instance.rpmAPU));
+        dataList.add(apuRPMEntry);
+
+        //engine
+        engineIsStartedEntry = new PrimaryFlightDisplayEntry("Engine (isStarted)", Boolean.toString(PrimaryFlightDisplay.instance.isEngineStarted));
+        dataList.add(engineIsStartedEntry);
+        engineRPMEntry = new PrimaryFlightDisplayEntry("Engine (rpm)", Integer.toString(PrimaryFlightDisplay.instance.rpmEngine));
+        dataList.add(engineRPMEntry);
 
         //engine_oil_tank
         levelEngineOilTankEntry = new PrimaryFlightDisplayEntry("Engine Oil Tank Level (amount)",
@@ -1192,6 +1286,17 @@ public class PrimaryFlightDisplayGUI extends Application {
 
     public void update() {
         updates = true;
+        //apu
+        apuIsStartedEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isAPUStarted));
+        setAPUToggleGroup(PrimaryFlightDisplay.instance.isAPUStarted);
+        apuRPMEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.rpmAPU));
+        setAPURPMLabel(PrimaryFlightDisplay.instance.rpmAPU);
+
+        //engine
+        engineIsStartedEntry.setValue(Boolean.toString(PrimaryFlightDisplay.instance.isEngineStarted));
+        setEngineToggleGroup(PrimaryFlightDisplay.instance.isEngineStarted);
+        engineRPMEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.rpmEngine));
+        setEngineRPMLabel(PrimaryFlightDisplay.instance.rpmEngine);
 
         //engine_oil_tank
         levelEngineOilTankEntry.setValue(Integer.toString(PrimaryFlightDisplay.instance.levelEngineOilTank));
