@@ -24,7 +24,6 @@ public class ProcedureTest {
     public void init() {
 
 
-        System.out.println("Ich werde ausgeführt");
         LogEngine.instance.init();
         FlightRecorder.instance.startup();
         FlightRecorder.instance.init();
@@ -38,13 +37,7 @@ public class ProcedureTest {
         amountOfOxygen = PrimaryFlightDisplay.instance.amountOfOxygen;
         amountOfNitrogen = PrimaryFlightDisplay.instance.amountOfNitrogen;
         altitudeRadarAltimeter = PrimaryFlightDisplay.instance.altitudeRadarAltimeter;
-        System.out.println(amountOfFuelInTank);
-        System.out.println(amountOfNitrogen);
-        System.out.println(amountOfOxygen);
-        System.out.println(altitudeRadarAltimeter);
-        System.out.println(levelEngineOilTank);
-        System.out.println(fuelFlow);
-        System.out.println(exhaustGasTemperature);
+
 
     }
 
@@ -147,6 +140,7 @@ public class ProcedureTest {
 
         //pitot_tube
 
+
         //radar_altimeter
         assertTrue(PrimaryFlightDisplay.instance.isRadarAltimeterOn);
         assertTrue(PrimaryFlightDisplay.instance.altitudeRadarAltimeter==0);
@@ -185,7 +179,7 @@ public class ProcedureTest {
 
         //exhaust_gas_temperature_sensor
         assertTrue(PrimaryFlightDisplay.instance.temperatureExhaustGasTemperatureSensor>-1000);
-        assertFalse(PrimaryFlightDisplay.instance.isAlarmCriticalExhaustGasTemperatureSensor);
+        assertFalse(PrimaryFlightDisplay.instance.isAlarmCriticalExhaustGasTemperatureSensor); //einmal zum Testen
         assertFalse(PrimaryFlightDisplay.instance.isAlarmMajorExhaustGasTemperatureSensor);
 
         //fuel_flow_sensor
@@ -201,10 +195,10 @@ public class ProcedureTest {
         assertTrue(PrimaryFlightDisplay.instance.isIceDetectorProbeWingActivated);
 
         //nitrogen_bottle
-        assertTrue(PrimaryFlightDisplay.instance.amountOfNitrogen<amountOfNitrogen);
+        assertTrue(PrimaryFlightDisplay.instance.amountOfNitrogen==240);
 
         //oxygen_bottle
-        assertTrue(PrimaryFlightDisplay.instance.amountOfOxygen<amountOfOxygen);
+        assertTrue(PrimaryFlightDisplay.instance.amountOfOxygen==amountOfOxygen-2);// da um 2 reduziert
 
         //pitot_tube
 
@@ -250,7 +244,7 @@ public class ProcedureTest {
         assertTrue(PrimaryFlightDisplay.instance.fuelFlow>0);
 
         //fuel_tank
-        assertTrue(PrimaryFlightDisplay.instance.amountOfFuelInTank==996);
+        assertTrue(PrimaryFlightDisplay.instance.amountOfFuelInTank==996); // der Wert von amountOfFuelInTank wird im PrimaryFlightDisplay bei jedem Funktionsaufruf wieder auf 1000 gesetzt
 
 
         //gps
@@ -406,7 +400,7 @@ public class ProcedureTest {
 
         //seat
         assertTrue(PrimaryFlightDisplay.instance.isNonSmokingSignOn);
-        assertTrue(PrimaryFlightDisplay.instance.isSeatBeltSignOn); //economy class sind die SeatBealtsOn
+        assertTrue(PrimaryFlightDisplay.instance.isSeatBeltSignOn);
 
         //engine_oil_tank
 

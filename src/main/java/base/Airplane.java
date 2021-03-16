@@ -494,7 +494,7 @@ public class Airplane implements IAirplane {
     public void descent() {
         // business_class_seat
         eventBus.post(new NonSmokingSignOn());
-        eventBus.post(new SeatBeltSignOff());
+        eventBus.post(new SeatBeltSignOn());
 
         // crew_seat
         eventBus.post(new event.crew_seat.NonSmokingSignOn());
